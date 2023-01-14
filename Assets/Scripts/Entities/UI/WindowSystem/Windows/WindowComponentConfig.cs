@@ -10,9 +10,6 @@ namespace Entities.UI.WindowSystem.Windows
     {
         public WindowType Type;
         public VisualTreeAsset WindowAsset;
-        public PanelSettings PanelSettings;
         // public List<WindowEntry> WindowEntries;
-        public string WindowContainerName;
-        public string ScreenContainerName;
     }
 }

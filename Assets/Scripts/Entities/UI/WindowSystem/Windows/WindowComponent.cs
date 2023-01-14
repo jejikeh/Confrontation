@@ -10,7 +10,7 @@ namespace Entities.UI.WindowSystem.Windows
     {
         public WindowComponentConfig WindowComponentConfig => ComponentConfig;
         public VisualElement RootContainer { get; private set; }
-        public VisualElement HolderContainer { get; private set; }
+        public VisualElement HolderContainer { get; set; }
 
         private readonly UIDocument _uiDocument;
 
@@ -23,17 +23,10 @@ namespace Entities.UI.WindowSystem.Windows
             .FindWindowConfig<T>())
         {
             _uiDocument = uiDocument;
-            RootContainer = RootContainer;
+            RootContainer = ComponentConfig.WindowAsset.CloneTree();
         }
 
         public abstract Task OnClose();
         public abstract Task OnOpen();
-        
-        public void InitWindow(VisualElement container)
-        {
-            RootContainer = ComponentConfig.WindowAsset.CloneTree();
-            HolderContainer = container;
-            container.Add(RootContainer);
-        }
     }
 }

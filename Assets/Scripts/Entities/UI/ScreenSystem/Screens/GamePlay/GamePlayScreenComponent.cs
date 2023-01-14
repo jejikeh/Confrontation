@@ -14,7 +14,7 @@ namespace Entities.UI.ScreenSystem.Screens.GamePlay
         public override async Task OnOpen()
         {
             await OpenWindowAsync(
-                new ConfirmWindowComponent(this, UIDocument));
+                new ConfirmWindowComponent(this, UIDocument),"global-container");
         }
         
         public override Task OnClose()

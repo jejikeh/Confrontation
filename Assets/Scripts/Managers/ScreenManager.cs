@@ -25,7 +25,7 @@ namespace Managers
 
         [CanBeNull] public static IScreenComponent GetCurrentScreenComponent() => Instance.CurrentScreen.GetConstantState();
 
-        public static async Task OpenWindowAsync(WindowType type)
+        public static async Task OpenWindowAsync(WindowType type, string containerName)
         {
             var currentScreenComponent = GetCurrentScreenComponent();
 
@@ -38,25 +38,29 @@ namespace Managers
                     await currentScreenComponent.OpenWindowAsync(
                         new ConfirmWindowComponent(
                             currentScreenComponent,
-                            Instance.CurrentScreen.UIDocument));
+                            Instance.CurrentScreen.UIDocument), 
+                        containerName);
                     break;
                 case WindowType.Message:
                     await currentScreenComponent.OpenWindowAsync(
                         new MessageWindowComponent(
                             currentScreenComponent,
-                            Instance.CurrentScreen.UIDocument));
+                            Instance.CurrentScreen.UIDocument),
+                        containerName);
                     break;
                 case WindowType.Input:
                     await currentScreenComponent.OpenWindowAsync(
                         new InputWindowComponent(
                             currentScreenComponent,
-                            Instance.CurrentScreen.UIDocument));
+                            Instance.CurrentScreen.UIDocument),
+                        containerName);
                     break;
                 case WindowType.TopPanel:
                     await currentScreenComponent.OpenWindowAsync(
                         new TopPanelWindowComponent(
                             currentScreenComponent,
-                            Instance.CurrentScreen.UIDocument));
+                            Instance.CurrentScreen.UIDocument),
+                        containerName);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);

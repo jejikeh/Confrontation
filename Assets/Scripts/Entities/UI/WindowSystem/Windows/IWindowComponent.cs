@@ -10,8 +10,7 @@ namespace Entities.UI.WindowSystem.Windows
     {
         public WindowComponentConfig WindowComponentConfig { get; }
         public VisualElement RootContainer { get; }
-        public VisualElement HolderContainer { get; }
-        public void InitWindow(VisualElement container);
+        public VisualElement HolderContainer { get; set; }
         public Task OnOpen();
         public Task OnClose();
     }

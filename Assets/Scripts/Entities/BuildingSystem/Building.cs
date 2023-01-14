@@ -34,7 +34,7 @@ namespace Entities.BuildingSystem
 
         private static async void MouseClickableComponentOnOnMouseClicked(object sender, EventArgs e)
         {
-            await ScreenManager.OpenWindowAsync(WindowType.Input);
+            await ScreenManager.OpenWindowAsync(WindowType.Input, "panel-container");
 
         }
 

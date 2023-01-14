@@ -24,9 +24,12 @@ namespace Entities.UI.ScreenSystem.Screens
         }
 
         // TODO: Create custom exceptions
-        public async Task OpenWindowAsync(IWindowComponent windowComponent)
+        public async Task OpenWindowAsync(IWindowComponent windowComponent, string containerName)
         {
             var window = AddCustomComponent(windowComponent);
+            var windowHolderContainer = UIDocument.rootVisualElement.Q<VisualElement>(containerName);
+            windowComponent.HolderContainer = windowHolderContainer;
+            windowHolderContainer.Add(windowComponent.RootContainer);
             await window.OnOpen();
         }
 
@@ -44,7 +47,6 @@ namespace Entities.UI.ScreenSystem.Screens
             if (requiredComponent is not null)
                 throw new Exception($"The {component.GetType().FullName} already attached to this component");
 
-            component.InitWindow(UIDocument.rootVisualElement.Q<VisualElement>(component.WindowComponentConfig.ScreenContainerName));
             CustomComponents.Add(component);
             component.Enable();
             return component;
