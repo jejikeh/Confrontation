@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace Entities.UI.WindowSystem.Windows
 {
-    // TODO: for now window without config, but maybe use prefab of controlls as config
+    // TODO: for now window without config, but maybe use prefab of controls  as config
     public abstract class WindowComponent<T> : CustomComponent<T>, IWindowComponent where T : WindowComponentConfig
     {
         public WindowComponentConfig WindowComponentConfig => ComponentConfig;

@@ -10,7 +10,6 @@ namespace Core
 {
     public abstract class CustomComponentHandler<T> : MonoBehaviour, ICustomComponentHandler<ICustomComponent> where T : class, IConstantStateComponent
     {
-        // public static readonly float GlobalTimeScale = 1f;
         public List<ICustomComponent> CustomComponents { get; set; } = new List<ICustomComponent>();
         [CanBeNull] protected T ConstantStateComponent;
 
