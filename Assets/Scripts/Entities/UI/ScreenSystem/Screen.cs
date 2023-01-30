@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using DG.Tweening;
+﻿using System.Threading.Tasks;
 using Entities.UI.ScreenSystem.Screens;
 using UnityEngine;
 using UnityEngine.UIElements;

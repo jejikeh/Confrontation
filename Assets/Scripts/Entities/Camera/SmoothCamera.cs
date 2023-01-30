@@ -28,6 +28,7 @@ namespace Entities.Camera
             _smoothRotateComponent = (SmoothRotateComponent)AddCustomComponent(new SmoothRotateComponent(_smoothRotateComponentConfig));
             _smoothLookAtTargetComponent =
                 (SmoothLookAtTargetComponent)AddCustomComponent(new SmoothLookAtTargetComponent(_smoothLookAtTargetComponentConfig));
+            
 
             PlayerInput.Input.MouseDelta.performed += MouseDeltaPerform;
             PlayerInput.Input.ZoomCamera.performed += ZoomCameraPerform;
