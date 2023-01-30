@@ -1,4 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/Scripts/Entities/UI/global.uss?fileID=7433441132597879392&amp;guid=e4a7bd3ebad0ab141b30c35686a7756b&amp;type=3#global" />
-    <ui:Button text="Button" display-tooltip-when-elided="true" name="global-button" class="global-button" />
-</ui:UXML>
