@@ -1,7 +1,28 @@
-﻿namespace DefaultNamespace
+﻿using UnityEngine;
+
+public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    public class Singleton
+    private static T _instance;
+
+    protected static T Instance
     {
-        
+        get
+        {
+            if (_instance is null)
+                _instance = FindObjectOfType<T>() ?? new GameObject(typeof(T).Name).AddComponent<T>();
+
+            return _instance;
+        }
+    }
+
+    protected virtual void Awake()
+    {
+        if (_instance is null)
+        {
+            _instance = this as T;
+            DontDestroyOnLoad(_instance);
+        }
+        else
+            Destroy(gameObject);
     }
 }
