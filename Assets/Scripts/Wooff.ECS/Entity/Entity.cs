@@ -1,14 +1,12 @@
 using System;
-using System.Threading.Tasks;
 using Wooff.ECS.Component;
 using Wooff.ECS.Context;
 
 namespace Wooff.ECS.Entity
 {
-
-    public abstract class Entity : Context<IComponent>, IEntity<IComponent>
+    public class Entity : UpdateableContext<IUpdatableComponent>, IEntity<IUpdatableComponent>
     {
-        public new IComponent Add(IComponent item)
+        public new IUpdatableComponent Add(IUpdatableComponent item)
         {
             if (Contains(item))
                 throw new ArgumentException(
@@ -18,79 +16,61 @@ namespace Wooff.ECS.Entity
             return item;
         }
 
-        public new T1 Add<T1>(params object[] data) where T1 : IComponent, IInitable, new()
+        public new T1 Add<T1>() where T1 : IUpdatableComponent, new()
         {
-            var item = IInitable.Initialize<T1>(data) as IComponent;
+            var item = IInitable.Initialize<T1>() as IUpdatableComponent;
             if (item is not T1 parsedComponent || Contains<T1>())
                 throw new ArgumentException(
-                    $"Component {item.GetType().FullName} is already attached to entity {GetType().FullName}");
+                    $"Component {item?.GetType().FullName} is already attached to entity {GetType().FullName}");
 
             Add(parsedComponent);
             return parsedComponent;
         }
 
-        public new T1 Add<T1, T2>(T2 data) where T1 : IComponent, IInitable<T2>, new()
+        public new T1 Add<T1, T2>(T2 data) where T1 : IUpdatableComponent, IInitable<T2>, new()
         {
-            var item = IInitable<T2>.Initialize<T1>(data) as IComponent;
+            var item = IInitable<T2>.Initialize<T1>(data) as IUpdatableComponent;
             if (item is not T1 parsedComponent || Contains<T1>())
                 throw new ArgumentException(
-                    $"Component {item.GetType().FullName} is already attached to entity {GetType().FullName}");
+                    $"Component {item?.GetType().FullName} is already attached to entity {GetType().FullName}");
 
             Add(parsedComponent);
             return parsedComponent;
         }
 
-        // TODO: add new overrides for ContextAdd method
-
-        public virtual void Update(float timeScale) { }
-
-        public virtual Task UpdateParallelAsync(float timeScale)
+        public int CompareTo(IEntity other)
         {
-            return Task.Run(() => Update(timeScale));
+            if (other is not Entity helloWorld)
+                return -1;
+
+            if (helloWorld == this)
+                return 0;
+
+            return -1;
         }
 
-        public virtual IInitable Init(params object[] data)
+        public IInitable Init()
         {
-            return this;
-        }
-
-        public IInitable<IComponent> Init(IComponent data)
-        {
-            Add(data);
-            return this;
-        }
-
-        public IInitable<IComponent> Init(params IComponent[] data)
-        {
-            foreach (var component in data)
-                Add(component);
-
             return this;
         }
     }
 
-    public abstract class Entity<T> : Entity, IEntity<T>
+    public abstract class Entity<T> : UpdateableContext<T>, IEntity<T> where T : IComponent, IUpdatableComponent, IComparable<T>
     {
-        public abstract IInitable<T> Init(T data);
-    }
+        public IInitable Init()
+        {
+            return this;
+        }
 
-    public abstract class Entity<T, T1> : Entity, IEntity<T, T1>
-    {
-        public abstract IInitable<T, T1> Init(T dataT, T1 dataT1);
-    }
+        public int CompareTo(IEntity other)
+        {
+            if (other is not { } helloWorld)
+                return -1;
 
-    public abstract class Entity<T, T1, T2> : Entity, IEntity<T, T1, T2>
-    {
-        public abstract IInitable<T, T1, T2> Init(T dataT, T1 dataT1, T2 dataT2);
-    }
+            if (helloWorld == this as IEntity)
+                return 0;
 
-    public abstract class Entity<T, T1, T2, T3> : Entity, IEntity<T, T1, T2, T3>
-    {
-        public abstract IInitable<T, T1, T2, T3> Init(T dataT, T1 dataT1, T2 dataT2, T3 dataT3);
-    }
-
-    public abstract class Entity<T, T1, T2, T3, T4> : Entity, IEntity<T, T1, T2, T3, T4>
-    {
-        public abstract IInitable<T, T1, T2, T3, T4> Init(T dataT, T1 dataT1, T2 dataT2, T3 dataT3, T4 dataT4);
+            return -1;
+        }
     }
 }

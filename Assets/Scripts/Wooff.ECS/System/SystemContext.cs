@@ -1,9 +1,8 @@
-using Wooff.ECS.Context;
-using Wooff.ECS.Entity;
+﻿using Wooff.ECS.Context;
 
 namespace Wooff.ECS.System
 {
-    public class SystemContext : UpdateableContext<ISystem, IContext<IEntity>>
+    public class SystemContext<T> : UpdateableContext<ISystem<T>, IContext<T>>
     {
         
     }

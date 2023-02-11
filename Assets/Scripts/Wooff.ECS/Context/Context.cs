@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 
 namespace Wooff.ECS.Context
 {
@@ -23,6 +24,7 @@ namespace Wooff.ECS.Context
         public void Add(T item)
         {
             _items.Add(item);
+            ItemAdded?.Invoke(this, item);
         }
 
         public void Clear()
@@ -66,6 +68,7 @@ namespace Wooff.ECS.Context
             }
         }
 
+        [ItemCanBeNull]
         public List<T1> GetAll<T1>() where T1 : class, T, new()
         {
             var itemList = _items.Where(entity => entity?.GetType() == typeof(T1)).Select(x => x as T1);
@@ -82,9 +85,9 @@ namespace Wooff.ECS.Context
             return item;
         }
 
-        public T1 Add<T1>(params object[] data) where T1 : T, IInitable, new()
+        public T1 Add<T1>(Func<T1> action) where T1 : T, IInitable, new()
         {
-            var item = IInitable.Initialize<T1>(data);
+            var item = IInitable.Initialize<T1>(action);
             Add(item);
             return item;
         }
@@ -225,14 +228,7 @@ namespace Wooff.ECS.Context
             Add(item);
             return item;
         }
-
-        public T1 Add<T1>(Func<object[], T1> action, params object[] data) where T1 : T, IInitable, new()
-        {
-            var item = IInitable.Initialize(action, data);
-            Add(item);
-            return item;
-        }
-
+        
         public void Remove<T1>() where T1 : T
         {
             var itemIndex = _items.FindIndex(temp => temp?.GetType() == typeof(T1));
@@ -254,7 +250,7 @@ namespace Wooff.ECS.Context
             return item;
         }
 
-        public T1 GetFirstNullable<T1>() where T1 : class, T
+        public T1? GetFirstNullable<T1>() where T1 : class, T
         {
             return this[typeof(T1)].FirstOrDefault() as T1;
         }
@@ -276,5 +272,7 @@ namespace Wooff.ECS.Context
 
             return retVal;
         }
+
+        public event EventHandler<T> ItemAdded;
     }
 }

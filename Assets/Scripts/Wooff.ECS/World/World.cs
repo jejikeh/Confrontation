@@ -1,40 +1,20 @@
 using System.IO;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
 using Newtonsoft.Json;
+using Wooff.ECS.Component;
 using Wooff.ECS.Context;
 using Wooff.ECS.Entity;
 using Wooff.ECS.System;
+using NotImplementedException = System.NotImplementedException;
 
 namespace Wooff.ECS.World
 {
 
-    public abstract class World : IWorld
+    public abstract class World<T, T1, T2> : IWorld<T, T1, T2> where T : IEntity<T1> where T1 : IComponent where T2 : IContext<ISystem<T>>
     {
-        public IContext<IEntity> EntityContext { get; } = new EntityContext();
-        public IContext<ISystem> SystemContext { get; } = new SystemContext();
+        public abstract IContext<T> EntityContext { get; }
+        public abstract T2 SystemContext { get; }
 
-        [CanBeNull] private readonly IUpdateable _entityContextUpdate;
-        [CanBeNull] private readonly IUpdateable<IContext<IEntity>> _systemContextUpdate;
-
-        protected World()
-        {
-            _entityContextUpdate = EntityContext as IUpdateable;
-            _systemContextUpdate = SystemContext as IUpdateable<IContext<IEntity>>;
-        }
-
-        public virtual void Update(float timeScale)
-        {
-            _entityContextUpdate?.Update(timeScale);
-            _systemContextUpdate?.Update(timeScale, EntityContext);
-        }
-
-        public async Task UpdateParallelAsync(float timeScale)
-        {
-            await _entityContextUpdate?.UpdateParallelAsync(timeScale)!;
-            await _systemContextUpdate?.UpdateParallelAsync(timeScale, EntityContext)!;
-        }
-        
         public async Task Save(string filename)
         {
             await File.WriteAllTextAsync(
@@ -43,10 +23,6 @@ namespace Wooff.ECS.World
                     new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, Formatting = Formatting.Indented}));
         }
         
-        public static async Task<T> Load<T>(string filename) where T : World
-        {
-            return JsonConvert.DeserializeObject<T>(await File.ReadAllTextAsync(filename), 
-                    new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
-        }
+        public abstract void Initialize();
     }
 }

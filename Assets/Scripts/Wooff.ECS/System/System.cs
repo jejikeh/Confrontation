@@ -1,23 +1,48 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Wooff.ECS.Context;
-using Wooff.ECS.Entity;
 
 namespace Wooff.ECS.System
 {
-    public class System : ISystem
+    public class System<T> : UpdateableContext<T> , ISystem<T> where T : IUpdateable
     {
-        public virtual void Update(float timeScale, IContext<IEntity> data) { }
-        
-        public virtual Task UpdateParallelAsync(float timeScale, IContext<IEntity> data)
+        private int _shiftOneThread;
+        public virtual void UpdateOneThread(float timeScale, IContext<T> data)
         {
-            return Task.CompletedTask;
+            var chunk = data.SplitIntoChunks(1000);
+            if (_shiftOneThread < chunk.Count)
+            {
+                foreach (var item in chunk[_shiftOneThread])
+                    SystemUpdate(1f, item);
+                _shiftOneThread++;
+            }
+            else
+                _shiftOneThread = 0;
+            
         }
 
-        public void Update(float timeScale) { }
-
-        public Task UpdateParallelAsync(float timeScale)
+        private int _shiftParallel;
+        public virtual async Task UpdateParallelAsync(float timeScale, IContext<T> data)
         {
-            return Task.CompletedTask;
+            var chunk = data.SplitIntoChunks(10);
+            if (_shiftParallel < chunk.Count)
+            {
+                await chunk[_shiftParallel].ParallelForEachAsync(async item =>
+                {
+                    await SystemUpdateAsync(timeScale, item);
+                });
+                _shiftParallel++;
+            }
+            else
+                _shiftParallel = 0;
+        }
+        
+        protected virtual Task SystemUpdateAsync(float timeScale, T updateItem)
+        {
+            return Task.WhenAll();
+        }
+        
+        protected virtual void SystemUpdate(float timeScale, T updateItem)
+        {
         }
     }
 }

@@ -5,18 +5,18 @@ namespace Wooff.ECS
 
     public interface IInitable
     {
-        public IInitable Init(params object[] data);
+        public IInitable Init();
 
-        public static T Initialize<T>(params object[] data) where T : IInitable, new()
+        public static T Initialize<T>() where T : IInitable, new()
         {
             var item = new T();
-            item.Init(data);
+            item.Init();
             return item;
         }
 
-        public static T Initialize<T>(Func<object[], T> action, params object[] data) where T : IInitable, new()
+        public static T Initialize<T>(Func<T> action) where T : IInitable, new()
         {
-            var item = action.Invoke(data);
+            var item = action.Invoke();
             return item;
         }
     }

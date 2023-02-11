@@ -4,10 +4,11 @@ using JetBrains.Annotations;
 
 namespace Wooff.ECS.Context
 {
+
     public interface IContext<T> : ICollection<T>
     {
         public T1 Add<T1>() where T1 : T, new();
-        public T1 Add<T1>(params object[] data) where T1 : T, IInitable, new();
+        public T1 Add<T1>(Func<T1> action) where T1 : T, IInitable, new();
         public T1 Add<T1, T2>(T2 data) where T1 : T, IInitable<T2>, new();
         public T1 Add<T1, T2, T3>(T2 dataT, T3 dataT1) where T1 : T, IInitable<T2, T3>, new();
         public T1 Add<T1, T2, T3, T4>(T2 dataT, T3 dataT1, T4 dataT2) where T1 : T, IInitable<T2, T3, T4>, new();
@@ -49,12 +50,13 @@ namespace Wooff.ECS.Context
             where T5 : IInitable<TD5>, new()
             where T6 : IInitable<TD6>, new();
 
-        public T1 Add<T1>(Func<object[], T1> action, params object[] data) where T1 : T, IInitable, new();
         public void Remove<T1>() where T1 : T;
         public T1 GetFirst<T1>() where T1 : class, T;
         [CanBeNull] public T1 GetFirstNullable<T1>() where T1 : class, T;
         public bool Contains<T1>() where T1 : T;
         [ItemCanBeNull] public List<T1> GetAll<T1>() where T1 : class, T, new();
         public List<List<T>> SplitIntoChunks(int chunkSize);
+
+        public event EventHandler<T> ItemAdded;
     }
 }
