@@ -1,18 +1,20 @@
 ﻿using System.Threading.Tasks;
+using Core.Components.HelloWorldComponent;
 using UnityEngine;
 using Wooff.ECS;
 using Wooff.ECS.Component;
 using Wooff.ECS.Entity;
 
-namespace Core.Components.HelloWorldComponent
+namespace Core.Components.TransformComponent
 {
     public class SmoothTransform : IComponent<TransformData>
     {
-        public string Message { get; set; } = string.Empty;
+        
+        public float Speed { get; set; }
 
         public int CompareTo(IComponent other)
         {
-            if (other is not HelloWorld helloWorld) 
+            if (other is not SmoothTransform helloWorld) 
                 return -1;
             
             if (helloWorld == this)
@@ -21,39 +23,16 @@ namespace Core.Components.HelloWorldComponent
             return -1;
         }
 
-        public IInitable Init()
-        {
-            return Init(new HelloWorldData()
-            {
-                Message = "Hello World"
-            });
-        }
 
-        public IInitable<HelloWorldData> Init(HelloWorldData data)
+        public IInitable<TransformData> Init(TransformData data)
         {
-            Message = data.Message;
+            Speed = data.Speed;
             return this;
         }
 
-        public void UpdateOneThread(float timeScale)
+        public IInitable Init()
         {
-            Debug.Log(Message);
-        }
-
-        public async Task UpdateParallelAsync(float timeScale)
-        {
-            Debug.Log(Message);
-        }
-
-        public void UpdateOneThread(float timeScale, IEntity data)
-        {
-            Debug.Log(Message);
-        }
-
-        public Task UpdateParallelAsync(float timeScale, IEntity data)
-        {
-            Debug.Log(Message + data.GetType().FullName);
-            return Task.CompletedTask;
+            return this;
         }
     }
 }

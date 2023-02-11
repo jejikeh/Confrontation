@@ -1,7 +1,7 @@
-﻿namespace Core.Components.HelloWorldComponent
+﻿namespace Core.Components.TransformComponent
 {
-    public struct HelloWorldData
+    public struct TransformData
     {
-        public string Message { get; set; }
+        public float Speed { get; set; }
     }
 }

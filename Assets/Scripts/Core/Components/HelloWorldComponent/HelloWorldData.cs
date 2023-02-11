@@ -2,6 +2,6 @@
 {
     public struct HelloWorldData
     {
-        
+        public string Message { get; set; }
     }
 }
