@@ -1,6 +1,8 @@
-﻿namespace Wooff.Presentation
+﻿using Wooff.ECS.System;
+
+namespace Wooff.Presentation
 {
-    public class MonoSystem
+    public class MonoSystem : System<IMonoEntity>
     {
         
     }

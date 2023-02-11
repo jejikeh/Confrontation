@@ -1,7 +1,9 @@
-﻿namespace Wooff.Presentation
+﻿using Wooff.ECS.Context;
+
+namespace Wooff.Presentation
 {
-    public class MonoEntityContext
+    public class MonoEntityContext : UpdateableContext<IMonoEntity>
     {
-        
+
     }
 }
