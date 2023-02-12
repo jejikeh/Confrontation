@@ -1,8 +1,16 @@
-﻿namespace Core.Components.HelloWorldComponent
+﻿using System;
+using Wooff.Presentation;
+
+namespace Core.Components.HelloWorldComponent
 {
-    [System.Serializable]
+    [Serializable]
     public class HelloWorldData
     {
         public string Message;
+    }
+    
+    [Serializable]
+    public sealed class HelloWorldDictionary : DataDictionary<HelloWorldData>
+    {
     }
 }

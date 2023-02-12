@@ -1,10 +1,9 @@
 ﻿using Core.Components.HelloWorldComponent;
 using Core.Components.MeshComponent;
 using UnityEngine;
-using Wooff.ECS;
 using Wooff.ECS.Entity;
 using Wooff.Presentation;
-using Mesh = Core.Components.MeshComponent.Mesh;
+using Camera = Core.Components.CameraComponent.Camera;
 
 namespace Core.Entities
 {
@@ -12,8 +11,8 @@ namespace Core.Entities
     {
         public Bob()
         {
-            Add<HelloWorld, HelloWorldData>(DataGlobalStorage.HelloWorldDataStatic);
-            Add<Mesh, MeshData>(DataGlobalStorage.MeshDataStatic);
+            Add<HelloWorld, HelloWorldData>(DataStorage.GetHelloWorldData("Bob"));
+            Add<Components.MeshComponent.Mesh, MeshData>(DataStorage.GetMeshData("Bob"));
         }
 
         public GameObject MonoObject { get; set; }

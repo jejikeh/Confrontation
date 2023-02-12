@@ -5,7 +5,7 @@ using Wooff.Presentation;
 
 namespace Core.Presentation
 {
-    public class BobPresentation : MonoEntity<Bob>
+    public class CameraPresentation : MonoEntity<MainCamera>
     {
         public override IInitable Init()
         {

@@ -17,9 +17,11 @@ namespace Core.Worlds
         {
             SystemContext.Add(new HelloWorldUpdatePrint());
             SystemContext.Add(new MeshSystem());
-            /*
+            SystemContext.Add(new CameraSystem());
+
+            EntityContext.Add<CameraPresentation>();
             foreach (var _ in Enumerable.Range(0,100))
-                EntityContext.Add<BobPresentation>();*/
+                EntityContext.Add<BobPresentation>();
         }
     }
 }

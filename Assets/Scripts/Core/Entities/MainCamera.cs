@@ -1,16 +1,19 @@
-﻿using Core.Components.HelloWorldComponent;
+﻿using Core.Components.CameraComponent;
+using Core.Components.HelloWorldComponent;
 using Core.Components.MeshComponent;
 using UnityEngine;
 using Wooff.ECS.Entity;
 using Wooff.Presentation;
+using Camera = Core.Components.CameraComponent.Camera;
 
 namespace Core.Entities
 {
-    public class Camera : Entity<IMonoComponent>, IMonoEntity
+    public class MainCamera : Entity<IMonoComponent>, IMonoEntity
     {
-        public Camera()
+        public MainCamera()
         {
             Add<HelloWorld, HelloWorldData>(DataStorage.GetHelloWorldData("Camera"));
+            Add<Camera, CameraData>(DataStorage.GetCameraData("Camera"));
         }
         
         public GameObject MonoObject { get; set; }

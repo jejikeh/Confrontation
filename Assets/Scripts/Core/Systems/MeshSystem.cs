@@ -11,7 +11,7 @@ namespace Core.Systems
         {
             if(!item.Contains<Mesh>())
                 return;
-            
+                
             item.GetFirst<Mesh>()?.SetMesh(item);
         }
     }
