@@ -2,7 +2,7 @@ using System;
 
 namespace Wooff.ECS.Component
 {
-    public interface IComponent : IInitable, IComparable<IComponent>
+    public interface IComponent : IInitable
     {
         
     }

@@ -38,39 +38,60 @@ namespace Wooff.ECS.Entity
             return parsedComponent;
         }
 
-        public int CompareTo(IEntity other)
-        {
-            if (other is not Entity helloWorld)
-                return -1;
-
-            if (helloWorld == this)
-                return 0;
-
-            return -1;
-        }
-
         public IInitable Init()
         {
             return this;
         }
     }
 
-    public abstract class Entity<T> : UpdateableContext<T>, IEntity<T> where T : IComponent, IUpdatableComponent, IComparable<T>
+    public abstract class Entity<T> : UpdateableContext<T>, IEntity<T> where T : IComponent, IUpdatableComponent
     {
+        public new IUpdatableComponent Add(T item)
+        {
+            if (Contains(item))
+                throw new ArgumentException(
+                    $"Component {item.GetType().FullName} is already attached to entity {GetType().FullName}");
+
+            base.Add(item);
+            return item;
+        }
+
+        public new T1 Add<T1>() where T1 : T, new()
+        {
+            var item = IInitable.Initialize<T1>() as IUpdatableComponent;
+            if (item is not T1 parsedComponent || Contains<T1>())
+                throw new ArgumentException(
+                    $"Component {item?.GetType().FullName} is already attached to entity {GetType().FullName}");
+
+            Add(parsedComponent);
+            return parsedComponent;
+        }
+
+        public new T1 Add<T1, T2>(T2 data) where T1 : T, IInitable<T2>, new()
+        {
+            var item = IInitable<T2>.Initialize<T1>(data) as IUpdatableComponent;
+            if (item is not T1 parsedComponent || Contains<T1>())
+                throw new ArgumentException(
+                    $"Component {item?.GetType().FullName} is already attached to entity {GetType().FullName}");
+
+            Add(parsedComponent);
+            return parsedComponent;
+        }
+        
         public IInitable Init()
         {
             return this;
         }
+    }
 
-        public int CompareTo(IEntity other)
+    public abstract class Entity<T, T1> : Entity<T>, IEntity<T, T1> where T : IUpdatableComponent, IComparable<T>
+    {
+        protected T1 Data;
+
+        public IInitable<T1> Init(T1 data)
         {
-            if (other is not { } helloWorld)
-                return -1;
-
-            if (helloWorld == this as IEntity)
-                return 0;
-
-            return -1;
+            Data = data;
+            return this;
         }
     }
 }
