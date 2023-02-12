@@ -3,46 +3,82 @@ using Wooff.ECS.Context;
 
 namespace Wooff.ECS.System
 {
-    public class System<T> : UpdateableContext<T> , ISystem<T> where T : IUpdateable
+    public class System<T> : ISystem<T> where T : IUpdateable
     {
-        private int _shiftOneThread;
+
+        #region Start
+
+        public virtual void StartOneThread()
+        {
+        }
+
+        public virtual Task StartParallelAsync()
+        {
+            return Task.CompletedTask;
+        }
+
+        public virtual void StartOneThread(IContext<T> data)
+        {
+            foreach (var item in data)
+                SystemStartOneThread(item);
+        }
+
+        protected virtual void SystemStartOneThread(T item)
+        {
+        }
+        
+        public virtual Task StartParallelAsync(IContext<T> data)
+        {
+            return Task.CompletedTask;
+        }
+        
+        #endregion
+        
+        #region Update
+        
+        private int _shiftUpdateOneThread;
         public virtual void UpdateOneThread(float timeScale, IContext<T> data)
         {
             var chunk = data.SplitIntoChunks(1000);
-            if (_shiftOneThread < chunk.Count)
+            if (_shiftUpdateOneThread < chunk.Count)
             {
-                foreach (var item in chunk[_shiftOneThread])
-                    SystemUpdate(1f, item);
-                _shiftOneThread++;
+                foreach (var item in chunk[_shiftUpdateOneThread])
+                    SystemUpdateOneThread(1f, item);
+                _shiftUpdateOneThread++;
             }
             else
-                _shiftOneThread = 0;
-            
+                _shiftUpdateOneThread = 0;
         }
 
-        private int _shiftParallel;
+        private int _shiftUpdateParallel;
         public virtual async Task UpdateParallelAsync(float timeScale, IContext<T> data)
         {
             var chunk = data.SplitIntoChunks(10);
-            if (_shiftParallel < chunk.Count)
+            if (_shiftUpdateParallel < chunk.Count)
             {
-                await chunk[_shiftParallel].ParallelForEachAsync(async item =>
+                await chunk[_shiftUpdateParallel].ParallelForEachAsync(async item =>
                 {
-                    await SystemUpdateAsync(timeScale, item);
+                    await SystemUpdateParallelAsync(timeScale, item);
                 });
-                _shiftParallel++;
+                _shiftUpdateParallel++;
             }
             else
-                _shiftParallel = 0;
+                _shiftUpdateParallel = 0;
         }
         
-        protected virtual Task SystemUpdateAsync(float timeScale, T updateItem)
+        protected virtual Task SystemUpdateParallelAsync(float timeScale, T updateItem)
         {
             return Task.WhenAll();
         }
         
-        protected virtual void SystemUpdate(float timeScale, T updateItem)
+        protected virtual void SystemUpdateOneThread(float timeScale, T updateItem)
         {
         }
+        
+        #endregion
+
+        public virtual void UpdateOneThread(float timeScale) { }
+
+        public virtual Task UpdateParallelAsync(float timeScale) { return Task.CompletedTask; }
     }
 }
