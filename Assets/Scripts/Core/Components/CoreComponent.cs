@@ -6,36 +6,26 @@ using Wooff.Presentation;
 
 namespace Core.Components
 {
-    public class CoreComponent<T> : IMonoComponent<T> where T : new()
+    public class CoreComponent : IMonoComponent
     {
-        protected T Data { get; set; }
-
         public IInitable Init()
         {
-            return Init(new T());
-        }
-
-        public int CompareTo(IComponent other)
-        {
-            if (other is not { } component) 
-                return -1;
-        
-            if (component == this)
-                return 0;
-
-            return -1;
+            return this;
         }
 
         public virtual void UpdateOneThread(float timeScale)
         {
-        
         }
 
         public Task UpdateParallelAsync(float timeScale)
         {
             return Task.WhenAll();
         }
-
+    }
+    public class CoreComponent<T> : CoreComponent, IMonoComponent<T> where T : new()
+    {
+        public T Data { get; set; }
+        
         public List<Task> UpdateParallelToMainThread(float timeScale)
         {
             return new List<Task>();

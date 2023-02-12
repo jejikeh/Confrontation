@@ -1,8 +1,4 @@
-﻿using System.Threading.Tasks;
-using UnityEngine;
-using Wooff.ECS;
-using Wooff.ECS.Component;
-using Wooff.Presentation;
+﻿using UnityEngine;
 
 namespace Core.Components.HelloWorldComponent
 {
@@ -10,7 +6,7 @@ namespace Core.Components.HelloWorldComponent
     {
         public void Speak()
         {
-            Debug.Log("Hello World");
+            Debug.Log(Data.Message);
         }
     }
 }

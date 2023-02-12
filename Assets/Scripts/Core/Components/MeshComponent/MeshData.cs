@@ -2,9 +2,9 @@
 
 namespace Core.Components.MeshComponent
 {
-    [CreateAssetMenu(fileName = "FILENAME", menuName = "MENUNAME", order = 0)]
-    public class MeshData : ScriptableObject
+    [System.Serializable]
+    public class MeshData
     {
-        
+        public UnityEngine.Mesh Mesh;
     }
 }

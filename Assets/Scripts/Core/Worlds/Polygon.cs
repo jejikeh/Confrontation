@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Core.Entities;
 using Core.Presentation;
 using Core.Systems;
 using Wooff.ECS.Context;
@@ -17,8 +16,10 @@ namespace Core.Worlds
         public override void Initialize()
         {
             SystemContext.Add(new HelloWorldUpdatePrint());
-            foreach (var _ in Enumerable.Range(0,1000))
-                EntityContext.Add<BobPresentation>();
+            SystemContext.Add(new MeshSystem());
+            /*
+            foreach (var _ in Enumerable.Range(0,100))
+                EntityContext.Add<BobPresentation>();*/
         }
     }
 }

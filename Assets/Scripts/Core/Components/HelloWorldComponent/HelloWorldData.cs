@@ -1,7 +1,8 @@
 ﻿namespace Core.Components.HelloWorldComponent
 {
-    public struct HelloWorldData
+    [System.Serializable]
+    public class HelloWorldData
     {
-        public string Message { get; set; }
+        public string Message;
     }
 }
