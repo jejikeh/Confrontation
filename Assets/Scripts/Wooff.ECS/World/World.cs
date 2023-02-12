@@ -20,7 +20,12 @@ namespace Wooff.ECS.World
             await File.WriteAllTextAsync(
                 filename,
                 JsonConvert.SerializeObject(this,
-                    new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, Formatting = Formatting.Indented}));
+                    new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.Auto, 
+                        Formatting = Formatting.Indented,
+                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                    }));
         }
         
         public abstract void Initialize();
