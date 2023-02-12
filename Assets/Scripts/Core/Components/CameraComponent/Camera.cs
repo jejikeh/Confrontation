@@ -7,8 +7,8 @@ namespace Core.Components.CameraComponent
         public void SetCamera(IMonoEntity monoEntity)
         {
             var camera = monoEntity.MonoObject.AddComponent<UnityEngine.Camera>();
-            camera.backgroundColor = Data.CameraPrefab.backgroundColor;
-            camera.clearFlags = Data.CameraPrefab.clearFlags;
+            camera.backgroundColor = Data.BackgroundColor;
+            camera.clearFlags = Data.CameraClearFlags;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 using Wooff.Presentation;
 
 namespace Core.Components.CameraComponent
@@ -6,7 +7,8 @@ namespace Core.Components.CameraComponent
     [Serializable]
     public class CameraData
     {
-        public UnityEngine.Camera CameraPrefab;
+        public Color BackgroundColor;
+        public CameraClearFlags CameraClearFlags;
     }
     
     [Serializable]

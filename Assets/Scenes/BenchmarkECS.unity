@@ -167,7 +167,8 @@ MonoBehaviour:
   CameraDatas:
   - Key: Camera
     Value:
-      CameraPrefab: {fileID: 1960168839902081221, guid: 8dacc8de6bebf3b488e9639e2780c8fe, type: 3}
+      BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
+      CameraClearFlags: 2
 --- !u!4 &688990424
 Transform:
   m_ObjectHideFlags: 0
