@@ -8,7 +8,7 @@ using Wooff.ECS.Entity;
 
 namespace Wooff.Presentation
 {
-    public abstract class MonoEntity<T> : MonoBehaviour, IMonoEntity where T : IEntity<IMonoComponent>, new()
+    public abstract class MonoEntity<T> : MonoBehaviour, IMonoEntity where T : IEntity<IMonoComponent>, IMonoEntity, new()
     {
         private T _monoEntityImplementation = new ();
         
@@ -171,6 +171,10 @@ namespace Wooff.Presentation
             return new List<Task>();
         }
 
-        public virtual GameObject MonoObject { get; set; }
+        public virtual GameObject MonoObject
+        {
+            get => _monoEntityImplementation.MonoObject;
+            set => _monoEntityImplementation.MonoObject = value;
+        }
     }
 }
