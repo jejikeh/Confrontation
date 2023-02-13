@@ -10,8 +10,8 @@ namespace Wooff.Presentation
 {
     public abstract class MonoEntity<T> : MonoBehaviour, IMonoEntity where T : IEntity<IMonoComponent>, IMonoEntity, new()
     {
-        private T _monoEntityImplementation = new ();
-        
+        private T _monoEntityImplementation = new T();
+
         public IEnumerator<IMonoComponent> GetEnumerator()
         {
             return _monoEntityImplementation.GetEnumerator();
@@ -153,6 +153,8 @@ namespace Wooff.Presentation
         {
             foreach (var monoComponent in this)
                 monoComponent.UpdateOneThread(timeScale);
+            
+            _monoEntityImplementation.UpdateOneThread(timeScale);
         }
 
         public Task UpdateParallelAsync(float timeScale)

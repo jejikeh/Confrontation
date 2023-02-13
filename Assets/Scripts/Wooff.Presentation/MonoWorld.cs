@@ -44,16 +44,13 @@ namespace Wooff.Presentation
 
         private void EntityContextOnItemAdded(object sender, IMonoEntity entity)
         {
-            var monoEntityGameObject = new GameObject(
-                entity.GetType().FullName,
-                entity.GetType());
-            entity.MonoObject = monoEntityGameObject;
             entity.MonoObject.transform.SetParent(transform);
         }
 
         private async void Update()
         {
             _systemUpdateable?.UpdateOneThread(1f, EntityContext);
+            _entityUpdateable?.UpdateOneThread(1f);
             
             if (Input.GetKeyDown(KeyCode.S))
                 await _world?.Save("save.json")!;

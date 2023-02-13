@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Wooff.ECS;
-using Wooff.ECS.Component;
 using Wooff.Presentation;
 
 namespace Core.Components
