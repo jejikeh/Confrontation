@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,6 +9,8 @@ namespace Wooff.ECS.Context
         {
             foreach (var updateable in this.Where(x => x is not null))
                 updateable.UpdateOneThread(timeScale);
+            
+            OnUpdateableContextUpdate(timeScale);
         }
 
         public async Task UpdateParallelAsync(float timeScale)
@@ -20,6 +20,11 @@ namespace Wooff.ECS.Context
                 x.UpdateParallelAsync(timeScale).Start();
             });
         }
+
+        protected virtual void OnUpdateableContextUpdate(float timeScale)
+        {
+            
+        }
     }
     
     public class UpdateableContext<T, T1> : Context<T>, IUpdateable<T1> where T : IUpdateable<T1>
@@ -28,6 +33,13 @@ namespace Wooff.ECS.Context
         {
             foreach (var updateable in this)
                 updateable?.UpdateOneThread(timeScale, data);
+            
+            OnUpdateableContextUpdate(timeScale, data);
+        }
+        
+        protected virtual void OnUpdateableContextUpdate(float timeScale, T1 data)
+        {
+            
         }
 
         public async Task UpdateParallelAsync(float timeScale, T1 data)
@@ -39,6 +51,13 @@ namespace Wooff.ECS.Context
         {
             foreach (var updateable in this)
                 updateable.UpdateOneThread(timeScale);
+            
+            OnUpdateableContextUpdate(timeScale);
+        }
+        
+        protected virtual void OnUpdateableContextUpdate(float timeScale)
+        {
+            
         }
 
         public async Task UpdateParallelAsync(float timeScale)

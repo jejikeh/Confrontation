@@ -77,14 +77,14 @@ namespace Wooff.ECS.Entity
             Add(parsedComponent);
             return parsedComponent;
         }
-        
+
         public IInitable Init()
         {
             return this;
         }
     }
 
-    public abstract class Entity<T, T1> : Entity<T>, IEntity<T, T1> where T : IUpdatableComponent, IComparable<T>
+    public abstract class Entity<T, T1> : Entity<T>, IEntity<T, T1> where T : IUpdatableComponent
     {
         protected T1 Data;
 

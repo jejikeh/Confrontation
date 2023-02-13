@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using Wooff.ECS.Context;
-using NotImplementedException = System.NotImplementedException;
+﻿using Wooff.ECS.Context;
 
 namespace Wooff.ECS.System
 {
@@ -11,23 +9,11 @@ namespace Wooff.ECS.System
             foreach (var system in this)
                 system.StartOneThread();
         }
-
-        public async Task StartParallelAsync()
-        {
-            foreach (var system in this)
-                await system.StartParallelAsync();
-        }
-
+        
         public void StartOneThread(IContext<T> data)
         {
             foreach (var system in this)
                 system.StartOneThread(data);
-        }
-
-        public async Task StartParallelAsync(IContext<T> data)
-        {
-            foreach (var system in this)
-                await system.StartParallelAsync(data);
         }
     }
 }

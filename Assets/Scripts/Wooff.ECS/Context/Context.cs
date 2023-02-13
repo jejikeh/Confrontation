@@ -87,7 +87,7 @@ namespace Wooff.ECS.Context
 
         public T1 Add<T1>(Func<T1> action) where T1 : T, IInitable, new()
         {
-            var item = IInitable.Initialize<T1>(action);
+            var item = IInitable.Initialize(action);
             Add(item);
             return item;
         }

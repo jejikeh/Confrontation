@@ -11,12 +11,7 @@ namespace Wooff.ECS.System
         public virtual void StartOneThread()
         {
         }
-
-        public virtual Task StartParallelAsync()
-        {
-            return Task.CompletedTask;
-        }
-
+        
         public virtual void StartOneThread(IContext<T> data)
         {
             foreach (var item in data)
@@ -25,11 +20,6 @@ namespace Wooff.ECS.System
 
         protected virtual void SystemStartOneThread(T item)
         {
-        }
-        
-        public virtual Task StartParallelAsync(IContext<T> data)
-        {
-            return Task.CompletedTask;
         }
         
         #endregion
@@ -75,10 +65,10 @@ namespace Wooff.ECS.System
         {
         }
         
-        #endregion
-
         public virtual void UpdateOneThread(float timeScale) { }
 
         public virtual Task UpdateParallelAsync(float timeScale) { return Task.CompletedTask; }
+        
+        #endregion
     }
 }
