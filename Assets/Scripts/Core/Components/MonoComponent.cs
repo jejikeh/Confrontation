@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Wooff.ECS;
@@ -5,7 +6,7 @@ using Wooff.Presentation;
 
 namespace Core.Components
 {
-    public class CoreComponent : IMonoComponent
+    public class MonoComponent : IMonoComponent
     {
         public IInitable Init()
         {
@@ -21,15 +22,10 @@ namespace Core.Components
             return Task.WhenAll();
         }
     }
-    public class CoreComponent<T> : CoreComponent, IMonoComponent<T> where T : new()
+    public class MonoComponent<T> : MonoComponent, IMonoComponent<T> where T : new()
     {
         public T Data { get; set; }
         
-        public List<Task> UpdateParallelToMainThread(float timeScale)
-        {
-            return new List<Task>();
-        }
-
         public IInitable<T> Init(T data)
         {
             Data = data;

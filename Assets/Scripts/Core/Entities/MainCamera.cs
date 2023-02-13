@@ -1,7 +1,5 @@
 ﻿using Core.Components.CameraComponent;
-using Core.Components.HelloWorldComponent;
-using Core.Components.MeshComponent;
-using Newtonsoft.Json;
+using Core.Components.SmoothLookAtComponent;
 using UnityEngine;
 using Wooff.ECS.Entity;
 using Wooff.Presentation;
@@ -13,8 +11,8 @@ namespace Core.Entities
     {
         public MainCamera()
         {
-            Add<HelloWorld, HelloWorldData>(DataStorage.GetHelloWorldData("Camera"));
-            Add<Camera, CameraData>(DataStorage.GetCameraData("Camera"));
+            Add<Camera, CameraData>(DataStorage.GetCameraData("MainCamera"));
+            Add<SmoothLookAt, SmoothLookAtData>(DataStorage.GetSmoothLookAtData("MainCamera"));
         }
         
         public GameObject MonoObject { get; set; }

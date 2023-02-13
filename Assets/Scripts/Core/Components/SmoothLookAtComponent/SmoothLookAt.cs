@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Wooff.Presentation;
 
-public class SmoothLookAt : MonoBehaviour
+namespace Core.Components.SmoothLookAtComponent
 {
-    // Start is called before the first frame update
-    void Start()
+    public class SmoothLookAt : MonoComponent<SmoothLookAtData>
     {
-        
-    }
+        private Transform _targetTransform;
+        private Vector3 _direction;
+        private Quaternion _rotationGoad;
 
-    // Update is called once per frame
-    void Update()
-    {
+        public void SetupTarget(IMonoEntity target)
+        {
+            _targetTransform = target.MonoObject.transform;
+        }
         
+        public void UpdateLookAt(IMonoEntity handler)
+        {
+            _direction = (_targetTransform.position - handler.MonoObject.transform.position).normalized;
+            _rotationGoad = Quaternion.LookRotation(_direction);
+            handler.MonoObject.transform.rotation = Quaternion.Slerp(handler.MonoObject.transform.rotation, _rotationGoad, Data.Speed);
+        }
     }
 }

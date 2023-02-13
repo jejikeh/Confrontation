@@ -157,18 +157,15 @@ MonoBehaviour:
     Value:
       Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
       Material: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  HelloWorldDatas:
-  - Key: Bob
-    Value:
-      Message: Hello World Inspector
-  - Key: Camera
-    Value:
-      Message: Camera
   CameraDatas:
-  - Key: Camera
+  - Key: MainCamera
     Value:
       BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
       CameraClearFlags: 2
+  SmoothLookAtDataDictionaries:
+  - Key: MainCamera
+    Value:
+      Speed: 0.1
 --- !u!4 &688990424
 Transform:
   m_ObjectHideFlags: 0

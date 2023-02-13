@@ -10,19 +10,19 @@ namespace Core.Worlds
 {
     public class Polygon : World<IMonoEntity, IMonoComponent, IContext<ISystem<IMonoEntity>>>
     {
-        public sealed override IContext<IMonoEntity> EntityContext { get; } = new MonoEntityContext();
+        public override IContext<IMonoEntity> EntityContext => _monoEntityContext;
+        private MonoEntityContext _monoEntityContext = new MonoEntityContext();
         public sealed override IContext<ISystem<IMonoEntity>> SystemContext { get; } = new SystemContext<IMonoEntity>();
         
         public override void Initialize()
         {
-            SystemContext.Add(new HelloWorldUpdatePrint());
             SystemContext.Add(new MeshSystem());
             SystemContext.Add(new CameraSystem());
-
-            /*
-            EntityContext.Add<CameraPresentation>();
-            foreach (var _ in Enumerable.Range(0,100))
-                EntityContext.Add<BobPresentation>();*/
+            SystemContext.Add(new SmoothLookAtSystem());
+            
+            _monoEntityContext.Add<CameraPresentation>();
+            foreach (var _ in Enumerable.Range(0,1000))
+                _monoEntityContext.Add<BobPresentation>();
         }
     }
 }

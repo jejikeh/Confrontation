@@ -10,7 +10,7 @@ namespace Core.Systems
             if (!updateItem.Contains<SmoothLookAt>())
                 return;
             
-            updateItem.GetFirstNullable<SmoothLookAt>()?.UpdateLookAt(updateItem, timeScale);
+            updateItem.GetFirstNullable<SmoothLookAt>()?.UpdateLookAt(updateItem);
         }
     }
 }

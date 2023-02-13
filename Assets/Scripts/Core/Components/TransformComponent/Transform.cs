@@ -1,6 +1,6 @@
 ﻿namespace Core.Components.TransformComponent
 {
-    public class Transform : CoreComponent
+    public class Transform : MonoComponent
     {
         
     }

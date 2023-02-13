@@ -2,7 +2,7 @@
 
 namespace Core.Components.CameraComponent
 {
-    public class Camera : CoreComponent<CameraData>
+    public class Camera : MonoComponent<CameraData>
     {
         public void SetCamera(IMonoEntity monoEntity)
         {

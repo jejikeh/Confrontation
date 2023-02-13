@@ -1,6 +1,6 @@
 ﻿namespace Core.Components.TargetComponent
 {
-    public class SmoothLookAtTarget : MonoComponent
+    public class CameraSmoothLookAtTarget : MonoComponent
     {
         
     }
