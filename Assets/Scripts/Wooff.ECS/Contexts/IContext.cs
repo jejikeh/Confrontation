@@ -6,7 +6,7 @@ namespace Wooff.ECS.Contexts
     {
         public T1 Items { get; }
         public T ContextAdd(T item);
-        public T2? ContextGet<T2>() where T2 : class, T;
+        public T2 ContextGet<T2>() where T2 : class, T;
         public bool ContextRemove(T item);
         public bool ContextContains<T2>() where T2 : class, T;
     }
