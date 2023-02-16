@@ -7,7 +7,7 @@ using Wooff.ECS.Components;
 
 // TODO: Add field _context and replace all methods by _context.method()
 
-namespace Wooff.Presentation
+namespace Wooff.MonoIntegration
 {
     public class MonoEntity : MonoBehaviour, IMonoEntity
     {

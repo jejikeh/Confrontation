@@ -7,7 +7,7 @@ using Wooff.ECS.Entities;
 using Wooff.ECS.Systems;
 using Wooff.ECS.Worlds;
 
-namespace Wooff.Presentation
+namespace Wooff.MonoIntegration
 {
     public class MonoWorld : MonoBehaviour, IWorld<IMonoEntity, IMonoSystem>
     {
@@ -16,8 +16,9 @@ namespace Wooff.Presentation
 
         private void Awake()
         {
-            SystemContext.ContextAdd(new PrintInformationInfo());
-            SystemContext.ContextAdd(new RandomTranslate());
+            SystemContext.ContextAdd(new SmoothLookAt());
+            SystemContext.ContextAdd(new SmoothRotateAround());
+            SystemContext.ContextAdd(new UpdateSmoothTranslate());
             
             foreach (var monoEntity in FindObjectsByType<MonoEntity>(FindObjectsSortMode.None))
                 EntityContext.ContextAdd(monoEntity);

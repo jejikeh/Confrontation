@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Wooff.ECS.Entities;
 
-namespace Wooff.Presentation
+namespace Wooff.MonoIntegration
 {
     public interface IMonoEntity : IEntity<IMonoEntity>
     {

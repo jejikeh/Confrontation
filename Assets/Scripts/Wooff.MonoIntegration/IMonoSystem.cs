@@ -1,6 +1,6 @@
 ﻿using Wooff.ECS.Systems;
 
-namespace Wooff.Presentation
+namespace Wooff.MonoIntegration
 {
     public interface IMonoSystem : ISystem<IMonoEntity>
     {
