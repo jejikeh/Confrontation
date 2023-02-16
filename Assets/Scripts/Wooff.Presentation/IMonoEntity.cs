@@ -1,12 +1,9 @@
-﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
-using UnityEngine;
-using Wooff.ECS;
-using Wooff.ECS.Entity;
+﻿using UnityEngine;
+using Wooff.ECS.Entities;
 
 namespace Wooff.Presentation
 {
-    public interface IMonoEntity : IEntity<IMonoComponent>, IUpdateable
+    public interface IMonoEntity : IEntity<IMonoEntity>
     {
         public GameObject MonoObject { get; set; }
     }

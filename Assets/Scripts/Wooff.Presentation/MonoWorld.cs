@@ -1,71 +1,29 @@
-using System.Threading.Tasks;
-using JetBrains.Annotations;
+using System.Collections.Generic;
+using Core.Entities;
+using Core.Systems;
 using UnityEngine;
 using Wooff.ECS;
-using Wooff.ECS.Context;
-using Wooff.ECS.System;
-using Wooff.ECS.World;
+using Wooff.ECS.Contexts;
+using Wooff.ECS.Entities;
+using Wooff.ECS.Systems;
+using Wooff.ECS.Worlds;
 
 namespace Wooff.Presentation
 {
-    public class MonoWorld<T> : MonoBehaviour, IWorld<IMonoEntity, IMonoComponent, IContext<ISystem<IMonoEntity>>> where T : World<IMonoEntity, IMonoComponent, IContext<ISystem<IMonoEntity>>>, new()
+    public class MonoWorld : MonoBehaviour, IWorld<IMonoEntity, IMonoSystem>
     {
-        private T _world;
-        public IContext<IMonoEntity> EntityContext => _world.EntityContext;
-        public IContext<ISystem<IMonoEntity>> SystemContext => _world.SystemContext;
+        public IContext<IMonoEntity, List<IMonoEntity>> EntityContext { get; } = new EntityContext<IMonoEntity>();
+        public IContext<IMonoSystem, HashSet<IMonoSystem>> SystemContext { get; } = new SystemContext<IMonoSystem, IMonoEntity>();
 
-        [CanBeNull] private IUpdateable _entityUpdateable;
-        [CanBeNull] private IUpdateable<IContext<IMonoEntity>> _systemUpdateable;
-        [CanBeNull] private IStartable<IContext<IMonoEntity>> _systemStartable;
-
-        private void Awake()
-        {
-            _world = new T();
-            _entityUpdateable = EntityContext as IUpdateable;
-            _systemUpdateable = SystemContext as IUpdateable<IContext<IMonoEntity>>;
-            _systemStartable = SystemContext as IStartable<IContext<IMonoEntity>>;
-            
-            _world.EntityContext.ItemAdded += EntityContextOnItemAdded;
-        }
-            
         private void Start()
         {
-            _world.Initialize();
-            _systemStartable?.StartOneThread(EntityContext);
+            SystemContext.ContextAdd(new PrintInformationInfo());
+            EntityContext.ContextAdd(new Bob("BNBNN", "DJIUOESDJEHFUISREFH"));
         }
 
-        private void InitNewEntities()
+        private void Update()
         {
-            foreach (var entity in EntityContext)
-                EntityContextOnItemAdded(this, entity);
-            
-            _systemStartable?.StartOneThread(EntityContext);
-        }
-
-        private void EntityContextOnItemAdded(object sender, IMonoEntity entity)
-        {
-            entity.MonoObject.transform.SetParent(transform);
-        }
-
-        private async void Update()
-        {
-            _systemUpdateable?.UpdateOneThread(1f, EntityContext);
-            _entityUpdateable?.UpdateOneThread(1f);
-            
-            if (Input.GetKeyDown(KeyCode.S))
-                await _world?.Save("save.json")!;
-
-            if (Input.GetKeyDown(KeyCode.L))
-            {
-                _world = await IWorld<IMonoEntity, IMonoComponent, IContext<ISystem<IMonoEntity>>>.Load<T>("save.json");
-                _world.Initialize();
-                InitNewEntities();
-            }
-        }
-        
-        public async Task Save(string fileName)        
-        {
-            await _world.Save(fileName);
+            (SystemContext as IProcessable<IContext<IMonoEntity, List<IMonoEntity>>>)?.Process(1f, EntityContext);
         }
     }
 }

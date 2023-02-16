@@ -1,14 +1,9 @@
 ﻿using Wooff.ECS;
-using Wooff.ECS.Component;
+using Wooff.ECS.Components;
 
 namespace Wooff.Presentation
 {
-    public interface IMonoComponent : IUpdatableComponent
-    {
-        
-    }
-    
-    public interface IMonoComponent<T> : IMonoComponent, IUpdatableComponent<T>
+    public interface IMonoComponent<T> : IComponent<T, IMonoEntity> where T : IConfig
     {
         
     }

@@ -4,9 +4,11 @@ using Wooff.ECS.Entities;
 
 namespace Wooff.ECS.Systems 
 {
-    public class SystemContext : Context<ISystem, HashSet<ISystem>>, IHashContext<ISystem>, IProcessable<IContext<IEntity, List<IEntity>>>
+    public class SystemContext<T, T1> : Context<T, HashSet<T>>, IHashContext<T>, IProcessable<IContext<T1, List<T1>>>, IContextItem 
+        where T : ISystem<T1>
+        where T1 : IEntity<T1>
     {
-        public void Process(float timeScale, IContext<IEntity, List<IEntity>> data)
+        public void Process(float timeScale, IContext<T1, List<T1>> data)
         {
             foreach(var item in Items)
                 item.Process(timeScale, data);

@@ -3,7 +3,8 @@ using Wooff.ECS.Contexts;
 
 namespace Wooff.ECS.Entities 
 {
-    public class EntityContext : Context<IEntity, List<IEntity>>, IListContext<IEntity> 
+    public class EntityContext<T> : Context<T, List<T>>, IListContext<T> 
+        where T : IEntity<T>
     {
         
     }

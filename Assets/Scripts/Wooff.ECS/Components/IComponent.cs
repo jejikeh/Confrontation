@@ -3,8 +3,10 @@ using Wooff.ECS.Entities;
 
 namespace Wooff.ECS.Components
 {
-    public interface IComponent<T> : IContextItem, IConfigurable<T> where T : IConfig
+    public interface IComponent<T, out T1> : IContextItem, IConfigurable<T> 
+        where T : IConfig
+        where T1 : IEntity<T1>
     {
-        public IEntity Handler { get; } 
+        public T1 Handler { get; } 
     }
 }

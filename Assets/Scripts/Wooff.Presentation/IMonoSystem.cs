@@ -1,6 +1,8 @@
-﻿namespace Wooff.Presentation
+﻿using Wooff.ECS.Systems;
+
+namespace Wooff.Presentation
 {
-    public interface IMonoSystem
+    public interface IMonoSystem : ISystem<IMonoEntity>
     {
         
     }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 
 namespace Wooff.ECS.Contexts
 {
@@ -25,7 +26,8 @@ namespace Wooff.ECS.Contexts
             return Items.FirstOrDefault(x => x.GetType() == typeof(T2)) is not null;
         }
 
-        public T2? ContextGet<T2>() where T2 : class, T
+        [CanBeNull]
+        public T2 ContextGet<T2>() where T2 : class, T
         {
             var item = Items.FirstOrDefault(x => x.GetType() == typeof(T2));
             return item as T2;
