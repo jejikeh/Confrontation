@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Core.Entities;
 using Core.Systems;
 using UnityEngine;
 using Wooff.ECS;
@@ -15,10 +14,13 @@ namespace Wooff.Presentation
         public IContext<IMonoEntity, List<IMonoEntity>> EntityContext { get; } = new EntityContext<IMonoEntity>();
         public IContext<IMonoSystem, HashSet<IMonoSystem>> SystemContext { get; } = new SystemContext<IMonoSystem, IMonoEntity>();
 
-        private void Start()
+        private void Awake()
         {
             SystemContext.ContextAdd(new PrintInformationInfo());
-            EntityContext.ContextAdd(new Bob("BNBNN", "DJIUOESDJEHFUISREFH"));
+            SystemContext.ContextAdd(new RandomTranslate());
+            
+            foreach (var monoEntity in FindObjectsByType<MonoEntity>(FindObjectsSortMode.None))
+                EntityContext.ContextAdd(monoEntity);
         }
 
         private void Update()
