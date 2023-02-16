@@ -154,18 +154,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MeshDatas:
   - Key: Bob
-    Value:
-      Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
-      Material: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+    Value: {Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}, Material: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}}
   CameraDatas:
   - Key: MainCamera
     Value:
-      BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
+      BackgroundColor:
+        r: 0
+        g: 0
+        b: 0
+        a: 0
       CameraClearFlags: 2
   SmoothLookAtDataDictionaries:
   - Key: MainCamera
     Value:
       Speed: 0.1
+  MonoTransformDatas:
+  - Key: Bob
+    Value:
+      Position: {x: 10, y: 4, z: 4}
 --- !u!4 &688990424
 Transform:
   m_ObjectHideFlags: 0
@@ -316,6 +322,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 911182918}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e98e92dbf1374dd8a91d88a6bc092930, type: 3}
+  m_Script: {fileID: 11500000, guid: 0808f6478a0df0a4296c5e7670e3bd8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
