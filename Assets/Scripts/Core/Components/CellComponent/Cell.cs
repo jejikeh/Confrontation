@@ -5,7 +5,7 @@ using Wooff.MonoIntegration;
 
 namespace Core.Components.CellComponent
 {
-    public abstract class Cell : Component<CellConfig, IMonoEntity>, IComponent<IConfig, IMonoEntity>
+    public class Cell : Component<CellConfig, IMonoEntity>, IComponent<IConfig, IMonoEntity>
     {
         IConfig IConfigurable<IConfig>.Config => Config;
 
