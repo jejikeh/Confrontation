@@ -4,7 +4,7 @@ using Core.Components.SmoothTranslateComponent;
 using UnityEngine;
 using Wooff.MonoIntegration;
 
-namespace Core.Entities
+namespace Core.Entities.Camera
 {
     public class CameraTarget : MonoEntity
     {
