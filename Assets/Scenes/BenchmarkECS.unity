@@ -495,21 +495,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _configs:
-  - Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  - Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     Name: Mine
     Description: Mine - fjfrfjd;fr
     Level: 1
     BonusAmount: 2
     CellType: 0
     MetricTypeBonusTo: 0
-  - Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  - Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
     Name: Farn
     Description: Farm - fjfrfjd;fr
     Level: 1
     BonusAmount: 1
     CellType: 1
     MetricTypeBonusTo: 1
-  - Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  - Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
     Name: Stable
     Description: Stable - fjfrfjd;fr
     Level: 1
