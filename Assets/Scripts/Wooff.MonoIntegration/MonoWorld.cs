@@ -9,19 +9,39 @@ using Wooff.ECS.Worlds;
 
 namespace Wooff.MonoIntegration
 {
-    public class MonoWorld : MonoBehaviour, IWorld<IMonoEntity, IMonoSystem>
+    public class MonoWorld : Singleton<MonoWorld>, IWorld<IMonoEntity, IMonoSystem>
     {
         public IContext<IMonoEntity, List<IMonoEntity>> EntityContext { get; } = new EntityContext<IMonoEntity>();
         public IContext<IMonoSystem, HashSet<IMonoSystem>> SystemContext { get; } = new SystemContext<IMonoSystem, IMonoEntity>();
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            
             SystemContext.ContextAdd(new SmoothLookAt());
             SystemContext.ContextAdd(new SmoothRotateAround());
             SystemContext.ContextAdd(new UpdateSmoothTranslate());
-            
+            SystemContext.ContextAdd(new CellWorldBonus());
+            SystemContext.ContextAdd(new CameraTranslateToLastClickedGameItem());
+
             foreach (var monoEntity in FindObjectsByType<MonoEntity>(FindObjectsSortMode.None))
                 EntityContext.ContextAdd(monoEntity);
+            
+            foreach (var monoEntity in FindObjectsByType<StaticMonoEntity>(FindObjectsSortMode.None))
+                EntityContext.ContextAdd(monoEntity);
+        }
+
+        private T SpawnNewEntity<T>() where T : MonoEntity
+        {
+            var obj = new GameObject();
+            var monoEntity = obj.AddComponent<T>();
+            EntityContext.ContextAdd(monoEntity);
+            return monoEntity;
+        }
+
+        public static T SpawnEntity<T>() where T : MonoEntity
+        {
+            return Instance.SpawnNewEntity<T>();
         }
 
         private void Update()
