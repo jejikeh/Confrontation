@@ -1,9 +1,9 @@
 ﻿using Wooff.ECS;
 
-namespace Core.Components.Metrics
+namespace Core.Components.MetricComponent
 {
     public class MetricConfig : IConfig
     {
-        public MetricTypes MetricType;
+        public MetricType MetricType;
     }
 }

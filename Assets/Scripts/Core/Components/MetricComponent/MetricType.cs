@@ -1,6 +1,6 @@
 ﻿namespace Core.Components.MetricComponent
 {
-    public enum MetricTypes
+    public enum MetricType
     {
         Gold,
         SpeedCreationUnits

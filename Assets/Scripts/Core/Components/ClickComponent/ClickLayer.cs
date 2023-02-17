@@ -2,6 +2,7 @@
 {
     public enum ClickLayer
     {
-        
+        Game,
+        UI
     }
 }

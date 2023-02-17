@@ -2,19 +2,12 @@
 using Wooff.ECS.Components;
 using Wooff.MonoIntegration;
 
-namespace Core.Components.Metrics
+namespace Core.Components.MetricComponent.Metrics
 {
-    public class SpeedCreationUnitsMetric : Component<IConfig, IMonoEntity>
+    public class SpeedCreationUnitsMetric : Metric
     {
-        public int Speed { get; private set; }
-
-        public SpeedCreationUnitsMetric(IConfig data, IMonoEntity handler) : base(data, handler)
+        public SpeedCreationUnitsMetric(MetricConfig data, IMonoEntity handler) : base(data, handler)
         {
-        }
-
-        public void AddGold(int amount)
-        {
-            Speed += amount;
         }
     }
 }

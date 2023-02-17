@@ -1,6 +1,6 @@
 ﻿using Wooff.MonoIntegration;
 
-namespace Core.Components.CellComponent.MineComponent
+namespace Core.Components.CellComponent.Cells
 {
     public class Mine : Cell
     {

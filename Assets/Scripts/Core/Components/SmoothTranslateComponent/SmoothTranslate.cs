@@ -35,6 +35,11 @@ namespace Core.Components.SmoothTranslateComponent
                 _direction += inputValue;
         }
         
+        public void SetPosition(Vector3 position)
+        {
+            _direction += position - Handler.MonoObject.transform.position;
+        }
+        
         public void UpdatePosition(float timeScale)
         {
             if (_direction.sqrMagnitude > 0.1f)
@@ -54,7 +59,6 @@ namespace Core.Components.SmoothTranslateComponent
             _direction = Vector3.zero;
         }
         
-
         IConfig IConfigurable<IConfig>.Config => Config;
     }
 }

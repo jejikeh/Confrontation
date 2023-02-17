@@ -2,9 +2,9 @@
 
 namespace Core.Components.CellComponent.Cells
 {
-    public class Mine : Cell
+    public class Farm : Cell
     {
-        public Mine(CellConfig data, IMonoEntity handler) : base(data, handler)
+        public Farm(CellConfig data, IMonoEntity handler) : base(data, handler)
         {
         }
     }
