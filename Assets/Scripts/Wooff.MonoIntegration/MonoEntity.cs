@@ -33,6 +33,15 @@ namespace Wooff.MonoIntegration
         {
             return Items.FirstOrDefault(x => x.GetType() == typeof(T2)) is not null;
         }
+        
+        public T2 ContextGetAs<T2>() where T2 : class, IComponent<IConfig, IMonoEntity>
+        {
+            foreach (var component in Items)
+                if (component is T2 templateComponent)
+                    return templateComponent;
+
+            return default;
+        }
 
         public GameObject MonoObject { get; set; }
 

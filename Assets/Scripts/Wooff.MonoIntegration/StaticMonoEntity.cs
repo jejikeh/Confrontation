@@ -9,7 +9,7 @@ using Wooff.ECS.Components;
 
 namespace Wooff.MonoIntegration
 {
-    public class MonoEntity : MonoBehaviour, IMonoEntity
+    public class StaticMonoEntity : Singleton<StaticMonoEntity>, IMonoEntity
     {
         public HashSet<IComponent<IConfig, IMonoEntity>> Items { get; } = new HashSet<IComponent<IConfig, IMonoEntity>>();
         public IComponent<IConfig, IMonoEntity> ContextAdd(IComponent<IConfig, IMonoEntity> item)
@@ -45,8 +45,9 @@ namespace Wooff.MonoIntegration
 
         public GameObject MonoObject { get; set; }
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             MonoObject = gameObject;
         }
     }
