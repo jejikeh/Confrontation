@@ -1,5 +1,4 @@
-﻿using System;
-using Core.Components.SmoothLookAtTargetComponent;
+﻿using Core.Components.SmoothLookAtTargetComponent;
 using Core.Components.SmoothRotateComponent;
 using Core.Components.SmoothTranslateComponent;
 using UnityEngine;
@@ -7,7 +6,7 @@ using Wooff.MonoIntegration;
 
 namespace Core.Entities
 {
-    public class Target : MonoEntity
+    public class CameraTarget : MonoEntity
     {
         [SerializeField] private SmoothRotateConfig _smoothRotateConfig;
         private SmoothRotate _smoothRotate;
