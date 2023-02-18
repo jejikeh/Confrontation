@@ -1,7 +1,11 @@
-﻿namespace Core.Components.CellComponent.Cells
+﻿using Wooff.MonoIntegration;
+
+namespace Core.Components.CellComponent.Cells
 {
-    public class Grass
+    public class Grass : Cell
     {
-        
+        public Grass(CellConfig data, IMonoEntity handler) : base(data, handler)
+        {
+        }
     }
 }

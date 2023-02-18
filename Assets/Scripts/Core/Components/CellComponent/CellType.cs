@@ -5,15 +5,11 @@ namespace Core.Components.CellComponent
     [Serializable]
     public enum CellType
     {
+        Grass,
+        GrassForest,
+        GrassHill,
         Mine,
         Farm,
         Stable,
-        Forge,
-        Tower,
-        Quarry,
-        Workshop,
-        Fort,
-        Grass,
-        Sand
     }
 }

@@ -1,22 +1,19 @@
 ﻿using System;
-using Core.Components.MetricComponent;
+using Core.Components.MetricBonusComponent;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Wooff.ECS;
 
-// TODO: Separate logic boost to metrics
+// TODO: Separate logic to meshes and information and name
 
 namespace Core.Components.CellComponent
 {
     [Serializable]
     public class CellConfig : IConfig
     {
-        public Mesh Mesh;
+        public GameObject Mesh;
         public string Name;
         public string Description;
-        public int Level;
-        public int BonusAmount;
         public CellType CellType;
-        [FormerlySerializedAs("MetricTypeBonusTo")] public MetricType MetricTypeBonusTo;
+        public MetricBonusConfig MetricBonusConfig;
     }
 }

@@ -2,9 +2,9 @@
 
 namespace Core.Components.CellComponent.Cells
 {
-    public class Grass : Cell
+    public class GrassForest : Cell
     {
-        protected Grass(CellConfig data, IMonoEntity handler) : base(data, handler)
+        public GrassForest(CellConfig data, IMonoEntity handler) : base(data, handler)
         {
         }
     }
