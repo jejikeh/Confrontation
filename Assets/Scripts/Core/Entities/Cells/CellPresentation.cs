@@ -27,7 +27,7 @@ namespace Core.Entities.Cells
 
         private void OnClick(object sender, EventArgs e)
         {
-            Debug.Log($"AAAA, {ContextGetAs<Cell>().Config.Name}");
+            Debug.Log($"Name: {ContextGetAs<Cell>().Config.Name}/nDescription: {ContextGetAs<Cell>().Config.Description}");
         }
     }
 }
