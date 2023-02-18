@@ -13,5 +13,10 @@ namespace Wooff.ECS.Components
             Config = data;
             Handler = handler;
         }
+
+        public virtual void OnRemove()
+        {
+            
+        }
     }
 }

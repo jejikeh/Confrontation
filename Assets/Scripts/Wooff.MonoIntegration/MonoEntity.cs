@@ -26,6 +26,7 @@ namespace Wooff.MonoIntegration
 
         public bool ContextRemove(IComponent<IConfig, IMonoEntity> item)
         {
+            item.OnRemove();
             return Items.Remove(item);
         }
 

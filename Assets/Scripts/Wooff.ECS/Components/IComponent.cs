@@ -7,6 +7,7 @@ namespace Wooff.ECS.Components
         where T : IConfig
         where T1 : IEntity<T1>
     {
-        public T1 Handler { get; } 
+        public T1 Handler { get; }
+        public void OnRemove();
     }
 }
