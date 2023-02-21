@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Core.Components.UIComponents.ScreenComponent;
 using Core.Systems;
 using UnityEngine;
 using Wooff.ECS;
@@ -23,11 +24,12 @@ namespace Wooff.MonoIntegration
             SystemContext.ContextAdd(new UpdateSmoothTranslate());
             SystemContext.ContextAdd(new MetricsBonuses());
             SystemContext.ContextAdd(new CameraTranslateToLastClickedGameItem());
+            SystemContext.ContextAdd(new DrawMetricText());
 
             foreach (var monoEntity in FindObjectsByType<MonoEntity>(FindObjectsSortMode.None))
                 EntityContext.ContextAdd(monoEntity);
             
-            foreach (var monoEntity in FindObjectsByType<StaticMonoEntity>(FindObjectsSortMode.None))
+            foreach (var monoEntity in FindObjectsByType<StaticMonoEntity<MonoBehaviour>>(FindObjectsSortMode.None))
                 EntityContext.ContextAdd(monoEntity);
         }
 
@@ -41,9 +43,17 @@ namespace Wooff.MonoIntegration
         
         private T SpawnNewEntity<T>(GameObject prefab) where T : MonoEntity
         {
-            var obj = new GameObject();
+            var obj = new GameObject(typeof(T).FullName);
             var monoEntity = obj.AddComponent<T>();
             _ = Instantiate(prefab, monoEntity.transform);
+            EntityContext.ContextAdd(monoEntity);
+            return monoEntity;
+        }
+        
+        
+        private T SpawnNewEntity<T>(IMonoEntity parent, GameObject prefab) where T : MonoEntity
+        {
+            var monoEntity = Instantiate(prefab, parent.MonoObject.transform).GetComponent<T>();
             EntityContext.ContextAdd(monoEntity);
             return monoEntity;
         }
@@ -52,6 +62,12 @@ namespace Wooff.MonoIntegration
         {
             foreach (Transform child in entity.MonoObject.transform)
                 Destroy(child.gameObject);
+        }
+
+        public static void DestroyEntity(IMonoEntity entity)
+        {   
+            Instance.EntityContext.ContextRemove(entity);
+            DestroyImmediate(entity.MonoObject);
         }
 
         public static void AttachPrefabToEntity(GameObject prefab, IMonoEntity entity)
@@ -63,9 +79,15 @@ namespace Wooff.MonoIntegration
         {
             return Instance.SpawnNewEntity<T>();
         }
+        
         public static T SpawnEntity<T>(GameObject prefab) where T : MonoEntity
         {
             return Instance.SpawnNewEntity<T>(prefab);
+        }
+
+        public static T SpawnEntity<T>(IMonoEntity parent, GameObject prefab) where T : MonoEntity
+        {
+            return Instance.SpawnNewEntity<T>(parent, prefab);
         }
 
         private void Update()

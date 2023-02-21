@@ -9,7 +9,7 @@ using Wooff.ECS.Components;
 
 namespace Wooff.MonoIntegration
 {
-    public class StaticMonoEntity : Singleton<StaticMonoEntity>, IMonoEntity
+    public class StaticMonoEntity<T> : Singleton<T>, IMonoEntity where T : MonoBehaviour
     {
         public HashSet<IComponent<IConfig, IMonoEntity>> Items { get; } = new HashSet<IComponent<IConfig, IMonoEntity>>();
         public IComponent<IConfig, IMonoEntity> ContextAdd(IComponent<IConfig, IMonoEntity> item)
@@ -41,6 +41,16 @@ namespace Wooff.MonoIntegration
                     return templateComponent;
 
             return default;
+        }
+        
+        public List<T2> ContextGetAllAs<T2>() where T2 : class, IComponent<IConfig, IMonoEntity>
+        {
+            var asList = new List<T2>();
+            foreach (var component in Items)
+                if (component is T2 templateComponent)
+                    asList.Add(templateComponent);
+
+            return asList;
         }
 
         public GameObject MonoObject { get; set; }
