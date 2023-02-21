@@ -6,6 +6,6 @@ namespace Core.Components.UIComponents.WindowComponent.Windows
 {
     public interface IWindow : IComponent<IConfig, IMonoEntity>
     {
-        public WindowTypes WindowType { get; }
+        public WindowType WindowType { get; }
     }
 }

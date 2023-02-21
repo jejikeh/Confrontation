@@ -1,12 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using Core.Components.WindowComponent;
+using System.Linq;
+using Core.Components.UIComponents.WindowComponent;
+using Core.Entities.UI;
+using UnityEngine;
+using Wooff.ECS;
+using Wooff.MonoIntegration;
 
-namespace Core.Components.WindowsHandlerComponent
+namespace Core.Components.UIComponents.ScreenComponent
 {
     [Serializable]
-    public class WindowsHandlerConfig
+    public class ScreenConfig : IConfig
     {
-        public List<WindowConfig> WindowConfigs = new List<WindowConfig>();
+        public List<MonoWindow> WindowConfigs = new List<MonoWindow>();
+        
+        public MonoWindow GetWindow(WindowType windowType)
+        {
+            return WindowConfigs.FirstOrDefault(x => x.WindowType == windowType);
+        }
     }
 }

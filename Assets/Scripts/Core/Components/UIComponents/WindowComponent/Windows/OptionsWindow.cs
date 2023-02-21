@@ -1,14 +1,11 @@
 ﻿using System;
-using Core.Components.ClickableComponent;
-using Core.Components.ClickComponent;
 using Core.Components.InformationComponent;
 using Core.Entities.UI;
 using TMPro;
 using Wooff.ECS;
-using Wooff.ECS.Components;
 using Wooff.MonoIntegration;
 
-namespace Core.Components.UIComponents.WindowComponent.Windows.Options
+namespace Core.Components.UIComponents.WindowComponent.Windows
 {
     public class InformationWindow : Window
     {

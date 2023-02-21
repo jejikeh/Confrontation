@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using Core.Components.UIComponents.WindowComponent;
+using Core.Components.UIComponents.WindowComponent.Windows;
 using Wooff.ECS.Contexts;
 
 namespace Core.Components.UIComponents.ScreenComponent
 {
-    public class WindowsContext : Context<IWindow, List<IWindow>>, IListContext<IWindow> 
+    public class WindowContext : Context<IWindow, HashSet<IWindow>>, IHashContext<IWindow>
     {
     }
 }

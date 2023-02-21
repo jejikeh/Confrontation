@@ -3,7 +3,7 @@ using TMPro;
 using Wooff.ECS;
 using Wooff.MonoIntegration;
 
-namespace Core.Components.UIComponents.WindowComponent.Windows.Metrics
+namespace Core.Components.UIComponents.WindowComponent.Windows
 {
     public class MetricsWindow : Window
     {
@@ -19,7 +19,7 @@ namespace Core.Components.UIComponents.WindowComponent.Windows.Metrics
         public void UpdateMetrics(Metric gold, Metric speedCreationUnits)
         {
             _gold.text = $"Gold: {gold.Amount}";
-            _speedCreationUnits.text = $"Gold: {speedCreationUnits.Amount}";
+            _speedCreationUnits.text = $"SCU: {speedCreationUnits.Amount}";
         }
 
         public override WindowType WindowType => WindowType.Metrics;
