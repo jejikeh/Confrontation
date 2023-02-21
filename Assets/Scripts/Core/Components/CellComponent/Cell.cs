@@ -1,4 +1,5 @@
 ﻿using Core.Components.CellComponent.Cells;
+using Core.Components.InformationComponent;
 using Core.Components.MetricBonusComponent;
 using Core.Entities.Cells;
 using UnityEngine;
@@ -16,7 +17,9 @@ namespace Core.Components.CellComponent
         {
             MonoWorld.AttachPrefabToEntity(data.Mesh, Handler);
             handler.MonoObject.GetComponent<MeshCollider>().sharedMesh = data.Mesh.GetComponent<MeshFilter>().sharedMesh;
+            
             handler.ContextAdd(new MetricBonus(data.MetricBonusConfig, handler));
+            handler.ContextAdd(new Information(data.InformationConfig, handler));
         }
 
         public override void OnRemove()
@@ -32,7 +35,7 @@ namespace Core.Components.CellComponent
             Handler.ContextAdd(RandomCell());
         }
 
-        public Cell RandomCell()
+        private Cell RandomCell()
         {
             var cellType = (CellType)Random.Range(2, 5);
             return cellType switch
@@ -52,9 +55,6 @@ namespace Core.Components.CellComponent
                 CellType.Grass => new Grass(CellManager.GetConfig(CellType.Grass), handler),
                 CellType.GrassForest => new GrassForest(CellManager.GetConfig(CellType.GrassForest), handler),
                 CellType.GrassHill => new GrassHill(CellManager.GetConfig(CellType.GrassHill), handler),
-                //CellType.Mine => new Mine(CellManager.GetConfig(CellType.Mine), handler),
-                //CellType.Farm => new Farm(CellManager.GetConfig(CellType.Farm), handler),
-                //CellType.Stable => new Stable(CellManager.GetConfig(CellType.Stable), handler),
                 _ => default
             };
         }

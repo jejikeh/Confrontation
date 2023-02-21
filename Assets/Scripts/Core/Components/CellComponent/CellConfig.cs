@@ -1,4 +1,5 @@
 ﻿using System;
+using Core.Components.InformationComponent;
 using Core.Components.MetricBonusComponent;
 using UnityEngine;
 using Wooff.ECS;
@@ -13,6 +14,7 @@ namespace Core.Components.CellComponent
         public GameObject Mesh;
         public string Name;
         public string Description;
+        public InformationConfig InformationConfig;
         public CellType CellType;
         public MetricBonusConfig MetricBonusConfig;
     }
