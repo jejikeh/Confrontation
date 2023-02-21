@@ -2,6 +2,10 @@
 using Core.Components.CellComponent;
 using Core.Components.ClickableComponent;
 using Core.Components.ClickComponent;
+using Core.Components.InformationComponent;
+using Core.Components.UIComponents.WindowComponent;
+using Core.Components.UIComponents.WindowComponent.Windows;
+using Core.Entities.UI;
 using UnityEngine;
 using Wooff.MonoIntegration;
 
@@ -27,7 +31,7 @@ namespace Core.Entities.Cells
 
         private void OnClick(object sender, EventArgs e)
         {
-            Debug.Log($"Name: {ContextGetAs<Cell>().Config.Name}/nDescription: {ContextGetAs<Cell>().Config.Description}");
+            (ScreenPlacer.GetWindow(WindowType.Information) as InformationWindow)?.ShowInformation(ContextGet<Information>());
         }
     }
 }

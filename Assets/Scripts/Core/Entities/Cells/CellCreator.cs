@@ -1,6 +1,5 @@
 ﻿using Core.Components.CellComponent;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Wooff.MonoIntegration;
 
 namespace Core.Entities.Cells
@@ -10,7 +9,7 @@ namespace Core.Entities.Cells
         [SerializeField] private Vector2Int _gridSize;
         [SerializeField] private float _cellSize;
         [SerializeField] private float _cellHeight;
-        private float _heightOffset = 0;
+        private readonly float _heightOffset = 0;
 
         
         private void Start()
@@ -30,18 +29,15 @@ namespace Core.Entities.Cells
 
         private Vector3 GetPositionForCellFromCoordinate(Vector2Int coordinate)
         {
-            var column = coordinate.x;
             var row = coordinate.y;
-            var shouldOffset = (row % 2) == 0;
             var width = Mathf.Sqrt(3) * _cellSize;
             var height = 2f * _cellSize;
-            var horizontalDistance = width;
             var verticalDistance = height * (3f / 4f);
-            var offset = shouldOffset ? width / 2 : 0;
-
-            var xPosition = (column * horizontalDistance) + offset;
-            var yPosition = (row * verticalDistance);
-            return new Vector3(xPosition, RandomHeightOffset(), -yPosition);
+            var offset = (row % 2) == 0 ? width / 2 : 0;
+            return new Vector3(
+                coordinate.x * width + offset, 
+                RandomHeightOffset(), 
+                -(row * verticalDistance));
         }
 
         private float RandomHeightOffset()
