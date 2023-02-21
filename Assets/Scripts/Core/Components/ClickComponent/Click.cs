@@ -11,6 +11,11 @@ namespace Core.Components.ClickComponent
         {
         }
 
+        public void SetActiveLayer(ClickLayer clickLayer)
+        {
+            Config.CurrentActiveLayer = clickLayer;
+        }
+
         public void StartClick(Clickable clickable)
         {
             if (Config.CurrentActiveLayer != clickable.Config.ClickLayer) 
