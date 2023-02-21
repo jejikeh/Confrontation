@@ -1,7 +1,9 @@
-﻿using Core.Components.ClickableComponent;
+﻿using System.Collections.Generic;
+using Core.Components.ClickableComponent;
 using Core.Components.ClickComponent;
 using Core.Components.SmoothLookAtTargetComponent;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Wooff.MonoIntegration;
 
 namespace Core.Entities.Camera
@@ -24,21 +26,45 @@ namespace Core.Entities.Camera
                 LastClickable = null
             }, this));
         }
+        
+        private static List<RaycastResult> GetEventSystemRaycastResults()
+        {   
+            var eventData = new PointerEventData(EventSystem.current)
+            {
+                position = Input.mousePosition
+            };
+            var raycastResults = new List<RaycastResult>();
+            EventSystem.current.RaycastAll( eventData, raycastResults );
+            return raycastResults;
+        }
 
         private void Update()
         {
             _smoothLookAtTarget.UpdateOffset(Input.mouseScrollDelta.y * 10f);
             if (Input.GetMouseButtonDown(0))
             {
+                if (EventSystem.current.IsPointerOverGameObject())
+                {
+                    _click.SetActiveLayer(ClickLayer.UI);
+                    foreach (var raycastResult in GetEventSystemRaycastResults())
+                        if (raycastResult.gameObject.transform.gameObject.TryGetComponent(out MonoEntity monoEntityUI))
+                            _click.StartClick(monoEntityUI.ContextContains<Clickable>()
+                                ? monoEntityUI.ContextGet<Clickable>()
+                                : null);
+                }
+                else
+                    _click.SetActiveLayer(ClickLayer.Game);
+                
                 var mousePosition = Input.mousePosition;
                 var ray = _camera.ScreenPointToRay(mousePosition);
                 
                 if (!Physics.Raycast(ray, out RaycastHit hit)) 
                     return;
-                
-                var monoEntity = hit.transform.gameObject.GetComponent<MonoEntity>();
-                if (monoEntity.ContextContains<Clickable>())
-                    _click.StartClick(monoEntity.ContextGet<Clickable>());
+
+                if (hit.transform.gameObject.TryGetComponent(out MonoEntity monoEntity))
+                    _click.StartClick(monoEntity.ContextContains<Clickable>()
+                        ? monoEntity.ContextGet<Clickable>()
+                        : null);
             }
         }
     }
