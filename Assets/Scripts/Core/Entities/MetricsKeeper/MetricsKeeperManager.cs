@@ -6,7 +6,7 @@ using Wooff.MonoIntegration;
 
 namespace Core.Entities.MetricsKeeper
 {
-    public class MetricsKeeperManager : StaticMonoEntity
+    public class MetricsKeeperManager : StaticMonoEntity<MetricsKeeperManager>
     {
         private void Start()
         {
