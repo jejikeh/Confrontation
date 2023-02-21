@@ -1,7 +1,13 @@
-﻿namespace Core.Components.InformationComponent
+﻿using System;
+using UnityEngine;
+using Wooff.ECS;
+
+namespace Core.Components.InformationComponent
 {
-    public class InformationConfig
+    [Serializable]
+    public class InformationConfig : IConfig
     {
-        
+        public string Name;
+        public string Description;
     }
 }
