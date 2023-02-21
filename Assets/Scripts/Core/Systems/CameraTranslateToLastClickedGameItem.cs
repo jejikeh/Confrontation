@@ -17,14 +17,21 @@ namespace Core.Systems
 
         public void Process(float timeScale, IContext<IMonoEntity, List<IMonoEntity>> data)
         {
-            _smoothTranslate ??= data.ContextGet<CameraTarget>().ContextGet<SmoothTranslate>();
+            
             _click ??= data.ContextGet<SmoothCamera>().ContextGet<Click>();
+            if (_click.Config.CurrentActiveLayer == ClickLayer.UI)
+                return;
+            _smoothTranslate ??= data.ContextGet<CameraTarget>().ContextGet<SmoothTranslate>();
 
             if (_click.Config.LastClickable == _lastClickableItemTarget) 
                 return;
             
+            if (_click.Config.LastClickable == null)
+                return;
+            
             _lastClickableItemTarget = _click.Config.LastClickable;
-            _smoothTranslate.SetPosition(_lastClickableItemTarget!.Handler.MonoObject.transform.position);
+            if(_lastClickableItemTarget.Handler.MonoObject != null)
+                _smoothTranslate.SetPosition(_lastClickableItemTarget.Handler.MonoObject.transform.position);
         }
     }
 }
