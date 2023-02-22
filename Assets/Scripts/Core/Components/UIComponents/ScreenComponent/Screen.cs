@@ -13,7 +13,7 @@ namespace Core.Components.UIComponents.ScreenComponent
 {
     public class Screen : Component<ScreenConfig, IMonoEntity>, IComponent<IConfig, IMonoEntity>, IHashContext<IWindow>
     {
-        IConfig IConfigurable<IConfig>.Config => Config;
+        IConfig IConfigurable<IConfig>.Config => Config; 
         private readonly WindowContext _windowContext;
         public HashSet<IWindow> Items => _windowContext.Items;
 
@@ -37,6 +37,7 @@ namespace Core.Components.UIComponents.ScreenComponent
             {
                 WindowType.Information => ContextAdd((InformationWindow)monoItem.ContextAdd(new InformationWindow(null, monoItem))),
                 WindowType.Metrics => ContextAdd((MetricsWindow)monoItem.ContextAdd(new MetricsWindow(null,monoItem))),
+                WindowType.ToolBar => ContextAdd((ToolBarWindow)monoItem.ContextAdd(new ToolBarWindow(null,monoItem))),
                 _ => throw new ArgumentOutOfRangeException(nameof(windowType), windowType, null)
             };
         }
@@ -72,6 +73,11 @@ namespace Core.Components.UIComponents.ScreenComponent
         public bool ContextContains(WindowType windowType)
         {
             return _windowContext.Items.Any(windowContextItem => windowContextItem.WindowType == windowType);
+        }
+
+        public void SetScreenState(ScreenState screenState)
+        {
+            Config.ScreenState = screenState;
         }
     }
 }

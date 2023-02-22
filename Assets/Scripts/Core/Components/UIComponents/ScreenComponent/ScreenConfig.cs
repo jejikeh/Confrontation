@@ -13,6 +13,7 @@ namespace Core.Components.UIComponents.ScreenComponent
     public class ScreenConfig : IConfig
     {
         public List<MonoWindow> WindowConfigs = new List<MonoWindow>();
+        public ScreenState ScreenState;
         
         public MonoWindow GetWindow(WindowType windowType)
         {
