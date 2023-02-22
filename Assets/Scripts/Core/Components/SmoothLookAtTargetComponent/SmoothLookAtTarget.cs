@@ -7,6 +7,7 @@ namespace Core.Components.SmoothLookAtTargetComponent
 {
     public class SmoothLookAtTarget : Component<SmoothLookAtTargetConfig, IMonoEntity>, IComponent<IConfig, IMonoEntity>
     {
+        IConfig IConfigurable<IConfig>.Config => Config;
         private float _offset;
 
         public SmoothLookAtTarget(SmoothLookAtTargetConfig data, IMonoEntity handler) : base(data, handler)
@@ -35,7 +36,5 @@ namespace Core.Components.SmoothLookAtTargetComponent
             _offset = Handler.MonoObject.transform.localPosition.y + offset * Config.Step;
             _offset = Mathf.Clamp(_offset, Config.MinOffset, Config.MaxOffset);
         }
-
-        IConfig IConfigurable<IConfig>.Config => Config;
     }
 }
