@@ -1,20 +1,20 @@
-﻿using Wooff.ECS;
-using Wooff.ECS.Components;
-using Wooff.MonoIntegration;
+﻿using Core.Components.MetricComponent;
+using Wooff.ECS.Contexts;
 
 namespace Core.Components.MetricBonusComponent
 {
-    public class MetricBonus : Component<MetricBonusConfig, IMonoEntity>, IComponent<IConfig, IMonoEntity>
+    public class MetricBonus : IMetricBonus
     {
-        IConfig IConfigurable<IConfig>.Config => Config;
-
+        private readonly MetricBonusConfig _metricBonusConfig; 
+        public MetricBonus(MetricBonusConfig config)
+        {
+            _metricBonusConfig = config;
+        }
         public int GetBonusAmount()
         {
-            return Config.Level * Config.BonusAmount;
+            return _metricBonusConfig.BonusAmount;
         }
 
-        public MetricBonus(MetricBonusConfig data, IMonoEntity handler) : base(data, handler)
-        {
-        }
+        public MetricType MetricType => _metricBonusConfig.MetricType;
     }
 }
