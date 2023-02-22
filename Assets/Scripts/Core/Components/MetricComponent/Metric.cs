@@ -8,9 +8,10 @@ namespace Core.Components.MetricComponent
     {
         public int Amount { get; private set; }
         IConfig IConfigurable<IConfig>.Config => Config;
-        
-        public Metric(MetricConfig data, IMonoEntity handler) : base(data, handler)
+
+        protected Metric(MetricConfig data, IMonoEntity handler) : base(data, handler)
         {
+            Amount = Config.StartAmount;
         }
 
         public void AddToMetric(int amount)
