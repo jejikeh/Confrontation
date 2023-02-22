@@ -3,6 +3,7 @@
     public enum WindowType
     {
         Information,
-        Metrics
+        Metrics,
+        ToolBar
     }
 }
