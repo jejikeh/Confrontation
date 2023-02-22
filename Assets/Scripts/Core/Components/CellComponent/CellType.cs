@@ -8,8 +8,16 @@ namespace Core.Components.CellComponent
         Grass,
         GrassForest,
         GrassHill,
-        Mine,
-        Farm,
-        Stable,
+        Water,
+        Sand,
+        Dirt,
+        DirtLumber,
+        SandRocks,
+        Stone,
+        StoneHill,
+        StoneMountain,
+        StoneRocks,
+        Village,
+        City
     }
 }
