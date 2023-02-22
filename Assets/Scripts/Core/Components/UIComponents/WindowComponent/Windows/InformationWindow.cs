@@ -1,7 +1,10 @@
 ﻿using System;
 using Core.Components.InformationComponent;
+using Core.Components.UIComponents.ScreenComponent;
 using Core.Entities.UI;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 using Wooff.ECS;
 using Wooff.MonoIntegration;
 

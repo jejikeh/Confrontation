@@ -12,14 +12,14 @@ namespace Core.Components.UIComponents.WindowComponent.Windows
         
         public MetricsWindow(IConfig data, IMonoEntity handler) : base(data, handler)
         {
-            _gold = Handler.MonoObject.transform.GetChild(0).GetComponent<TMP_Text>();
-            _speedCreationUnits = Handler.MonoObject.transform.GetChild(1).GetComponent<TMP_Text>();
+            _gold = Handler.MonoObject.transform.GetChild(0).GetChild(1).GetComponent<TMP_Text>();
+            _speedCreationUnits = Handler.MonoObject.transform.GetChild(1).GetChild(1).GetComponent<TMP_Text>();
         }
 
         public void UpdateMetrics(Metric gold, Metric speedCreationUnits)
         {
-            _gold.text = $"Gold: {gold.Amount}";
-            _speedCreationUnits.text = $"SCU: {speedCreationUnits.Amount}";
+            _gold.text = gold.Amount.ToString();
+            _speedCreationUnits.text = speedCreationUnits.Amount.ToString();
         }
 
         public override WindowType WindowType => WindowType.Metrics;
