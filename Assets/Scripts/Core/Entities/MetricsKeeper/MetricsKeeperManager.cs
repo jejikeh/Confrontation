@@ -8,10 +8,12 @@ namespace Core.Entities.MetricsKeeper
 {
     public class MetricsKeeperManager : StaticMonoEntity<MetricsKeeperManager>
     {
+        [SerializeField] private MetricConfig _goldConfig;
+        [SerializeField] private MetricConfig _speedCreationUnitsConfig;
         private void Start()
         {
-            ContextAdd(new GoldMetric(new MetricConfig { MetricType = MetricType.Gold}, this));
-            ContextAdd(new SpeedCreationUnitsMetric(new MetricConfig { MetricType = MetricType.SpeedCreationUnits}, this));
+            ContextAdd(new GoldMetric(_goldConfig, this));
+            ContextAdd(new SpeedCreationUnitsMetric(_speedCreationUnitsConfig, this));
         }
 
         // TODO: REMOVE TEST TIMER

@@ -13,6 +13,7 @@ namespace Core.Entities.UI
         private void Start()
         {
             ContextAdd(new Screen(_screenConfig, this));
+            OpenWindow(WindowType.ToolBar);
         }
 
         public static IWindow GetWindow(WindowType windowType)
@@ -31,6 +32,16 @@ namespace Core.Entities.UI
         public static void CloseWindow(WindowType windowType) 
         {
             Instance.ContextGet<Screen>().CloseWindow(windowType);
+        }
+
+        public static ScreenState GetScreenState()
+        {
+            return Instance.ContextGet<Screen>().Config.ScreenState;
+        }
+        
+        public static void SetScreenState(ScreenState screenState)
+        {
+            Instance.ContextGet<Screen>().SetScreenState(screenState);
         }
     }
 }
