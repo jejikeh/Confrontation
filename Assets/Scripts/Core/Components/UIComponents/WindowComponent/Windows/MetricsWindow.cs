@@ -1,4 +1,4 @@
-﻿using Core.Components.MetricComponent;
+﻿using Core.Components.Metrics.MetricComponent;
 using TMPro;
 using Wooff.ECS;
 using Wooff.MonoIntegration;
