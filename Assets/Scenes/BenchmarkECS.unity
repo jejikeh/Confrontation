@@ -167,14 +167,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b17d8e666b346309e8ab3430a4b2c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _players: 3
   _worldCellsConfig:
-    GridSize: {x: 6, y: 6}
+    GridSize: {x: 2, y: 2}
     CellSize: 0.576
     CellHeightMaxOffset: 0.5
     CellHeightMinOffset: 0.1
     GenerateHeightOffset:
-      Chance: 8
+      Chance: 47
+--- !u!1 &662424252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 662424254}
+  - component: {fileID: 662424253}
+  m_Layer: 0
+  m_Name: PlayerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &662424253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662424252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fe86aedd25240b88eca6e12d365c99b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &662424254
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662424252}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.0007157, y: -11.426913, z: -30.785074}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,6 +798,32 @@ MonoBehaviour:
     RandomableConfig:
       Chance: 0
     PlainCell: 0
+  - Mesh: {fileID: 3639585668367532261, guid: 78b0d83d55a9741469911a208c5063de, type: 3}
+    InformationConfig:
+      Name: "\u041A\u043E\u043D\u044E\u0448\u043D\u044F"
+      Description: "\u042D\u0442\u043E \u043D\u0435 \u043F\u0440\u043E\u0441\u0442\u043E
+        \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
+        \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442 \u043B\u043E\u0448\u0430\u0434\u0435\u0439.
+        \u042D\u0442\u043E \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
+        \u043B\u0435\u0447\u0430\u0442 \u0441\u0432\u043E\u044E \u0434\u0443\u0448\u0435\u0432\u043D\u0443\u044E
+        \u0442\u0440\u0430\u0432\u043C\u0443, \u0438\u0431\u043E \u0433\u043B\u044F\u0434\u044F
+        \u043D\u0430 \u0431\u044B\u0441\u0442\u0440\u043E \u0434\u0432\u0438\u0436\u0443\u0449\u0438\u0445\u0441\u044F
+        \u043B\u043E\u0448\u0430\u0434\u0435\u0439 \u043E\u043D\u0438 \u043D\u0430\u0447\u0438\u043D\u0430\u044E\u0442
+        \u0432\u0435\u0440\u0438\u0442\u044C \u0432 \u0442\u043E, \u0447\u0442\u043E
+        \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 - \u044D\u0442\u043E \u0436\u0438\u0437\u043D\u044C.
+        \u041F\u043E\u044D\u0442\u043E\u043C\u0443 \u043A\u043E\u043D\u044E\u0448\u043D\u044F
+        \u0443\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C
+        \u044E\u043D\u0438\u0442\u043E\u0432 \u0438 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442
+        \u0433\u043D\u043E\u043C\u0430\u043C \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0442\u044C
+        \u0441\u0432\u043E\u044E \u0434\u0435\u043F\u0440\u0435\u0441\u0441\u0438\u044E."
+    CellType: 12
+    MetricBonusesHandlerConfig:
+      MetricBonusConfigs:
+      - BonusAmount: 1
+        MetricType: 0
+    RandomableConfig:
+      Chance: 0
+    PlainCell: 0
 --- !u!4 &1252706724
 Transform:
   m_ObjectHideFlags: 0
@@ -900,7 +969,7 @@ GameObject:
   - component: {fileID: 1700442098}
   - component: {fileID: 1700442097}
   m_Layer: 0
-  m_Name: MetricsKeeperManager
+  m_Name: PlayerConfigManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -918,12 +987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ee1dcb2b8843f6b95d6dc09d2452d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _goldConfig:
-    MetricType: 0
-    StartAmount: 10
-  _speedCreationUnitsConfig:
-    MetricType: 1
-    StartAmount: 1
+  _players: 000000000000000001000000
 --- !u!4 &1700442098
 Transform:
   m_ObjectHideFlags: 0
