@@ -8,7 +8,9 @@ using Wooff.MonoIntegration;
 
 namespace Core.Components.UIComponents.WindowComponent
 {
-    public abstract class Window : Component<IConfig, IMonoEntity>, IWindow
+    public abstract class Window : 
+        Component<IConfig, IMonoEntity>, 
+        IWindow
     {
         protected Window(IConfig data, IMonoEntity handler) : base(data, handler)
         {
