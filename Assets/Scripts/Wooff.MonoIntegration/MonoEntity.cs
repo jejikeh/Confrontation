@@ -46,7 +46,7 @@ namespace Wooff.MonoIntegration
 
         public GameObject MonoObject { get; set; }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             MonoObject = gameObject;
         }
