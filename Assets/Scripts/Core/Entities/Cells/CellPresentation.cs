@@ -1,19 +1,19 @@
 ﻿using System;
-using System.Threading.Tasks;
+using System.Linq;
 using Core.Components.CellComponent;
 using Core.Components.ClickableComponent;
 using Core.Components.ClickComponent;
 using Core.Components.InformationComponent;
-using Core.Components.MetricBonusComponent;
-using Core.Components.MetricBonusComponent.MetricBonusManager;
-using Core.Components.MetricComponent;
+using Core.Components.PlayerComponent;
+using Core.Components.Properties.PropertyComponent;
+using Core.Components.Properties.PropertyOwnerComponent;
 using Core.Components.UIComponents.ScreenComponent;
 using Core.Components.UIComponents.WindowComponent;
 using Core.Components.UIComponents.WindowComponent.Windows;
+using Core.Entities.MetricsKeeper;
 using Core.Entities.UI;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Wooff.MonoIntegration;
 
 namespace Core.Entities.Cells
@@ -27,7 +27,8 @@ namespace Core.Entities.Cells
         private void Start()
         {
             _yPosition = transform.position.y;
-            // TODO: unsub
+
+            var property = ContextGet<Property>();
             var clickable = (Clickable)ContextAdd(new Clickable(
                 new ClickableConfig 
                 {
@@ -36,6 +37,12 @@ namespace Core.Entities.Cells
                 this));
             
             clickable.OnClick += OnClick;
+            property.OnPropertyHandlerAssign += OnPropertyHandlerAssign;
+        }
+
+        private void OnPropertyHandlerAssign(object sender, PropertyHandler e)
+        {
+            Debug.Log($"{e.GetType().FullName} now owner of cell");
         }
 
         private async void OnClick(object sender, EventArgs e)
@@ -44,15 +51,23 @@ namespace Core.Entities.Cells
             await transform.DOPunchScale(Vector3.up,0.1f).AsyncWaitForCompletion();
             
             if(ScreenPlacer.GetScreenState() == ScreenState.Information)
-                (ScreenPlacer.GetWindow(WindowType.Information) as InformationWindow)?
-                    .ShowInformation(ContextGet<Information>());
+                (ScreenPlacer.GetWindow(WindowType.Information) as InformationWindow)?.ShowInformation(ContextGet<Information>());
             else if (ScreenPlacer.GetScreenState() == ScreenState.Build)
             {
-                ContextGet<MetricBonusesHandler>().ContextAdd(new MetricBonus(new MetricBonusConfig()
+                if (!ContextGet<Cell>().Config.PlainCell)
+                    return;
+                
+                var playerPresentation =
+                    MonoWorld.FindEntities<PlayerPresentation>().FirstOrDefault(x => x.ContextGetAs<Player>().PlayerType == PlayerType.User);
+
+                if (playerPresentation != null)
                 {
-                    BonusAmount = 10,
-                    MetricType = MetricType.SpeedCreationUnits
-                }));
+                    var propertyHandler = playerPresentation.ContextGet<PropertyHandler>();
+                    propertyHandler.ContextAdd(ContextGet<Cell>()
+                        .ChangeToCellType(CellType.Village)
+                        .Handler
+                        .ContextGet<Property>());
+                }
             }
         }
 
