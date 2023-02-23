@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Core.Components.InformationComponent;
-using Core.Components.MetricBonusComponent;
-using Core.Components.MetricBonusComponent.MetricBonusManager;
+using Core.Components.Metrics.MetricMinerComponent.MetricMinerManager;
+using Core.Components.Properties.PropertyComponent;
 using Core.Components.RandomableComponent;
 using Core.Entities.Cells;
 using UnityEngine;
@@ -14,6 +14,7 @@ namespace Core.Components.CellComponent
     public class Cell : Component<CellConfig, IMonoEntity>, IComponent<IConfig, IMonoEntity>, ICell
     {
         IConfig IConfigurable<IConfig>.Config => Config;
+        private readonly MetricMinerHandler _metricMinerHandler;
 
         private Cell(CellConfig data, IMonoEntity handler) : base(data, handler)
         {
@@ -22,21 +23,25 @@ namespace Core.Components.CellComponent
             
             handler.ContextAdd(new Information(data.InformationConfig, handler));
             handler.ContextAdd(new Randomable(data.RandomableConfig, handler));
-            handler.ContextAdd(new MetricBonusesHandler(data.MetricBonusesHandlerConfig, handler));
+            handler.ContextAdd(new Property(null, handler));
+            _metricMinerHandler = (MetricMinerHandler)handler.ContextAdd(new MetricMinerHandler(data.MetricMinerHandlerConfig, handler));
         }
 
         public override void OnRemove()
         {
             MonoWorld.DestroyAllChildren(Handler);
-            Handler.ContextRemove(Handler.ContextGet<MetricBonusesHandler>());
+            Handler.ContextRemove(Handler.ContextGet<MetricMinerHandler>());
         }
         
-        public void ChangeToCellType(CellType cellType)
+        public Cell ChangeToCellType(CellType cellType)
         {
+            if (!Config.PlainCell)
+                return default;
+            
             Handler.ContextRemove(this);
-            Handler.ContextAdd(new Cell(CellManager.GetConfig(cellType), Handler));
+            return (Cell)Handler.ContextAdd(new Cell(CellManager.GetConfig(cellType), Handler));
         }
-
+        
         public static Cell RandomPlainCell(IMonoEntity handler)
         { 
             var plainCells= CellManager.Configs.Where(x => x.PlainCell).ToList();
