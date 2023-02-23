@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Core.Components.CellComponent;
+using Core.Components.PlayerComponent;
+using Core.Components.Properties.PropertyComponent;
+using Core.Components.Properties.PropertyOwnerComponent;
 using Core.Components.RandomableComponent;
 using Core.Entities.Cells;
+using Core.Entities.MetricsKeeper;
 using UnityEngine;
 using Wooff.ECS;
 using Wooff.ECS.Components;
@@ -17,7 +22,7 @@ namespace Core.Components.WorldCellComponent.Cells
         IComponent<IConfig, IMonoEntity>, IListContext<ICell>
     {
         IConfig IConfigurable<IConfig>.Config => Config; 
-        private float _heightOffset = 0;
+        private float _heightOffset;
         private readonly CellContext _cellContext;
 
         public WorldCells(WorldCellsConfig data, IMonoEntity handler) : base(data, handler)
@@ -40,17 +45,28 @@ namespace Core.Components.WorldCellComponent.Cells
                 }
             }
         }
-
-        public void ChangeRandomCellTo(CellType cellType)
+        
+        public ICell ChangeRandomCellTo(CellType cellType)
         {
             while (true)
             {
-                var cell = Items[Random.Range(0, Items.Count - 1)] as Cell;
+                var cell = GetRandomCellPlainCell();
                 if (cell?.Config.CellType == cellType) 
                     continue;
                 
-                cell?.ChangeToCellType(cellType);
-                return;
+                return cell?.ChangeToCellType(cellType);
+            }
+        }
+
+        public Cell GetRandomCellPlainCell()
+        {
+            while (true)
+            {
+                var cell = Items[Random.Range(0, Items.Count - 1)] as Cell;;
+                if (!cell!.Config.PlainCell || cell.Config.CellType is CellType.City or CellType.Village )
+                    continue;
+                
+                return cell;
             }
         }
 

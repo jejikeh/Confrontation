@@ -13,6 +13,5 @@ namespace Core.Components.WorldCellComponent.Cells
         public float CellHeightMaxOffset;
         public float CellHeightMinOffset;
         public RandomableConfig GenerateHeightOffset;
-        private readonly float _heightOffset = 0;
     }
 }
