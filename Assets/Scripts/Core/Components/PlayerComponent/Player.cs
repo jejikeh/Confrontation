@@ -7,12 +7,12 @@ using Wooff.MonoIntegration;
 
 namespace Core.Components.PlayerComponent
 {
-    public class Player : Component<IConfig, IMonoEntity>, IPlayer
+    public class Player : Component<PlayerConfig, IMonoEntity>, IComponent<IConfig, IMonoEntity>,IPlayer
     {
         public MetricHandler MetricHandler { get; }
-        public virtual PlayerType PlayerType => PlayerType.None;
+        IConfig IConfigurable<IConfig>.Config => Config;
 
-        public Player(IConfig data, IMonoEntity handler) : base(data, handler)
+        protected Player(PlayerConfig data, IMonoEntity handler) : base(data, handler)
         {
             Handler.ContextAdd(new PropertyHandler(null, Handler));
             MetricHandler = (MetricHandler)Handler.ContextAdd(new MetricHandler(new MetricHandlerConfig(), Handler));
@@ -20,7 +20,7 @@ namespace Core.Components.PlayerComponent
             MetricHandler.ContextAdd(new Metric(new MetricConfig()
             {
                 MetricType = MetricType.Gold,
-                StartAmount = 2
+                StartAmount = 1
             }));
             
             MetricHandler.ContextAdd(new Metric(new MetricConfig()
