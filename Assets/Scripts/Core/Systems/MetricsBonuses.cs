@@ -22,16 +22,6 @@ namespace Core.Systems
                 return;
             }
 
-            /*
-            var metricBonuses =
-                data.Items.Select(x => x.ContextGet<MetricMinerHandler>())
-                    .Where(x => x is not null).ToList();
-
-            foreach (var player in players)
-                foreach (var metric in metricBonuses.Where(x => x.Handler.Co).SelectMany(bonus => bonus.Items))
-                    player.MetricHandler.GetMetricByType(metric.MetricType).AddToMetric(metric.GetBonusAmount());
-            */
-            
             var players = data.Items
                 .Where(x => x.ContextGetAs<Player>() is not null)
                 .ToList();
