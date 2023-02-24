@@ -3,6 +3,7 @@ using System.Linq;
 using Core.Components.PlayerComponent;
 using Core.Components.Properties.PropertyComponent;
 using Core.Components.Properties.PropertyOwnerComponent;
+using Core.Entities;
 using Core.Entities.PropertyTagIconVisualisation;
 using DG.Tweening;
 using UnityEngine;
@@ -33,7 +34,7 @@ namespace Core.Systems
                         continue;
                     
                     var propertyTagPresentation = 
-                        MonoWorld.SpawnEntity<PropertyTagPresentation>(
+                        StaticMonoWorldFinder.SpawnEntity<PropertyTagPresentation>(
                             player.Config.VisualizeIcon,
                             ((Property)property).Handler.MonoObject.transform.position + Vector3.down);
 

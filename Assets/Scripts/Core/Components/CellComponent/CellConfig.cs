@@ -1,4 +1,5 @@
 ﻿using System;
+using Core.Components.AudioPlayerComponent;
 using Core.Components.InformationComponent;
 using Core.Components.Metrics.MetricMinerComponent.MetricMinerManager;
 using Core.Components.RandomableComponent;
@@ -15,6 +16,7 @@ namespace Core.Components.CellComponent
         public InformationConfig InformationConfig;
         public CellType CellType;
         [FormerlySerializedAs("MetricBonusesHandlerConfig")] public MetricMinerHandlerConfig MetricMinerHandlerConfig;
+        public AudioPlayerConfig AudioPlayerConfig;
         public RandomableConfig RandomableConfig;
         public bool PlainCell;
     }

@@ -1,8 +1,10 @@
 ﻿using System.Linq;
+using Core.Components.AudioPlayerComponent;
 using Core.Components.InformationComponent;
 using Core.Components.Metrics.MetricMinerComponent.MetricMinerManager;
 using Core.Components.Properties.PropertyComponent;
 using Core.Components.RandomableComponent;
+using Core.Entities;
 using Core.Entities.Cells;
 using UnityEngine;
 using Wooff.ECS;
@@ -18,9 +20,10 @@ namespace Core.Components.CellComponent
 
         private Cell(CellConfig data, IMonoEntity handler) : base(data, handler)
         {
-            MonoWorld.AttachPrefabToEntity(data.Mesh, Handler);
+            StaticMonoWorldFinder.AttachPrefabToEntity(data.Mesh, Handler);
             handler.MonoObject.GetComponent<MeshCollider>().sharedMesh = data.Mesh.GetComponent<MeshFilter>().sharedMesh;
-            
+
+            handler.ContextAdd(new AudioPlayer(data.AudioPlayerConfig, handler));
             handler.ContextAdd(new Information(data.InformationConfig, handler));
             handler.ContextAdd(new Randomable(data.RandomableConfig, handler));
             handler.ContextAdd(new Property(null, handler));
@@ -29,7 +32,7 @@ namespace Core.Components.CellComponent
 
         public override void OnRemove()
         {
-            MonoWorld.DestroyAllChildren(Handler);
+            StaticMonoWorldFinder.DestroyAllChildren(Handler);
             Handler.ContextRemove(Handler.ContextGet<MetricMinerHandler>());
         }
         

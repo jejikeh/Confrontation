@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Wooff.ECS;
@@ -49,6 +50,11 @@ namespace Wooff.MonoIntegration
         protected virtual void Awake()
         {
             MonoObject = gameObject;
+        }
+
+        private void OnDestroy()
+        {
+            Items.Clear();
         }
     }
 }

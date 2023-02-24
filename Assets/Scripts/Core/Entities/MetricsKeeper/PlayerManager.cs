@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using Core.Components.CellComponent;
+using Core.Components.ClickableComponent;
+using Core.Components.ClickComponent;
 using Core.Components.PlayerComponent;
 using Core.Components.PlayerComponent.Players;
 using Core.Components.Properties.PropertyComponent;
 using Core.Components.Properties.PropertyOwnerComponent;
+using Core.Components.SmoothTranslateComponent;
+using Core.Entities.Camera;
 using Core.Entities.Cells;
 using UnityEngine;
 using Wooff.MonoIntegration;
@@ -14,24 +18,28 @@ namespace Core.Entities.MetricsKeeper
     public class PlayerManager : MonoEntity
     {
         [SerializeField] private List<PlayerConfig> _players = new List<PlayerConfig>();
-
-        private void Start()
+        private bool _isInvoked;
+        
+        private void Update()
         {
+            if (_isInvoked)
+                return;
+            
             foreach (var playerConfig in _players)
             {
-                var monoEntity = MonoWorld.SpawnEntity<PlayerPresentation>("Player: "+ playerConfig);
+                var monoEntity = StaticMonoWorldFinder.SpawnEntity<PlayerPresentation>("Player: "+ playerConfig.PlayerType);
+                var monoCellWorld = StaticMonoWorldFinder.FindCellWorldCreator();
+
                 switch (playerConfig.PlayerType)
                 {
                     case PlayerType.None:
-                        var none = monoEntity.ContextAdd(new None(
-                            playerConfig, 
-                            monoEntity));
+                        monoEntity.ContextAdd(new None(playerConfig, monoEntity));
                         break;
                     case PlayerType.Computer:
                         var computer = monoEntity.ContextAdd(new Computer(
                             playerConfig, 
                             monoEntity));
-                        var computerCell = CellWorldCreator.GetRandomCell();
+                        var computerCell = monoCellWorld.GetRandomCell();
                         computerCell.ChangeToCellType(CellType.City);
                         computer.Handler
                             .ContextGet<PropertyHandler>()
@@ -41,10 +49,9 @@ namespace Core.Entities.MetricsKeeper
                         var user = monoEntity.ContextAdd(new User(
                             playerConfig, 
                             monoEntity));
-                        
-                        var userCell = CellWorldCreator.GetRandomCell();
+
+                        var userCell = monoCellWorld.GetRandomCell();
                         userCell.ChangeToCellType(CellType.City);
-                        
                         user.Handler
                             .ContextGet<PropertyHandler>()
                             .ContextAdd(userCell.Handler.ContextGet<Property>());
@@ -53,6 +60,8 @@ namespace Core.Entities.MetricsKeeper
                         throw new ArgumentOutOfRangeException();
                 }
             }
+
+            _isInvoked = true;
         }
     }
 }

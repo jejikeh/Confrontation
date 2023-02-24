@@ -10,6 +10,7 @@ namespace Core.Entities.UI
     public class ScreenPlacer : StaticMonoEntity<ScreenPlacer>
     {
         [SerializeField] private ScreenConfig _screenConfig;
+        
         private void Start()
         {
             ContextAdd(new Screen(_screenConfig, this));
@@ -23,8 +24,8 @@ namespace Core.Entities.UI
 
             return Instance.ContextGet<Screen>().ContextGet(windowType);
         }
-        
-        public static IWindow OpenWindow(WindowType windowType)
+
+        private static IWindow OpenWindow(WindowType windowType)
         {
             return Instance.ContextGet<Screen>().OpenWindow(windowType);
         }

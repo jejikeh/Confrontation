@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Core.Components.UIComponents.WindowComponent;
 using Core.Components.UIComponents.WindowComponent.Windows;
+using Core.Entities;
 using Core.Entities.UI;
 using Wooff.ECS;
 using Wooff.ECS.Components;
@@ -32,7 +33,7 @@ namespace Core.Components.UIComponents.ScreenComponent
             if (ContextContains(windowType))
                 return default;
             var window = Config.GetWindow(windowType);
-            var monoItem = MonoWorld.SpawnEntity<MonoWindow>(Handler, window.gameObject);
+            var monoItem = StaticMonoWorldFinder.SpawnEntity<MonoWindow>(Handler, window.gameObject);
             return windowType switch
             {
                 WindowType.Information => ContextAdd((InformationWindow)monoItem.ContextAdd(new InformationWindow(null, monoItem))),
@@ -47,7 +48,7 @@ namespace Core.Components.UIComponents.ScreenComponent
             var windowComponent =
                 _windowContext.Items.FirstOrDefault(windowContextItem => windowContextItem.WindowType == windowType);
             ContextRemove(windowComponent);
-            MonoWorld.DestroyEntity(windowComponent?.Handler);
+            StaticMonoWorldFinder.DestroyEntity(windowComponent?.Handler);
         }
 
         public T2 ContextGet<T2>() where T2 : class, IWindow

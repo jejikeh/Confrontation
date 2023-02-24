@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Core.Components.AudioPlayerComponent;
 using Core.Components.CellComponent;
 using Core.Components.ClickableComponent;
 using Core.Components.ClickComponent;
@@ -47,6 +48,7 @@ namespace Core.Entities.Cells
 
         private async void OnClick(object sender, EventArgs e)
         {
+            ContextGet<AudioPlayer>().Play("click");
             transform.DOComplete();
             await transform.DOPunchScale(Vector3.up,0.1f).AsyncWaitForCompletion();
             
@@ -58,7 +60,7 @@ namespace Core.Entities.Cells
                     return;
                 
                 var playerPresentation =
-                    MonoWorld.FindEntities<PlayerPresentation>().FirstOrDefault(x => x.ContextGetAs<Player>().Config.PlayerType == PlayerType.User);
+                    StaticMonoWorldFinder.FindEntities<PlayerPresentation>().FirstOrDefault(x => x.ContextGetAs<Player>().Config.PlayerType == PlayerType.User);
 
                 if (playerPresentation == null) 
                     return;

@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Core.Components.CellComponent;
-using Core.Components.PlayerComponent;
-using Core.Components.Properties.PropertyComponent;
-using Core.Components.Properties.PropertyOwnerComponent;
 using Core.Components.RandomableComponent;
+using Core.Entities;
 using Core.Entities.Cells;
-using Core.Entities.MetricsKeeper;
 using UnityEngine;
 using Wooff.ECS;
 using Wooff.ECS.Components;
@@ -36,7 +32,7 @@ namespace Core.Components.WorldCellComponent.Cells
             {
                 for (var y = 0; y < Config.GridSize.y; y++)
                 {
-                    var cellPresentation = MonoWorld.SpawnEntity<CellPresentation>();
+                    var cellPresentation = StaticMonoWorldFinder.SpawnEntity<CellPresentation>(typeof(CellPresentation).FullName);
                     cellPresentation.transform.position = GetPositionForCellFromCoordinate(new Vector2Int(x, y));
                     cellPresentation.transform.rotation = Quaternion.Euler(new Vector3(0f,Random.Range(0,7) * 60,0f));
                     cellPresentation.transform.SetParent(Handler.MonoObject.transform, true);
@@ -62,7 +58,7 @@ namespace Core.Components.WorldCellComponent.Cells
         {
             while (true)
             {
-                var cell = Items[Random.Range(0, Items.Count - 1)] as Cell;;
+                var cell = Items[Random.Range(0, Items.Count - 1)] as Cell;
                 if (!cell!.Config.PlainCell || cell.Config.CellType is CellType.City or CellType.Village )
                     continue;
                 

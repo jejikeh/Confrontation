@@ -1,25 +1,23 @@
 ﻿using Core.Components.CellComponent;
-using Core.Components.PlayerComponent;
 using Core.Components.WorldCellComponent.Cells;
 using UnityEngine;
 using Wooff.MonoIntegration;
 
 namespace Core.Entities.Cells
 {
-    public class CellWorldCreator : StaticMonoEntity<CellWorldCreator>
+    public class CellWorldCreator : MonoEntity
     {
-        [SerializeField] private WorldCellsConfig _worldCellsConfig;
         private WorldCells _worldCells;
         
         private void Start()
         {
-            _worldCells = (WorldCells)ContextAdd(new WorldCells(_worldCellsConfig, this));
+            _worldCells = (WorldCells)ContextAdd(new WorldCells(CellManager.WorldCellsConfig, this));
             _worldCells.InitWorld();
         }
 
-        public static Cell GetRandomCell()
+        public Cell GetRandomCell()
         {
-            return Instance._worldCells.GetRandomCellPlainCell();
+            return _worldCells.GetRandomCellPlainCell();
         }
     }
 }
