@@ -26,6 +26,7 @@ namespace Wooff.MonoIntegration
             SystemContext.ContextAdd(new MetricsBonuses());
             SystemContext.ContextAdd(new CameraTranslateToLastClickedGameItem());
             SystemContext.ContextAdd(new DrawMetricText());
+            SystemContext.ContextAdd(new PlayerOwnerIconsVisualization());
 
             foreach (var monoEntity in FindObjectsByType<MonoEntity>(FindObjectsSortMode.None))
                 EntityContext.ContextAdd(monoEntity);
@@ -54,6 +55,16 @@ namespace Wooff.MonoIntegration
         {
             var obj = new GameObject(typeof(T).FullName);
             var monoEntity = obj.AddComponent<T>();
+            _ = Instantiate(prefab, monoEntity.transform);
+            EntityContext.ContextAdd(monoEntity);
+            return monoEntity;
+        }
+        
+        private T SpawnNewEntity<T>(GameObject prefab, Vector3 position) where T : MonoEntity
+        {
+            var obj = new GameObject(typeof(T).FullName);
+            var monoEntity = obj.AddComponent<T>();
+            monoEntity.transform.position = position;
             _ = Instantiate(prefab, monoEntity.transform);
             EntityContext.ContextAdd(monoEntity);
             return monoEntity;
@@ -110,6 +121,11 @@ namespace Wooff.MonoIntegration
         public static T SpawnEntity<T>(GameObject prefab) where T : MonoEntity
         {
             return Instance.SpawnNewEntity<T>(prefab);
+        }
+        
+        public static T SpawnEntity<T>(GameObject prefab, Vector3 position) where T : MonoEntity
+        {
+            return Instance.SpawnNewEntity<T>(prefab, position);
         }
 
         public static T SpawnEntity<T>(IMonoEntity parent, GameObject prefab) where T : MonoEntity
