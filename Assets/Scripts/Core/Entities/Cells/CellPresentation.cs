@@ -58,16 +58,16 @@ namespace Core.Entities.Cells
                     return;
                 
                 var playerPresentation =
-                    MonoWorld.FindEntities<PlayerPresentation>().FirstOrDefault(x => x.ContextGetAs<Player>().PlayerType == PlayerType.User);
+                    MonoWorld.FindEntities<PlayerPresentation>().FirstOrDefault(x => x.ContextGetAs<Player>().Config.PlayerType == PlayerType.User);
 
-                if (playerPresentation != null)
-                {
-                    var propertyHandler = playerPresentation.ContextGet<PropertyHandler>();
-                    propertyHandler.ContextAdd(ContextGet<Cell>()
-                        .ChangeToCellType(CellType.Village)
-                        .Handler
-                        .ContextGet<Property>());
-                }
+                if (playerPresentation == null) 
+                    return;
+                
+                var propertyHandler = playerPresentation.ContextGet<PropertyHandler>();
+                propertyHandler.ContextAdd(ContextGet<Cell>()
+                    .ChangeToCellType(CellType.Village)
+                    .Handler
+                    .ContextGet<Property>());
             }
         }
 
