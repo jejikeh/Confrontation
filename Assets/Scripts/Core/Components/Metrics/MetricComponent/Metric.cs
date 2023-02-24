@@ -1,7 +1,4 @@
 ﻿using UnityEngine;
-using Wooff.ECS;
-using Wooff.ECS.Components;
-using Wooff.MonoIntegration;
 
 namespace Core.Components.Metrics.MetricComponent
 {
