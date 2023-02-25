@@ -45,9 +45,11 @@ namespace Wooff.MonoIntegration
         
         public T SpawnEntity<T>(GameObject prefab) where T : MonoEntity
         {
-            var obj = new GameObject(typeof(T).FullName);
+            var obj = Instantiate(prefab);
+            var fullName = typeof(T).FullName;
+            if (fullName != null) 
+                obj.name = fullName;
             var monoEntity = obj.AddComponent<T>();
-            _ = Instantiate(prefab, monoEntity.transform);
             EntityContext.ContextAdd(monoEntity);
             return monoEntity;
         }

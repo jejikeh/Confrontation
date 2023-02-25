@@ -20,6 +20,12 @@ namespace Core.Entities
             return Instance._world.SpawnEntity<T>(prefab, position);
         }
 
+        public static T SpawnEntity<T>(GameObject prefab) where T : MonoEntity
+        {
+            return Instance._world.SpawnEntity<T>(prefab);
+        }
+
+
         [CanBeNull]
         public static T GetEntity<T>() where T : MonoEntity
         {
