@@ -32,7 +32,7 @@ namespace Core.Components.WorldCellComponent.Cells
             {
                 for (var y = 0; y < Config.GridSize.y; y++)
                 {
-                    var cellPresentation = StaticMonoWorldFinder.SpawnEntity<CellPresentation>(typeof(CellPresentation).FullName);
+                    var cellPresentation = StaticMonoWorldFinder.SpawnEntity<CellPresentation>(CellManager.CellPresentationPrefab);
                     cellPresentation.transform.position = GetPositionForCellFromCoordinate(new Vector2Int(x, y));
                     cellPresentation.transform.rotation = Quaternion.Euler(new Vector3(0f,Random.Range(0,7) * 60,0f));
                     cellPresentation.transform.SetParent(Handler.MonoObject.transform, true);

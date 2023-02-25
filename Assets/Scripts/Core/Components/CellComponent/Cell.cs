@@ -21,8 +21,6 @@ namespace Core.Components.CellComponent
         private Cell(CellConfig data, IMonoEntity handler) : base(data, handler)
         {
             StaticMonoWorldFinder.AttachPrefabToEntity(data.Mesh, Handler);
-            handler.MonoObject.GetComponent<MeshCollider>().sharedMesh = data.Mesh.GetComponent<MeshFilter>().sharedMesh;
-
             handler.ContextAdd(new AudioPlayer(data.AudioPlayerConfig, handler));
             handler.ContextAdd(new Information(data.InformationConfig, handler));
             handler.ContextAdd(new Randomable(data.RandomableConfig, handler));

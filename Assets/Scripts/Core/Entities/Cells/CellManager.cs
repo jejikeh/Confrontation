@@ -13,9 +13,11 @@ namespace Core.Entities.Cells
     {
         [SerializeField] private List<CellConfig> _configs = new List<CellConfig>();
         [SerializeField] private WorldCellsConfig _worldCellsConfig;
+        [SerializeField] private GameObject _cellPresentationPrefab;
 
         public static List<CellConfig> Configs => Instance._configs;
         public static WorldCellsConfig WorldCellsConfig => Instance._worldCellsConfig;
+        public static GameObject CellPresentationPrefab => Instance._cellPresentationPrefab;
 
         public static CellConfig GetConfig(CellType cellType)
         {
