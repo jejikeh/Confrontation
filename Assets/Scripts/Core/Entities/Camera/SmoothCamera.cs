@@ -38,10 +38,10 @@ namespace Core.Entities.Camera
             return raycastResults;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             _smoothLookAtTarget.UpdateOffset(Input.mouseScrollDelta.y * 10f);
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetButtonDown("Fire1"))
             {
                 if (EventSystem.current.IsPointerOverGameObject())
                 {
