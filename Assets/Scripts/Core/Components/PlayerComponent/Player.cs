@@ -14,7 +14,7 @@ namespace Core.Components.PlayerComponent
 
         protected Player(PlayerConfig data, IMonoEntity handler) : base(data, handler)
         {
-            Handler.ContextAdd(new PropertyHandler(null, Handler));
+            ManualAddComponentToHandler(new PropertyHandler(null, Handler));
             MetricHandler = (MetricHandler)Handler.ContextAdd(new MetricHandler(new MetricHandlerConfig(), Handler));
             
             MetricHandler.ContextAdd(new Metric(new MetricConfig()
@@ -28,6 +28,11 @@ namespace Core.Components.PlayerComponent
                 MetricType = MetricType.SpeedCreationUnits,
                 StartAmount = 1
             }));
+        }
+
+        public override void OnRemove()
+        {
+            RemoveAllManualAddedComponentsToHandler();
         }
     }
 }
