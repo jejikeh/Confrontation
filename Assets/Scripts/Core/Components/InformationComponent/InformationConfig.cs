@@ -9,5 +9,6 @@ namespace Core.Components.InformationComponent
     {
         public string Name;
         public string Description;
+        public GameObject VisualizeIcon;
     }
 }
