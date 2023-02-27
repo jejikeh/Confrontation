@@ -18,6 +18,7 @@ namespace Core.Entities.Cells
         public static List<CellConfig> Configs => Instance._configs;
         public static WorldCellsConfig WorldCellsConfig => Instance._worldCellsConfig;
         public static GameObject CellPresentationPrefab => Instance._cellPresentationPrefab;
+        public static float MaxBuildDistance = 2f;
 
         public static CellConfig GetConfig(CellType cellType)
         {
