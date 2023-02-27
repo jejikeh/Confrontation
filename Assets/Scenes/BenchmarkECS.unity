@@ -249,28 +249,16 @@ MonoBehaviour:
     VisualizeColor: {r: 0, g: 0, b: 0, a: 0}
   - PlayerType: 2
     InformationConfig:
-      Name: 
+      Name: "\u0422\u044B"
       Description: 
       VisualizeIcon: {fileID: 8479393442799774504, guid: 206e14301365ed444bad2411d1ab17c7, type: 3}
     VisualizeColor: {r: 1, g: 1, b: 1, a: 1}
   - PlayerType: 1
     InformationConfig:
-      Name: 
+      Name: "\u0418\u0433\u043E\u0440\u044C"
       Description: 
       VisualizeIcon: {fileID: 0}
     VisualizeColor: {r: 0.8396226, g: 0.36964515, b: 0.45021275, a: 1}
-  - PlayerType: 1
-    InformationConfig:
-      Name: 
-      Description: 
-      VisualizeIcon: {fileID: 7213751856632585211, guid: 1d1e1895212856a4abac175d933c11b7, type: 3}
-    VisualizeColor: {r: 0.8301887, g: 0.6317788, b: 0.8130711, a: 1}
-  - PlayerType: 1
-    InformationConfig:
-      Name: 
-      Description: 
-      VisualizeIcon: {fileID: 7213751856632585211, guid: 1d1e1895212856a4abac175d933c11b7, type: 3}
-    VisualizeColor: {r: 0.55974835, g: 0.8396226, b: 0.83742756, a: 1}
 --- !u!4 &662424254
 Transform:
   m_ObjectHideFlags: 0
@@ -396,7 +384,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &752857131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,13 +972,18 @@ MonoBehaviour:
         \u0433\u043D\u043E\u043C\u0430\u043C \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0442\u044C
         \u0441\u0432\u043E\u044E \u0434\u0435\u043F\u0440\u0435\u0441\u0441\u0438\u044E."
       VisualizeIcon: {fileID: 8479393442799774504, guid: 046b28222c45e3147827884fafac35bf, type: 3}
-    CellType: 13
+    CellType: 12
     MetricMinerHandlerConfig:
       MetricBonusConfigs:
       - BonusAmount: 1
         MetricType: 0
+        MineEverySecond: 1
       - BonusAmount: 1
         MetricType: 1
+        MineEverySecond: 1
+      - BonusAmount: 1
+        MetricType: 2
+        MineEverySecond: 0
     AudioPlayerConfig:
       StringAudioClipDictionary:
       - Name: click
@@ -1017,11 +1010,12 @@ MonoBehaviour:
         \u0433\u043D\u043E\u043C\u0430\u043C \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0442\u044C
         \u0441\u0432\u043E\u044E \u0434\u0435\u043F\u0440\u0435\u0441\u0441\u0438\u044E."
       VisualizeIcon: {fileID: 8479393442799774504, guid: 9b1fcd2de5551584ab2d6cf12f8341ad, type: 3}
-    CellType: 12
+    CellType: 13
     MetricMinerHandlerConfig:
       MetricBonusConfigs:
       - BonusAmount: 1
         MetricType: 0
+        MineEverySecond: 1
     AudioPlayerConfig:
       StringAudioClipDictionary:
       - Name: click
@@ -1054,6 +1048,7 @@ MonoBehaviour:
       MetricBonusConfigs:
       - BonusAmount: 1
         MetricType: 0
+        MineEverySecond: 1
     AudioPlayerConfig:
       StringAudioClipDictionary:
       - Name: click
@@ -1086,6 +1081,7 @@ MonoBehaviour:
       MetricBonusConfigs:
       - BonusAmount: 1
         MetricType: 0
+        MineEverySecond: 0
     AudioPlayerConfig:
       StringAudioClipDictionary:
       - Name: click
@@ -1103,6 +1099,7 @@ MonoBehaviour:
       MetricBonusConfigs:
       - BonusAmount: 1
         MetricType: 0
+        MineEverySecond: 0
     AudioPlayerConfig:
       StringAudioClipDictionary:
       - Name: click
@@ -1111,7 +1108,7 @@ MonoBehaviour:
       Chance: 0
     PlainCell: 0
   _worldCellsConfig:
-    GridSize: {x: 6, y: 6}
+    GridSize: {x: 4, y: 4}
     CellSize: 0.576
     CellHeightMaxOffset: 1.5
     CellHeightMinOffset: -1
