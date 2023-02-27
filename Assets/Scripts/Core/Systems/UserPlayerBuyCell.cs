@@ -4,7 +4,7 @@ using Core.Components.CellComponent;
 using Core.Components.ClickableComponent;
 using Core.Components.ClickComponent;
 using Core.Components.PlayerComponent;
-using Core.Components.SmoothTranslateComponent;
+using Core.Components.PlayerComponent.Players;
 using Core.Components.UIComponents.ScreenComponent;
 using Core.Components.UIComponents.WindowComponent;
 using Core.Components.UIComponents.WindowComponent.Windows.Tools;
@@ -16,7 +16,7 @@ using Wooff.MonoIntegration;
 
 namespace Core.Systems
 {
-    public class PlayerBuyCell : IMonoSystem
+    public class UserPlayerBuyCell : IMonoSystem
     {
         [CanBeNull] private Clickable _lastClickableItemTarget;
         private Click _click;
@@ -26,6 +26,11 @@ namespace Core.Systems
             
             if (ScreenPlacer.GetScreenState() == ScreenState.Build)
             {
+                var userEntity = data.Items.FirstOrDefault(x => x.ContextContains<User>());
+
+                if (userEntity is null || TurnToMove.HisMove != userEntity.ContextGetAs<Player>())
+                    return;
+                
                 _click ??= data.ContextGet<SmoothCamera>().ContextGet<Click>();
 
                 if (_click.Config.LastClickable == _lastClickableItemTarget)
@@ -41,8 +46,7 @@ namespace Core.Systems
                 if (!_lastClickableItemTarget.Handler.ContextContains<Cell>()) 
                     return;
                 
-                var playerEntity = data.Items.FirstOrDefault(x => x.ContextGetAs<Player>().Config.PlayerType == PlayerType.User);
-                playerEntity?.ContextGetAs<Player>().BuyCell(
+                userEntity.ContextGet<User>().BuyCell(
                     _lastClickableItemTarget.Handler.ContextGet<Cell>(), 
                     ((BuildTool)ScreenPlacer.GetWindow(WindowType.BuildTool)).SelectedCellType);
             }
