@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b77c5407dc277943b591ade9e6b18c5, type: 3}
   m_Name: LensDistortion
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -144,10 +144,10 @@ MonoBehaviour:
   - {fileID: 8055989496272464876}
   - {fileID: 1312999067925271689}
   - {fileID: 6762531104861524336}
-  - {fileID: 908571471470167685}
+  - {fileID: 680290620072556009}
   - {fileID: -2189907447414700844}
   - {fileID: -3956915090256012770}
---- !u!114 &908571471470167685
+--- !u!114 &680290620072556009
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb84e30e02715445aeb9959894e3b4d, type: 3}
   m_Name: ColorGrading
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
