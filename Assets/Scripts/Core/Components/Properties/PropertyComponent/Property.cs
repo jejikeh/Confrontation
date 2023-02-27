@@ -11,6 +11,7 @@ namespace Core.Components.Properties.PropertyComponent
         Component<IConfig, IMonoEntity>, 
         IProperty
     {
+        public IMonoEntity ComponentHandler => Handler;
         public PropertyHandler PropertyHandler { get; private set; }
         
         public Property(IConfig data, IMonoEntity handler) : base(data, handler)
