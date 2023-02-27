@@ -21,11 +21,12 @@ namespace Core.Components.CellComponent
         private Cell(CellConfig data, IMonoEntity handler) : base(data, handler)
         {
             StaticMonoWorldFinder.AttachPrefabToEntity(data.Mesh, Handler);
-            handler.ContextAdd(new AudioPlayer(data.AudioPlayerConfig, handler));
-            handler.ContextAdd(new Information(data.InformationConfig, handler));
-            handler.ContextAdd(new Randomable(data.RandomableConfig, handler));
-            handler.ContextAdd(new Property(null, handler));
-            _metricMinerHandler = (MetricMinerHandler)handler.ContextAdd(new MetricMinerHandler(data.MetricMinerHandlerConfig, handler));
+            ManualAddComponentToHandler(new AudioPlayer(data.AudioPlayerConfig, handler));
+            ManualAddComponentToHandler(new Information(data.InformationConfig, handler));
+            ManualAddComponentToHandler(new Randomable(data.RandomableConfig, handler));
+            ManualAddComponentToHandler(new Property(null, handler));
+            _metricMinerHandler = 
+                (MetricMinerHandler)ManualAddComponentToHandler(new MetricMinerHandler(data.MetricMinerHandlerConfig, handler));
         }
 
         public override void OnRemove()
@@ -40,6 +41,7 @@ namespace Core.Components.CellComponent
                 return default;
             
             Handler.ContextRemove(this);
+            RemoveAllManualAddedComponentsToHandler();
             return (Cell)Handler.ContextAdd(new Cell(CellManager.GetConfig(cellType), Handler));
         }
         
