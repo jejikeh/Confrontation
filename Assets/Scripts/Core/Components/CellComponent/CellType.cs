@@ -17,10 +17,11 @@ namespace Core.Components.CellComponent
         StoneHill,
         StoneMountain,
         StoneRocks,
-        Village,
         City,
+        Village,
         TowerOfMagicians,
         Fort,
-        Mine
+        Mine,
+        None
     }
 }
