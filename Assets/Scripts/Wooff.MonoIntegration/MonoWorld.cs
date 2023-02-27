@@ -27,6 +27,8 @@ namespace Wooff.MonoIntegration
             SystemContext.ContextAdd(new CameraTranslateToLastClickedGameItem());
             SystemContext.ContextAdd(new DrawMetricText());
             SystemContext.ContextAdd(new PlayerOwnerIconsVisualization());
+            SystemContext.ContextAdd(new UserPlayerBuyCell());
+            SystemContext.ContextAdd(new TurnToMove());
 
             foreach (var monoEntity in FindObjectsByType<MonoEntity>(FindObjectsSortMode.None))
                 EntityContext.ContextAdd(monoEntity);

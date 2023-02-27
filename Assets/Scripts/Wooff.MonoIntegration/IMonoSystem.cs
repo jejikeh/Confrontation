@@ -4,6 +4,5 @@ namespace Wooff.MonoIntegration
 {
     public interface IMonoSystem : ISystem<IMonoEntity>
     {
-        
     }
 }
