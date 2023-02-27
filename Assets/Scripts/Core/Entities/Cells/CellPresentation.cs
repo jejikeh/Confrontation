@@ -11,6 +11,7 @@ using Core.Components.Properties.PropertyOwnerComponent;
 using Core.Components.UIComponents.ScreenComponent;
 using Core.Components.UIComponents.WindowComponent;
 using Core.Components.UIComponents.WindowComponent.Windows;
+using Core.Components.UIComponents.WindowComponent.Windows.Tools;
 using Core.Entities.MetricsKeeper;
 using Core.Entities.UI;
 using DG.Tweening;
@@ -57,14 +58,17 @@ namespace Core.Entities.Cells
                     return;
                 
                 var playerPresentation =
-                    StaticMonoWorldFinder.FindEntities<PlayerPresentation>().FirstOrDefault(x => x.ContextGetAs<Player>().Config.PlayerType == PlayerType.User);
+                    StaticMonoWorldFinder
+                        .FindEntities<PlayerPresentation>()
+                        .FirstOrDefault(x => 
+                            x.ContextGetAs<Player>().Config.PlayerType == PlayerType.User);
 
                 if (playerPresentation == null) 
                     return;
                 
                 var propertyHandler = playerPresentation.ContextGet<PropertyHandler>();
                 propertyHandler.ContextAdd(ContextGet<Cell>()
-                    .ChangeToCellType(CellType.Village)
+                    .ChangeToCellType(((BuildTool)ScreenPlacer.GetWindow(WindowType.BuildTool)).SelectedCellType)
                     .Handler
                     .ContextGet<Property>());
             }
