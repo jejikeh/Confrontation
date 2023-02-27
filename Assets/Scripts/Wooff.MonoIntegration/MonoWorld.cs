@@ -118,6 +118,12 @@ namespace Wooff.MonoIntegration
                 SceneManager.LoadScene("Benchma");
         }
 
-        
+        private void OnDestroy()
+        {
+            for (var i = 0; i < EntityContext.Items.Count; i++)
+                EntityContext.ContextRemove(EntityContext.Items[i]);
+            
+            SystemContext.Items.Clear();
+        }
     }
 }
