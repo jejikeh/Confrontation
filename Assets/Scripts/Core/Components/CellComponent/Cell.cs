@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Core.Components.AudioPlayerComponent;
 using Core.Components.InformationComponent;
 using Core.Components.Metrics.MetricMinerComponent.MetricMinerManager;
@@ -6,10 +7,10 @@ using Core.Components.Properties.PropertyComponent;
 using Core.Components.RandomableComponent;
 using Core.Entities;
 using Core.Entities.Cells;
-using UnityEngine;
 using Wooff.ECS;
 using Wooff.ECS.Components;
 using Wooff.MonoIntegration;
+using Random = UnityEngine.Random;
 
 namespace Core.Components.CellComponent
 {
@@ -54,6 +55,11 @@ namespace Core.Components.CellComponent
                 if (Randomable.GenerateThis(plainCells[randomCellIndex].RandomableConfig))
                     return new Cell(CellManager.GetConfig(plainCells[randomCellIndex].CellType), handler);
             }
+        }
+
+        public static CellType RandomBuildingCellType()
+        {
+            return (CellType)Random.Range(13, Enum.GetValues(typeof(CellType)).Length - 1);
         }
     }
 }
