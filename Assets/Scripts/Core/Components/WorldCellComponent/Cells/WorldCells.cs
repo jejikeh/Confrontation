@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Core.Components.CellComponent;
+using Core.Components.Properties.PropertyComponent;
+using Core.Components.Properties.PropertyOwnerComponent;
 using Core.Components.RandomableComponent;
 using Core.Entities;
 using Core.Entities.Cells;
@@ -59,11 +62,35 @@ namespace Core.Components.WorldCellComponent.Cells
             while (true)
             {
                 var cell = Items[Random.Range(0, Items.Count - 1)] as Cell;
-                if (!cell!.Config.PlainCell || cell.Config.CellType is CellType.City or CellType.Village )
+                if (!cell!.Config.PlainCell || cell.Config.CellType is CellType.City or CellType.Village or CellType.Fort or CellType.Mine )
+                    continue;
+                
+                if(cell.Handler.ContextGet<Property>().PropertyHandler is not null)
                     continue;
                 
                 return cell;
             }
+        }
+
+        public Cell GetFreeCellForBuy(PropertyHandler propertyHandler)
+        {
+            foreach (var cell in Items.Select(x => x as Cell))
+            {
+                if (!cell!.Config.PlainCell || cell.Config.CellType is CellType.City or CellType.Village or CellType.Fort or CellType.Mine )
+                    continue;
+                
+                if(cell.Handler.ContextGet<Property>().PropertyHandler is not null)
+                    continue;
+                
+                var properties = propertyHandler.Items.Select(x => x.ComponentHandler.ContextGet<Cell>());
+                if (!properties.Any(property => 
+                        Vector3.Distance(property.Handler.MonoObject.transform.position, cell.Handler.MonoObject.transform.position) < CellManager.MaxBuildDistance))
+                    continue;
+                
+                return cell;
+            }
+
+            return default;
         }
 
         private Vector3 GetPositionForCellFromCoordinate(Vector2 coordinate)
