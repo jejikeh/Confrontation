@@ -3,6 +3,7 @@
     public enum MetricType
     {
         Gold,
-        SpeedCreationUnits
+        SpeedCreationUnits,
+        MovePoints
     }
 }
