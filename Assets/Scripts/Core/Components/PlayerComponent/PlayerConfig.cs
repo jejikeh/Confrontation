@@ -11,7 +11,6 @@ namespace Core.Components.PlayerComponent
         // TODO: Move visualizeIcon and VisualizeColor to separate component
         public PlayerType PlayerType;
         public InformationConfig InformationConfig;
-        public GameObject VisualizeIcon;
         public Color VisualizeColor;
     }
 }
