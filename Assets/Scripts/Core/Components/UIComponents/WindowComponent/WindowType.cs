@@ -4,6 +4,7 @@
     {
         Information,
         Metrics,
-        ToolBar
+        ToolBar,
+        BuildTool
     }
 }

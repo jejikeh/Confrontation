@@ -14,7 +14,7 @@ namespace Core.Components.UIComponents.WindowComponent
     {
         protected Window(IConfig data, IMonoEntity handler) : base(data, handler)
         {
-            var clickable = (Clickable)Handler.ContextAdd(new Clickable(
+            var clickable = (Clickable)ManualAddComponentToHandler(new Clickable(
                 new ClickableConfig()
                 {
                     ClickLayer = ClickLayer.UI
@@ -27,7 +27,12 @@ namespace Core.Components.UIComponents.WindowComponent
         protected virtual void OnClick(object sender, EventArgs e)
         {
         }
-
+        
         public abstract WindowType WindowType { get; }
+
+        public override void OnRemove()
+        {
+            RemoveAllManualAddedComponentsToHandler();
+        }
     }
 }
