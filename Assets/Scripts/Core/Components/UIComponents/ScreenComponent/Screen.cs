@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Core.Components.UIComponents.WindowComponent;
 using Core.Components.UIComponents.WindowComponent.Windows;
+using Core.Components.UIComponents.WindowComponent.Windows.Tools;
 using Core.Entities;
 using Core.Entities.UI;
 using Wooff.ECS;
@@ -39,6 +40,7 @@ namespace Core.Components.UIComponents.ScreenComponent
                 WindowType.Information => ContextAdd((InformationWindow)monoItem.ContextAdd(new InformationWindow(null, monoItem))),
                 WindowType.Metrics => ContextAdd((MetricsWindow)monoItem.ContextAdd(new MetricsWindow(null,monoItem))),
                 WindowType.ToolBar => ContextAdd((ToolBarWindow)monoItem.ContextAdd(new ToolBarWindow(null,monoItem))),
+                WindowType.BuildTool => ContextAdd((BuildTool)monoItem.ContextAdd(new BuildTool(null, monoItem))),
                 _ => throw new ArgumentOutOfRangeException(nameof(windowType), windowType, null)
             };
         }
@@ -47,8 +49,12 @@ namespace Core.Components.UIComponents.ScreenComponent
         {   
             var windowComponent =
                 _windowContext.Items.FirstOrDefault(windowContextItem => windowContextItem.WindowType == windowType);
+            
+            if (windowComponent is null) 
+                return;
+            
             ContextRemove(windowComponent);
-            StaticMonoWorldFinder.DestroyEntity(windowComponent?.Handler);
+            StaticMonoWorldFinder.DestroyEntity(windowComponent.Handler);
         }
 
         public T2 ContextGet<T2>() where T2 : class, IWindow
