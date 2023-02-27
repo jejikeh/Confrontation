@@ -20,9 +20,8 @@ namespace Core.Systems
             if (player is null)
                 return;
             
-            (ScreenPlacer.GetWindow(WindowType.Metrics) as MetricsWindow)?.UpdateMetrics(
-                player.MetricHandler.GetMetricByType(MetricType.Gold) as Metric, 
-                player.MetricHandler.GetMetricByType(MetricType.SpeedCreationUnits) as Metric);
+            var metricsWindow = ScreenPlacer.GetWindow(WindowType.Metrics) as MetricsWindow;
+            metricsWindow?.UpdateMetrics(player.MetricHandler);
         }
     }
 }

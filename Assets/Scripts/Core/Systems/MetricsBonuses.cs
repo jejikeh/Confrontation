@@ -38,8 +38,11 @@ namespace Core.Systems
                         var metricMiner = property?.Handler.ContextGet<MetricMinerHandler>();
                         if(metricMiner == null || !metricMiner.ContainsMetric(metric.MetricType))
                             continue;
+
+                        var bonusAmount = 0;
+                        if(metricMiner.GetMetricMiner(metric.MetricType).MineEverySecond) 
+                            bonusAmount = metricMiner.GetMetricMiner(metric.MetricType).GetBonusAmount();
                         
-                        var bonusAmount = metricMiner.GetMetricMiner(metric.MetricType).GetBonusAmount();
                         metric.AddToMetric(bonusAmount);
                     }
                 }

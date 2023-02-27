@@ -41,10 +41,9 @@ namespace Core.Systems
                             iconPrefab,
                             ((Property)property).Handler.MonoObject.transform.position + Vector3.down);
 
-                    // TODO: переместить иконку с игрока на владения. Это позволит менять иконки для разных зданий, а для обозначения игроков оставить цвет
                     propertyTagPresentation.MonoObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = player.Config.VisualizeColor;
-                    propertyTagPresentation.MonoObject.transform.SetParent((property as Property)?.Handler.MonoObject.transform);
-                    propertyTagPresentation.MonoObject.transform.DOLocalMove(Vector3.up * 1.3f, 0.5f);
+                    propertyTagPresentation.MonoObject.transform.SetParent((property as Property).Handler.MonoObject.transform);
+                    propertyTagPresentation.MonoObject.transform.DOLocalMove(Vector3.up, 0.5f);
                     _properties.Add(property as Property);
                 }
             }
