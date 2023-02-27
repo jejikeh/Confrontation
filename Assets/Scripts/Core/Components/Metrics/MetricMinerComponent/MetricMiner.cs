@@ -4,7 +4,9 @@ namespace Core.Components.Metrics.MetricMinerComponent
 {
     public class MetricMiner : IMetricMiner
     {
-        private readonly MetricMinerConfig _metricMinerConfig; 
+        private readonly MetricMinerConfig _metricMinerConfig;
+        public bool MineEverySecond => _metricMinerConfig.MineEverySecond;
+
         public MetricMiner(MetricMinerConfig config)
         {
             _metricMinerConfig = config;

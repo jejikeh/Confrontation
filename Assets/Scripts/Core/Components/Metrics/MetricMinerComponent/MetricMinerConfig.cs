@@ -9,5 +9,6 @@ namespace Core.Components.Metrics.MetricMinerComponent
     {
         public int BonusAmount;
         public MetricType MetricType;
+        public bool MineEverySecond = true;
     }
 }
