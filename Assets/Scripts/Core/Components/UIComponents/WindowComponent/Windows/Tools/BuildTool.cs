@@ -8,7 +8,7 @@ namespace Core.Components.UIComponents.WindowComponent.Windows.Tools
     public class BuildTool : Window
     {
         public override WindowType WindowType => WindowType.BuildTool;
-        public CellType SelectedCellType { get; private set; } = CellType.Village;
+        public CellType SelectedCellType { get; private set; } = CellType.None;
         
         private readonly Button _villageButton;
         private readonly Button _towerButton;
