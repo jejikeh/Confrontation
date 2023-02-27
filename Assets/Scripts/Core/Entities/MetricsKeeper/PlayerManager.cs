@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Core.Components.CellComponent;
-using Core.Components.ClickableComponent;
-using Core.Components.ClickComponent;
 using Core.Components.PlayerComponent;
 using Core.Components.PlayerComponent.Players;
 using Core.Components.Properties.PropertyComponent;
 using Core.Components.Properties.PropertyOwnerComponent;
-using Core.Components.SmoothTranslateComponent;
-using Core.Entities.Camera;
-using Core.Entities.Cells;
 using UnityEngine;
 using Wooff.MonoIntegration;
 
