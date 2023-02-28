@@ -1,0 +1,48 @@
+﻿using Core.Components.UIComponents.ScreenComponent;
+using Core.Components.UIComponents.WindowComponent;
+using Core.Components.UIComponents.WindowComponent.Windows;
+using UnityEngine;
+using Wooff.MonoIntegration;
+using Screen = Core.Components.UIComponents.ScreenComponent.Screen;
+
+namespace Core.Entities.UI
+{
+    public class ScreenPlacer : StaticMonoEntity<ScreenPlacer>
+    {
+        [SerializeField] private ScreenConfig _screenConfig;
+        
+        private void Start()
+        {
+            ContextAdd(new Screen(_screenConfig, this));
+            OpenWindow(WindowType.ToolBar);
+        }
+
+        public static IWindow GetWindow(WindowType windowType)
+        {
+            if (!Instance.ContextGet<Screen>().ContextContains(windowType))
+                return OpenWindow(windowType);
+
+            return Instance.ContextGet<Screen>().ContextGet(windowType);
+        }
+
+        private static IWindow OpenWindow(WindowType windowType)
+        {
+            return Instance.ContextGet<Screen>().OpenWindow(windowType);
+        }
+        
+        public static void CloseWindow(WindowType windowType) 
+        {
+            Instance.ContextGet<Screen>().CloseWindow(windowType);
+        }
+
+        public static ScreenState GetScreenState()
+        {
+            return Instance.ContextGet<Screen>().Config.ScreenState;
+        }
+        
+        public static void SetScreenState(ScreenState screenState)
+        {
+            Instance.ContextGet<Screen>().SetScreenState(screenState);
+        }
+    }
+}

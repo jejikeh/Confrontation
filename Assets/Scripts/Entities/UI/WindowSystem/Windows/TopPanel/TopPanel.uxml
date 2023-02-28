@@ -1,5 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:VisualElement style="height: auto; background-color: rgb(255, 255, 255); border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-top-left-radius: 21px; border-bottom-left-radius: 21px; border-top-right-radius: 21px; border-bottom-right-radius: 21px; align-items: center; justify-content: flex-start; position: relative; right: auto; left: auto; width: 100%;">
-        <ui:Button text="Test" display-tooltip-when-elided="true" style="height: 38px; width: 151px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);" />
-    </ui:VisualElement>
-</ui:UXML>
