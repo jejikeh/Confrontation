@@ -79,11 +79,12 @@ namespace Core.Components.PlayerComponent
 
         public virtual Task OnTurn()
         {
+            /*
             var playerCapital = _propertyHandler.Items.FirstOrDefault(x => x.ComponentHandler.ContextGet<Cell>().Config.CellType == CellType.City);
             StaticMonoWorldFinder
                 .GetEntity<SmoothCamera>()?
                 .ContextGet<Click>()
-                .StartClick(playerCapital?.ComponentHandler.ContextGet<Clickable>());
+                .StartClick(playerCapital?.ComponentHandler.ContextGet<Clickable>());*/
                 
             return Task.CompletedTask;
         }

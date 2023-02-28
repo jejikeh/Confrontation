@@ -259,6 +259,12 @@ MonoBehaviour:
       Description: 
       VisualizeIcon: {fileID: 0}
     VisualizeColor: {r: 0.8396226, g: 0.36964515, b: 0.45021275, a: 1}
+  - PlayerType: 1
+    InformationConfig:
+      Name: "\u0412\u0430\u0441\u044F"
+      Description: 
+      VisualizeIcon: {fileID: 0}
+    VisualizeColor: {r: 0.8392157, g: 0.833639, b: 0.36862743, a: 1}
 --- !u!4 &662424254
 Transform:
   m_ObjectHideFlags: 0
