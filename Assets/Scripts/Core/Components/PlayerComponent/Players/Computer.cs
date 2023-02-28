@@ -18,17 +18,17 @@ namespace Core.Components.PlayerComponent.Players
 
         public override async Task OnTurn()
         {
-            await base.OnTurn();
             var cellWorldCreator = StaticMonoWorldFinder.FindCellWorldCreator();
             while (MetricHandler.GetMetricByType(MetricType.MovePoints).Amount > 0)
             {
-                await Task.Delay(250);
+                await Task.Delay(1350);
                 var randomCell = cellWorldCreator.GetFreeCellForBuy(Handler.ContextGet<PropertyHandler>());
-                BuyCell(randomCell, Cell.RandomBuildingCellType());
-                StaticMonoWorldFinder
-                    .GetEntity<SmoothCamera>()?
-                    .ContextGet<Click>()
-                    .StartClick(randomCell.Handler.ContextGet<Clickable>());
+                if(BuyCell(randomCell, Cell.RandomBuildingCellType()))
+                    StaticMonoWorldFinder
+                        .GetEntity<SmoothCamera>()?
+                        .ContextGet<Click>()
+                        .StartClick(randomCell.Handler.ContextGet<Clickable>());
+                
                 await Task.Delay(1000);
             }
         }

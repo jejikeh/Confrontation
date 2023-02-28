@@ -17,7 +17,7 @@ namespace Core.Systems
         private static Queue<Player> _players;
         private bool _isFirstCall = true;
 
-        public async void Process(float timeScale, IContext<IMonoEntity, List<IMonoEntity>> data)
+        public void Process(float timeScale, IContext<IMonoEntity, List<IMonoEntity>> data)
         {
             if (_isFirstCall)
             {
@@ -42,8 +42,6 @@ namespace Core.Systems
             {
                 if (HisMove.MetricHandler.GetMetricByType(MetricType.MovePoints).Amount <= 0)
                     EndMove();
-                else
-                    await HisMove.OnTurn();
             }
         }
 
@@ -54,6 +52,7 @@ namespace Core.Systems
             StartMove();
         }
 
+        // TODO: move move logic to update
         private static async void StartMove()
         {
             HisMove = _players.Peek();
@@ -61,6 +60,8 @@ namespace Core.Systems
 
             var metricsWindow = ScreenPlacer.GetWindow(WindowType.Metrics) as MetricsWindow;
             metricsWindow?.UpdatePlayerInformation(HisMove.Config.InformationConfig);
+
+            await HisMove.OnTurn();
         }
     }
 }
