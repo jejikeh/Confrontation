@@ -1,6 +1,8 @@
-﻿namespace Core.Components.Tags.UiTags
+﻿using Wooff.ECS.Components;
+
+namespace Core.Components.Tags.UiTags
 {
-    public interface IWindowTagComponent
+    public interface IWindowTagComponent : IComponent
     {
         
     }

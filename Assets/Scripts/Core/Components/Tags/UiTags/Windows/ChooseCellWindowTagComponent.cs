@@ -1,15 +1,16 @@
-﻿using Core.Components.UiRelated.Windows.Information;
-using Core.Components.UiRelated.Windows.ToolBox;
+﻿using Core.Components.UiRelated.Windows.ChooseCell;
 using Core.Components.UnityRelated;
+using Wooff.ECS.Contexts;
+using Wooff.ECS.Entities;
 
 namespace Core.Components.Tags.UiTags.Windows
 {
-    public class ToolBoxWindowTagComponent : WindowTagComponent<ToolBoxWindowComponent>, IWindowTagComponent
+    public class ChooseCellWindowTagComponent : WindowTagComponent<ChooseCellWindowComponent>, IWindowTagComponent
     {
-        public ToolBoxWindowTagComponent(WindowTagComponentData windowTagComponentData)
+        public ChooseCellWindowTagComponent(IEntity clickedCell, EntityContext entityContext, WindowTagComponentData windowTagComponentData)
         {
             UnityGameObjectComponent = new UnityGameObjectComponent(windowTagComponentData.UnityGameObjectComponent);
-            WindowComponent = new ToolBoxWindowComponent();
+            WindowComponent = new ChooseCellWindowComponent(clickedCell, entityContext);
         }
     }
 }

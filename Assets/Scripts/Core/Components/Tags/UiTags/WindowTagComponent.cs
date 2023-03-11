@@ -5,7 +5,7 @@ using UnityEngine;
 using Wooff.ECS.Components;
 using Wooff.ECS.Entities;
 
-namespace Core.Components.Tags
+namespace Core.Components.Tags.UiTags
 {
     public abstract class WindowTagComponent<T> : IComponent where T : IWindowComponent
     {
@@ -17,14 +17,16 @@ namespace Core.Components.Tags
             return new Entity(
                 UnityGameObjectComponent,
                 WindowComponent,
+                new HealthComponent(1),
                 this);
         }
     }
 
     [Serializable]
-    public abstract class WindowTagComponentData
+    public class WindowTagComponentData
     {
         [Header("Window Component Group")]
-        [SerializeField] public UnityGameObjectComponent UnityGameObjectComponent;
+        [SerializeField] 
+        public UnityGameObjectComponent UnityGameObjectComponent;
     }
 }
