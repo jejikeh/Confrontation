@@ -2,9 +2,7 @@
 using System.Linq;
 using Core.Components;
 using Core.Components.Metrics;
-using Core.Components.Players;
-using Core.Components.UiRelated.Windows.MetricShower;
-using UnityEngine;
+using JetBrains.Annotations;
 using Wooff.ECS.Contexts;
 using Wooff.ECS.Entities;
 
@@ -12,29 +10,19 @@ namespace Core.Systems
 {
     public class MetricBalanceMining : Wooff.ECS.Systems.System
     {
+        // TODO: Bad decision. Fix it
+        [CanBeNull] 
+        public static IEntity CurrentTurnEntity { get; set; }
+        
         private List<IEntity> _cachedEntities = new List<IEntity>();
         // TODO: cache not the entities count but count from map component|list entity 
         private int _cachedCount;
-        
-        private const float Time = 3f;
-        private float _timer;
-        private MetricShowerWindowComponent _metricShowerWindowComponent;
-        
-        
-        public override void StartFromEntityContextQuery(EntityContext context)
-        {
-            _metricShowerWindowComponent =
-                context.ContextGetAllFromMap(typeof(MetricShowerWindowComponent)).FirstOrDefault().ContextGet<MetricShowerWindowComponent>();
-        }
 
         public override void UpdateFromEntityContextQuery(float timeScale, EntityContext context)
         {
-            if (_timer < Time)
-            {
-                _timer += UnityEngine.Time.deltaTime * timeScale;
+            if(CurrentTurnEntity is null)
                 return;
-            }
-
+            
             if (_cachedCount != context.Count<PropertyComponent>())
             {
                 _cachedEntities = context
@@ -44,8 +32,7 @@ namespace Core.Systems
                 
                 _cachedCount = context.Count<PropertyComponent>();
             }
-
-
+            
             foreach (var entity in _cachedEntities)
             {
                 if(!entity.ContextContains<MetricsMinerComponent>())
@@ -53,22 +40,21 @@ namespace Core.Systems
                 var metricsMiner = entity.ContextGet<MetricsMinerComponent>();
                 
                 var property = entity.ContextGet<PropertyComponent>();
+                
+                // TODO: Bad decision. Fix it
+                if(property.Owner != CurrentTurnEntity)
+                    continue;
+                
                 if(!property.Owner.ContextContains<MetricHandlerBalance>())
                     continue;
                 
                 var ownerBalance = property.Owner.ContextGet<MetricHandlerBalance>();
 
-                foreach (var mine in metricsMiner.Mines)
-                {
+                foreach (var mine in metricsMiner.Metrics)
                     ownerBalance.AddToMetric(mine, metricsMiner.BonusAmount);
-                    Debug.Log($"Added to metric {mine} bonus - {metricsMiner.BonusAmount}");
-                }
-                
-                if(property.Owner.ContextGet<PlayerComponent>().PlayerType == PlayerType.User)
-                    _metricShowerWindowComponent.UpdateMetrics(ownerBalance);
             }
 
-            _timer = 0;
+            CurrentTurnEntity = null;
         }
     }
 }
