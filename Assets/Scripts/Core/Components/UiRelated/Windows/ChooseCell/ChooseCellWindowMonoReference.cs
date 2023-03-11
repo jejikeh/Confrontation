@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Core.Components.CellRelated;
+using Core.Components.Metrics;
 using Core.Components.Players;
 using Core.Components.Tags;
 using Core.Components.Tags.UiTags.Windows;
@@ -24,7 +25,7 @@ namespace Core.Components.UiRelated.Windows.ChooseCell
             
             _village.onClick.AddListener(OnVillageClick);
             _tower.onClick.AddListener(OnTowerClick);
-            _fort.onClick.AddListener(OnTowerClick);
+            _fort.onClick.AddListener(OnFortClick);
             _mine.onClick.AddListener(OnMineClick);
         }
 
@@ -57,6 +58,16 @@ namespace Core.Components.UiRelated.Windows.ChooseCell
             if (handledEntity.ContextGet<ChooseCellWindowComponent>().ClickedEntity is null || !handledEntity.ContextGet<ChooseCellWindowComponent>().ClickedEntity.ContextGet<CellComponent>().Plain)
                 return;
 
+            var playerBalance = player.ContextGet<MetricHandlerBalance>();
+            if (playerBalance.Balance[MetricType.Gold] <= 0)
+                return;
+
+            if (playerBalance.Balance[MetricType.Move] <= 0)
+                return;
+
+            if (!player.ContextGet<PlayerComponent>().Turn)
+                return;
+            
             if (chooseCellWindowComponent.EntityContext.Count<PropertyComponent>() > 0)
             {
                 var allPropertyCells = chooseCellWindowComponent.EntityContext.ContextWhereQuery(x =>
@@ -64,15 +75,21 @@ namespace Core.Components.UiRelated.Windows.ChooseCell
                     .Where(p => p.ContextGet<PropertyComponent>().Owner.ContextGet<PlayerComponent>().PlayerType == PlayerType.User)
                     .Select(x => x.ContextGet<UnityGameObjectComponent>());
 
-                var cellPosition = handledEntity.ContextGet<ChooseCellWindowComponent>().ClickedEntity
-                    .ContextGet<UnityGameObjectComponent>().UnitySceneObject.transform.position;
-                if (!allPropertyCells.Any(x =>
-                        Vector3.Distance(
-                            cellPosition,
-                            x.UnitySceneObject.transform.position) <
-                        player.ContextGet<PlayerComponent>().MaxBuildDistance))
-                    return;
+                if (allPropertyCells.Any())
+                {
+                    var cellPosition = handledEntity.ContextGet<ChooseCellWindowComponent>().ClickedEntity
+                        .ContextGet<UnityGameObjectComponent>().UnitySceneObject.transform.position;
+                    if (!allPropertyCells.Any(x =>
+                            Vector3.Distance(
+                                cellPosition,
+                                x.UnitySceneObject.transform.position) <
+                            player.ContextGet<PlayerComponent>().MaxBuildDistance))
+                        return;
+                }
             }
+            
+            player.ContextGet<MetricHandlerBalance>().RemoveFromMetric(MetricType.Gold, 1);
+            player.ContextGet<MetricHandlerBalance>().RemoveFromMetric(MetricType.Move, 1);
 
             var unityObject = handledEntity.ContextGet<ChooseCellWindowComponent>().ClickedEntity
                 .ContextGet<UnityGameObjectComponent>();
@@ -85,7 +102,6 @@ namespace Core.Components.UiRelated.Windows.ChooseCell
                     .CreateCellEntityContainerAsProperty(player));
 
             chooseCellWindowComponent.ClickedEntity.ContextGet<HealthComponent>().Kill();
-
             handledEntity.ContextGet<ChooseCellWindowComponent>().UpdateClickedCell(null);
         }
     }
