@@ -1,21 +1,38 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Core.Components.SmoothTranslateComponent;
+using Core.Components;
+using Core.Components.TransformRelated;
+using Core.Components.UnityRelated;
 using Wooff.ECS.Contexts;
+using Wooff.ECS.Entities;
 using Wooff.MonoIntegration;
 
 namespace Core.Systems
 {
-    public class UpdateSmoothTranslate : IMonoSystem
+    public class UpdateSmoothTranslate : Wooff.ECS.Systems.System
     {
-        public void Process(float timeScale, IContext<IMonoEntity, List<IMonoEntity>> data)
+        private IEntity[] _cachedEntities;
+        private int _cachedCount;
+
+        public override void UpdateFromEntityContextQuery(float timeScale, EntityContext context)
         {
-            foreach (var smoothTranslate in data.Items
-                         .Where(x => x.ContextContains<SmoothTranslate>())
-                         .Select(x => x.ContextGet<SmoothTranslate>()))
+            
+            if (_cachedCount != context.Count<SmoothTranslateComponent>())
             {
-                smoothTranslate.UpdatePosition(timeScale);
-                smoothTranslate.UpdateVelocity(timeScale);
+                _cachedEntities = context.ContextWhereQuery(x =>
+                    x.ContextContains<UnityGameObjectComponent>() &&
+                    x.ContextContains<SmoothTranslateComponent>()).ToArray();
+
+                _cachedCount = context.Count<SmoothTranslateComponent>();
+            }
+
+            foreach ( var entity in _cachedEntities) 
+            {
+                var transformWrapper = entity.ContextGet<UnityGameObjectComponent>();
+                var smoothTranslate = entity.ContextGet<SmoothTranslateComponent>();
+
+                smoothTranslate.UpdatePosition(timeScale, transformWrapper.UnitySceneObject.transform);
+                smoothTranslate.UpdateVelocity(timeScale, transformWrapper.UnitySceneObject.transform);
             }
         }
     }
