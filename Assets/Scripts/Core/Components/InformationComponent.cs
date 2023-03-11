@@ -1,7 +1,14 @@
-﻿namespace Core.Components
+﻿using System;
+using UnityEngine;
+using Wooff.ECS.Components;
+
+namespace Core.Components
 {
-    public class InformationComponent
+    [Serializable]
+    public class InformationComponent : IComponent
     {
-        
+        public string Title = string.Empty;
+        public string Description = string.Empty;
+        public GameObject VisualizationIcon;
     }
 }
