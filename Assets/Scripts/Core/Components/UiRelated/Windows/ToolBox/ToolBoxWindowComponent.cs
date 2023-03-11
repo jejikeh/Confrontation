@@ -2,19 +2,7 @@
 
 namespace Core.Components.UiRelated.Windows.ToolBox
 {
-    public class InformationWindowComponent : WindowComponent
+    public class ToolBoxWindowComponent : WindowComponent
     {
-        private InformationComponent _informationComponent;
-        
-        public InformationWindowComponent(InformationComponent informationComponent)
-        {
-            _informationComponent = informationComponent;
-        }
-
-        public void SetTmpTexts(TMP_Text title, TMP_Text description)
-        {
-            title.text = _informationComponent.Title;
-            description.text = _informationComponent.Description;
-        }
     }
 }
