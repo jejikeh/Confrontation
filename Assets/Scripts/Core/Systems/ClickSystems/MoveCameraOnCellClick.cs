@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Core.Components;
 using Core.Components.CellRelated;
 using Core.Components.Tags;
 using Core.Components.TransformRelated;
@@ -8,11 +9,11 @@ using Wooff.ECS.Entities;
 
 namespace Core.Systems.ClickSystems
 {
-    public class CameraMoveOnClick : HandleClickedState<CellComponent>
+    public class MoveCameraOnCellClick : HandleClickedState<CellTagComponent>
     {
         private UnityGameObjectComponent _cameraTransformWrapperComponent;
         private SmoothTranslateComponent _smoothTranslateComponent;
-        
+
         public override void StartFromEntityContextQuery(EntityContext context)
         {
             var camera = context
@@ -24,16 +25,14 @@ namespace Core.Systems.ClickSystems
             _smoothTranslateComponent = camera.SmoothTranslateComponent;
         }
 
-        protected override void ProcessClickedItems(EntityContext context, IEntity[] requiredEntities)
+        protected override void ProcessClickedEntity(EntityContext context, IEntity clickedEntity)
         {
-            foreach (var clickedEntity in requiredEntities)
-            {
-                var movePointPosition = clickedEntity.ContextGet<UnityGameObjectComponent>().UnitySceneObject.transform.position;
-                    
-                _smoothTranslateComponent.SetPosition(
-                    movePointPosition,
-                    _cameraTransformWrapperComponent.UnitySceneObject.transform);
-            }
+            var movePointPosition = clickedEntity.ContextGet<UnityGameObjectComponent>().UnitySceneObject.transform
+                .position;
+
+            _smoothTranslateComponent.SetPosition(
+                movePointPosition,
+                _cameraTransformWrapperComponent.UnitySceneObject.transform);
         }
     }
 }

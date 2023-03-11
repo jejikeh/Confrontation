@@ -1,6 +1,8 @@
 ﻿using System.Linq;
+using Core.Components;
 using Core.Components.CellRelated;
 using Core.Components.Tags;
+using Core.Components.Tags.UiTags.Windows;
 using Core.Components.TransformRelated;
 using Core.Components.UnityRelated;
 using Wooff.ECS.Contexts;
@@ -8,32 +10,19 @@ using Wooff.ECS.Entities;
 
 namespace Core.Systems.ClickSystems
 {
-    public class MoveCameraOnCellClick : HandleClickedState<CellComponent>
+    public class OpenInformationWindowOnCellClick : HandleClickedState<CellTagComponent>
     {
-        private UnityGameObjectComponent _cameraTransformWrapperComponent;
-        private SmoothTranslateComponent _smoothTranslateComponent;
-        
-        public override void StartFromEntityContextQuery(EntityContext context)
+        protected override void ProcessClickedEntity(EntityContext context, IEntity clickedEntity)
         {
-            var camera = context
-                .ContextGetAllFromMap(typeof(CameraHandlerTagComponent))
-                .FirstOrDefault()
-                .ContextGet<CameraHandlerTagComponent>();
-
-            _cameraTransformWrapperComponent = camera.UnityGameObjectComponent;
-            _smoothTranslateComponent = camera.SmoothTranslateComponent;
-        }
-
-        protected override void ProcessClickedItems(EntityContext context, IEntity[] requiredEntities)
-        {
-            foreach (var clickedEntity in requiredEntities)
-            {
-                var movePointPosition = clickedEntity.ContextGet<UnityGameObjectComponent>().UnitySceneObject.transform.position;
-                    
-                _smoothTranslateComponent.SetPosition(
-                    movePointPosition,
-                    _cameraTransformWrapperComponent.UnitySceneObject.transform);
-            }
+            if (GameStateManager.GetUiState != UiState.Information)
+                return;
+            
+            var informationWindow = context.ContextGetAllFromMap(typeof(InformationWindowTagComponent)).FirstOrDefault();
+            
+            if(informationWindow is null)
+                context.ContextAdd(new InformationWindowTagComponent(clickedEntity.ContextGet<InformationComponent>(), UiComponentsDataPrefabsHandler.InformationTagComponentData).CreateWindowEntityContainer());
+            else
+                informationWindow.ContextGet<InformationWindowTagComponent>().WindowComponent.UpdateTextInformation(clickedEntity.ContextGet<InformationComponent>());
         }
     }
 }
