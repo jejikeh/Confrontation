@@ -1,130 +1,100 @@
 using System.Collections.Generic;
-using System.Linq;
-using Core.Entities.Cells;
+using Core;
+using Core.Components.Tags;
+using Core.Components.Tags.UiTags;
+using Core.Components.Tags.UiTags.Windows;
+using Core.Components.UnityRelated;
 using Core.Systems;
+using Core.Systems.ClickSystems;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Wooff.ECS;
 using Wooff.ECS.Contexts;
-using Wooff.ECS.Entities;
-using Wooff.ECS.Systems;
 using Wooff.ECS.Worlds;
 
 namespace Wooff.MonoIntegration
 {
-    public class MonoWorld : MonoBehaviour, IWorld<IMonoEntity, IMonoSystem>
+    public class MonoWorld : MonoBehaviour, IWorld
     {
-        public IContext<IMonoEntity, List<IMonoEntity>> EntityContext { get; } = new EntityContext<IMonoEntity>();
-        public IContext<IMonoSystem, HashSet<IMonoSystem>> SystemContext { get; } = new SystemContext<IMonoSystem, IMonoEntity>();
+        public EntityContext EntityContext { get; } = new EntityContext();
+        public SystemContext SystemContext { get; } = new SystemContext();
 
+        [Header("Camera")] 
+        [SerializeField] private CameraHandlerTagComponentData _cameraHandlerComponentsGroup;
+        
+        [Header("Cell Generator")]
+        [SerializeField] private CellGenerator _cellGenerator;
+
+        [Header("Window Manager")] 
+        [SerializeField] private UnityGameObjectComponent _windowContextObjectComponent;
+
+        [Header("Players Configs")] 
+        [SerializeField]
+        private List<PlayerTagComponentData> _playersComponents;
+        
         private void Awake()
         {
-            SystemContext.ContextAdd(new SmoothLookAt());
+            SystemContext.ContextAdd(new UnityObjectInitialization());
+            SystemContext.ContextAdd(new UiRelatedComponentsInitialization());
+            SystemContext.ContextAdd(new PlayerCameraControl());
             SystemContext.ContextAdd(new SmoothRotateAround());
             SystemContext.ContextAdd(new UpdateSmoothTranslate());
-            SystemContext.ContextAdd(new MetricsBonuses());
-            SystemContext.ContextAdd(new CameraTranslateToLastClickedGameItem());
-            SystemContext.ContextAdd(new DrawMetricText());
-            SystemContext.ContextAdd(new PlayerOwnerIconsVisualization());
-            SystemContext.ContextAdd(new UserPlayerBuyCell());
-            SystemContext.ContextAdd(new TurnToMove());
-
-            foreach (var monoEntity in FindObjectsByType<MonoEntity>(FindObjectsSortMode.None))
-                EntityContext.ContextAdd(monoEntity);
+            SystemContext.ContextAdd(new PlayerTagVisualisation());
             
-            foreach (var monoEntity in FindObjectsByType<StaticMonoEntity<MonoBehaviour>>(FindObjectsSortMode.None))
-                EntityContext.ContextAdd(monoEntity);
-        }
-        
-        public T SpawnEntity<T>(string nameObject) where T : MonoEntity
-        {
-            var obj = new GameObject(nameObject);
-            var monoEntity = obj.AddComponent<T>();
-            EntityContext.ContextAdd(monoEntity);
-            return monoEntity;
-        }
-        
-        public T SpawnEntity<T>(GameObject prefab) where T : MonoEntity
-        {
-            var obj = Instantiate(prefab);
-            var fullName = typeof(T).FullName;
-            if (fullName != null) 
-                obj.name = fullName;
-            var monoEntity = obj.AddComponent<T>();
-            EntityContext.ContextAdd(monoEntity);
-            return monoEntity;
-        }
-        
-        public T SpawnEntity<T>(GameObject prefab, Vector3 position) where T : MonoEntity
-        {
-            var obj = new GameObject(typeof(T).FullName);
-            var monoEntity = obj.AddComponent<T>();
-            monoEntity.transform.position = position;
-            _ = Instantiate(prefab, monoEntity.transform);
-            EntityContext.ContextAdd(monoEntity);
-            return monoEntity;
-        }
-
-        public CellWorldCreator FindCellWorldCreator()
-        {
-            return FindObjectOfType<CellWorldCreator>();
-        }
-        
-        
-        public T SpawnEntity<T>(IMonoEntity parent, GameObject prefab) where T : MonoEntity
-        {
-            var monoEntity = Instantiate(prefab, parent.MonoObject.transform).GetComponent<T>();
-            EntityContext.ContextAdd(monoEntity);
-            return monoEntity;
-        }
-
-        public List<T> FindEntities<T>() where T : MonoEntity
-        {
+            SystemContext.ContextAdd(new CameraMouseClick());
+            SystemContext.ContextAdd(new MoveCameraOnCellClick());
+            SystemContext.ContextAdd(new OpenInformationWindowOnCellClick());
+            SystemContext.ContextAdd(new OpenChooseCellWindowOnCellClick());
+            SystemContext.ContextAdd(new EndProcessClickStateCell());
             
-            return EntityContext.Items
-                .Where(x => x.MonoObject != null)
-                .Where(x => x.GetType() == typeof(T))
-                .Select(x => x as T)
-                .ToList();
-        }
-        
-        public T GetEntity<T>() where T : MonoEntity
-        {
-            return EntityContext.ContextGet<T>();
-        }
-        
-        public void DestroyAllChildren(IMonoEntity entity)
-        {
-            foreach (Transform child in entity.MonoObject.transform)
-                Destroy(child.gameObject);
+            SystemContext.ContextAdd(new HealthTracker());
+            SystemContext.ContextAdd(new MetricBalanceMining());
+            SystemContext.ContextAdd(new WindowTracker());
         }
 
-        public void DestroyEntity(IMonoEntity entity)
-        {   
-            EntityContext.ContextRemove(entity);
-            DestroyImmediate(entity.MonoObject);
-        }
-
-        public void AttachPrefabToEntity(GameObject prefab, IMonoEntity entity)
+        private void Start()
         {
-            Instantiate(prefab, entity.MonoObject.transform);
+            // Spawn Cell entity container
+            foreach (var cell in _cellGenerator.InitWorld())
+                EntityContext.ContextAdd(cell);
+            
+            // Spawn Camera Entity container
+            EntityContext
+                .ContextAdd(new CameraHandlerTagComponent(_cameraHandlerComponentsGroup)
+                    .CreateCameraEntityContainer());
+            
+            // Spawn Window Context Entity container
+            EntityContext
+                .ContextAdd(new WindowContextTagComponent(_windowContextObjectComponent)
+                    .CreateWindowContextEntityContainer());
+            
+            EntityContext
+                .ContextAdd(new MetricShowerWindowTagComponent(UiComponentsDataPrefabsHandler.MetricShowerTagComponentData)
+                        .CreateWindowEntityContainer());
+
+            foreach (var component in _playersComponents)
+                EntityContext.ContextAdd(new PlayerTagComponent(component).CreatePlayerTagEntityContainer());
+            
+            SystemContext.Start(EntityContext);
         }
 
         private void Update()
         {
-            (SystemContext as IProcessable<IContext<IMonoEntity, List<IMonoEntity>>>)?.Process(1f, EntityContext);
-            if (Input.GetKeyDown(KeyCode.K))
-                SceneManager.LoadScene("BenchmarkECS");
-            if (Input.GetKeyDown(KeyCode.T))
-                SceneManager.LoadScene("Benchma");
-        }
+            SystemContext.Update(1f, EntityContext);
 
-        private void OnDestroy()
+            if (Input.GetKeyDown(KeyCode.R))
+                SceneManager.LoadScene("BenchmarkECS");
+        }
+        
+        /// <summary>
+        /// Spawn Prefab in world and set his name to prefab name
+        /// </summary>
+        /// <param name="prefab">prefab of object</param>
+        /// <returns>spawned object</returns>
+        public static GameObject SpawnEntity(GameObject prefab)
         {
-            for (var i = 0; i < EntityContext.Items.Count; i++)
-                EntityContext.ContextRemove(EntityContext.Items[i]);
-            
-            SystemContext.Items.Clear();
+            var gameObject = Instantiate(prefab);
+            gameObject.name = prefab.name; 
+            return gameObject;
         }
     }
 }
