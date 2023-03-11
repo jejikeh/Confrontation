@@ -13,7 +13,6 @@ namespace Core.Systems
     public class PlayerTagVisualisation : Wooff.ECS.Systems.System
     {
         private List<IEntity> _cachedEntities = new List<IEntity>();
-        // TODO: cache not the entities count but count from map component|list entity 
         private int _cachedCount;
 
         public override void UpdateFromEntityContextQuery(float timeScale, EntityContext context)

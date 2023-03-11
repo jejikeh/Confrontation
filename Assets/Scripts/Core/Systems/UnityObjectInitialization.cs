@@ -10,7 +10,6 @@ namespace Core.Systems
     public class UnityObjectInitialization : Wooff.ECS.Systems.System
     {
         private List<IEntity> _cachedEntities = new List<IEntity>();
-        // TODO: cache not the entities count but count from map component|list entity 
         private int _cachedCount;
         
         public override void StartFromEntityContextQuery(EntityContext context)
@@ -20,7 +19,6 @@ namespace Core.Systems
 
         public override void UpdateFromEntityContextQuery(float timeScale, EntityContext context)
         {
-            // На случай добавления нового существа после Start
             InitializeGameObjectComponent(context);
         }
 

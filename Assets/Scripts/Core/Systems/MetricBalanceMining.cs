@@ -15,7 +15,6 @@ namespace Core.Systems
         public static IEntity CurrentTurnEntity { get; set; }
         
         private List<IEntity> _cachedEntities = new List<IEntity>();
-        // TODO: cache not the entities count but count from map component|list entity 
         private int _cachedCount;
 
         public override void UpdateFromEntityContextQuery(float timeScale, EntityContext context)

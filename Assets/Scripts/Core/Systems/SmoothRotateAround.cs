@@ -10,7 +10,6 @@ namespace Core.Systems
     public class SmoothRotateAround : Wooff.ECS.Systems.System
     {
         private IEntity[] _cachedEntities;
-        // TODO: cache not the entities count but count from map component|list entity 
         private int _cachedCount;
         
         public override void UpdateFromEntityContextQuery(float timeScale, EntityContext context)

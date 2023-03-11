@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using Wooff.ECS.Contexts;
 using Wooff.MonoIntegration;
 
-namespace Core.Systems
+namespace Core.Systems.ClickSystems
 {
     public class CameraMouseClick : Wooff.ECS.Systems.System
     {
