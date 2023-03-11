@@ -1,6 +1,6 @@
 ﻿namespace Core
 {
-    public enum UiStates
+    public enum UiState
     {
         None,
         Information,
