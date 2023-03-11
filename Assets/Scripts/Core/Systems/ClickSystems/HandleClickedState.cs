@@ -13,12 +13,12 @@ namespace Core.Systems.ClickSystems
 
         public override void UpdateFromEntityContextQuery(float timeScale, EntityContext context)
         {
-            if (_cachedCount != context.Count())
+            if (_cachedCount != context.Count<T>())
             {
                 _cachedEntities = context.ContextWhereQuery(x =>
                     x.ContextContains<T>()).ToArray();
 
-                _cachedCount = context.Count();
+                _cachedCount = context.Count<T>();
             }
             
             foreach (var clickedEntities in _cachedEntities)

@@ -15,7 +15,6 @@ namespace Core.Systems
     public class HealthTracker : Wooff.ECS.Systems.System
     {
         private List<IEntity> _cachedEntities = new List<IEntity>();
-        // TODO: cache not the entities count but count from map component|list entity 
         private int _cachedCount;
         
         public override void StartFromEntityContextQuery(EntityContext context)
@@ -24,7 +23,7 @@ namespace Core.Systems
                 .ContextGetAllFromMap(typeof(HealthComponent))
                 .ToList();
             
-            _cachedCount = context.Count();
+            _cachedCount = context.Count<HealthComponent>();
         }
 
         public override async void UpdateFromEntityContextQuery(float timeScale, EntityContext context)

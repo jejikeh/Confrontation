@@ -14,7 +14,6 @@ namespace Core.Systems
     {
         private WindowContextTagComponent _windowContextTagComponent;
         private List<IEntity> _cachedEntities = new List<IEntity>();
-        // TODO: cache not the entities count but count from map component|list entity 
         private int _cachedCount;
         
         public override void StartFromEntityContextQuery(EntityContext context)
@@ -36,7 +35,7 @@ namespace Core.Systems
 
         private async void SetParentForWindowComponents(EntityContext context)
         {
-            if (_cachedCount == context.Count())
+            if (_cachedCount == context.CountInterface<IWindowComponent>())
                 return;
             
             var newEntities = context
@@ -45,7 +44,7 @@ namespace Core.Systems
                 .ToArray();
 
             _cachedEntities.AddRange(newEntities);
-            _cachedCount = context.Count();
+            _cachedCount = context.Count<IWindowComponent>();
 
             foreach (var entity in newEntities)
             {
