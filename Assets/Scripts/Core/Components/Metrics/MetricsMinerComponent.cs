@@ -1,7 +1,16 @@
-﻿namespace Core.Components.Metrics
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+using Wooff.ECS.Components;
+
+namespace Core.Components.Metrics
 {
-    public class MetricMinerComponent
+    [Serializable]
+    public class MetricsMinerComponent : IComponent
     {
-        
+        [SerializeField]
+        public List<MetricType> Mines;
+        [SerializeField]
+        public float BonusAmount;
     }
 }
