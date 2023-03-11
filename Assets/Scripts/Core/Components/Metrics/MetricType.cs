@@ -2,7 +2,8 @@
 {
     public enum MetricType
     {
+        Move,
         Gold,
-        SpeedCreationUnits,
+        SpeedCreationUnits
     }
 }

@@ -7,13 +7,19 @@ namespace Core.Components.Metrics
     {
         public Dictionary<MetricType, float> Balance = new Dictionary<MetricType, float>()
         {
-            { MetricType.Gold, 0 },
-            { MetricType.SpeedCreationUnits, 0 }
+            { MetricType.Move, 10 },
+            { MetricType.Gold, 2 },
+            { MetricType.SpeedCreationUnits, 2 }
         };
 
         public void AddToMetric(MetricType metricType, float amount)
         {
             Balance[metricType] += amount;
+        }
+        
+        public void RemoveFromMetric(MetricType metricType, float amount)
+        {
+            Balance[metricType] -= amount;
         }
     }
 }
