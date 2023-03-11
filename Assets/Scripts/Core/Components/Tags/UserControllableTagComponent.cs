@@ -2,8 +2,7 @@
 
 namespace Core.Components.Tags
 {
-    public class MovePointCameraTagComponent : IComponent
+    public class UserControllableTagComponent : IComponent
     {
-        
     }
 }

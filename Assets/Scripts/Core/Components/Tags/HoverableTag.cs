@@ -2,8 +2,7 @@
 
 namespace Core.Components.Tags
 {
-    public class Hoverable : IComponent
+    public class HoverableTag : IComponent
     {
-        public float StartYPosition;
     }
 }
