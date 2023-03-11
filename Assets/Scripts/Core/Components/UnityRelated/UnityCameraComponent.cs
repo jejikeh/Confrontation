@@ -3,13 +3,14 @@ using Wooff.ECS.Components;
 
 namespace Core.Components.UnityRelated
 {
-    public class UnityCamera : IComponent
+    public class UnityCameraComponent : IComponent
     {
         public Camera Camera;
 
-        public UnityCamera(Camera camera)
+        public UnityCameraComponent InitCamera(Camera camera)
         {
             Camera = camera;
+            return this;
         }
     }
 }
