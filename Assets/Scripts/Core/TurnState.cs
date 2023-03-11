@@ -1,10 +1,8 @@
 ﻿namespace Core
 {
-    public enum UiState
+    public enum TurnState
     {
-        None,
-        Information,
-        Build,
+        StartTurn,
         EndTurn
     }
 }
