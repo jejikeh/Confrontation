@@ -2,51 +2,51 @@
 using UnityEngine;
 using Wooff.ECS.Components;
 
-namespace Core.Components.SmoothTranslateComponent
+namespace Core.Components.TransformRelated
 {
     [Serializable]
-    public class SmoothTranslate : IComponent
+    public class SmoothTranslateComponent : IComponent
     {
         [SerializeField] public float SmoothMovementTime;
         [SerializeField] public float SpeedMovement;
 
         private Vector3 _lastPosition;
         private Vector3 _velocity;
-        private float _speed;
         private Vector3 _direction;
+        private float _speed;
 
-        public Vector3 GetHandlerRight(TransformWrapper wrapper)
+        public Vector3 GetHandlerRight(Transform wrapperComponent)
         {
-            var right = wrapper.Transform.right;
+            var right = wrapperComponent.right;
             right.y = 0;
             return right;
         }
 
-        public Vector3 GetHandlerForward(TransformWrapper wrapper)
+        public Vector3 GetHandlerForward(Transform wrapperComponent)
         {
-            var forward = wrapper.Transform.forward;
+            var forward = wrapperComponent.forward;
             forward.y = 0;
             return forward;
         }
 
-        public Vector3 GetHandlerUp(TransformWrapper wrapper)
+        public Vector3 GetHandlerUp(Transform wrapperComponent)
         {
-            return wrapper.Transform.up;
+            return wrapperComponent.up;
         }
         
-        public SmoothTranslate(TransformWrapper transformWrapper)
+        public SmoothTranslateComponent(Transform transformWrapperComponent)
         {
-            _lastPosition = transformWrapper.Transform.position;
+            _lastPosition = transformWrapperComponent.position;
         }
 
-        public void UpdateVelocity(float timeScale, TransformWrapper handler)
+        public void UpdateVelocity(float timeScale, Transform handler)
         {
-            var position = handler.Transform.transform.position;
+            var position = handler.transform.position;
             _velocity = (position - _lastPosition) * timeScale / Time.deltaTime;
             _lastPosition = position;
         }
 
-        public void SetMovementDirection(Vector3 direction, TransformWrapper handler)
+        public void SetMovementDirection(Vector3 direction, Transform handler)
         {
             var inputValue = 
                 direction.x * GetHandlerRight(handler) +
@@ -57,12 +57,12 @@ namespace Core.Components.SmoothTranslateComponent
                 _direction += inputValue;
         }
         
-        public void SetPosition(Vector3 position, TransformWrapper handler)
+        public void SetPosition(Vector3 position, Transform handler)
         {
-            _direction += position - handler.Transform.transform.position;
+            _direction += position - handler.transform.position;
         }
         
-        public void UpdatePosition(float timeScale, TransformWrapper handler)
+        public void UpdatePosition(float timeScale, Transform handler)
         {
             if (_direction.sqrMagnitude > 0.1f)
             {
@@ -70,7 +70,7 @@ namespace Core.Components.SmoothTranslateComponent
                     _speed, 
                     SpeedMovement,
                     Time.deltaTime * SmoothMovementTime * timeScale);
-                handler.Transform.transform.position += _direction * (_speed * Time.deltaTime);
+                handler.transform.position += _direction * (_speed * Time.deltaTime);
             }
             else
             {
@@ -79,7 +79,7 @@ namespace Core.Components.SmoothTranslateComponent
                     Vector3.zero,
                     Time.deltaTime * SmoothMovementTime * timeScale);
                 if (_velocity.magnitude > 0.01f)
-                    handler.Transform.transform.position += _velocity * Time.deltaTime;
+                    handler.transform.position += _velocity * Time.deltaTime;
             }
 
             _direction = Vector3.zero;

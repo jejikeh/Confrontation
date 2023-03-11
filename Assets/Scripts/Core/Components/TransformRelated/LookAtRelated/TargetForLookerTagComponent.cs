@@ -1,7 +1,8 @@
-﻿namespace Core.Components.TransformRelated.LookAtRelated
+﻿using Wooff.ECS.Components;
+
+namespace Core.Components.TransformRelated.LookAtRelated
 {
-    public class TargetForLookerComponentTag : 
+    public class TargetForLookerTagComponent : IComponent
     {
-        
     }
 }
