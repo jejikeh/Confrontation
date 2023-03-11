@@ -522,6 +522,7 @@ GameObject:
   - component: {fileID: 4164060873265388127}
   - component: {fileID: 1037636439394293242}
   - component: {fileID: 2991124153794945328}
+  - component: {fileID: 3564387332543864045}
   m_Layer: 0
   m_Name: building_village
   m_TagString: Untagged
@@ -607,6 +608,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3564387332543864045
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639585668367532261}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8947993233740504144, guid: 700a7351b7ef6404580e277e19fb4cb5, type: 3}
 --- !u!1 &4547313485108997379
 GameObject:
   m_ObjectHideFlags: 0
