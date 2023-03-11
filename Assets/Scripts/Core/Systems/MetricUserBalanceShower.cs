@@ -11,7 +11,7 @@ using Wooff.ECS.Entities;
 
 namespace Core.Systems
 {
-    public class MetricBalanceShower : Wooff.ECS.Systems.System
+    public class MetricUserBalanceShower : Wooff.ECS.Systems.System
     {
         private MetricShowerWindowComponent _metricShowerWindowComponent;
         private PlayerTagComponent _playerTagComponent;
