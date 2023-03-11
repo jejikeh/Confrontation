@@ -2,6 +2,7 @@
 {
     public enum PlayerType
     {
-        
+        Computer,
+        User
     }
 }

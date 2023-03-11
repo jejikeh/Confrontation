@@ -1,9 +1,17 @@
-﻿using Wooff.ECS.Components;
+﻿using System;
+using UnityEngine;
+using Wooff.ECS.Components;
 
 namespace Core.Components.Players
 {
-    public class UserPlayerComponent : IComponent
+    [Serializable]
+    public class PlayerComponent : IComponent
     {
-        
+        [SerializeField]
+        public PlayerType PlayerType;
+        [SerializeField]
+        public Color Color;
+        [SerializeField] 
+        public float MaxBuildDistance;
     }
 }
