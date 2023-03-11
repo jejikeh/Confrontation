@@ -1,29 +1,19 @@
 ﻿using System.Threading.Tasks;
-using Core.Components.UnityRelated;
 using DG.Tweening;
 using UnityEngine;
-using Wooff.ECS.Components;
 
 namespace Core.Components.UiRelated
 {
-    public class WindowComponentComponent : IComponent, IWindowComponent
+    public abstract class WindowComponent : IWindowComponent
     {
-        protected GameObject UnitySceneObject;
-        
-        public WindowComponentComponent(UnityGameObjectComponent gameObjectComponent)
+        public async Task OnOpen(Transform transform)
         {
-            UnitySceneObject = gameObjectComponent.UnitySceneObject;
-            UnitySceneObject.transform.localScale = Vector3.zero;
-        }
-        
-        public async Task OnOpen()
-        {
-            await UnitySceneObject.transform.DOScale(Vector3.one, 1f).AsyncWaitForCompletion();
+            await transform.DOScale(Vector3.one, 1f).AsyncWaitForCompletion();
         }
 
-        public async Task OnClose()
+        public async Task OnClose(Transform transform)
         {
-            await UnitySceneObject.transform.DOScale(Vector3.zero, 1f).AsyncWaitForCompletion();
+            await transform.DOScale(Vector3.zero, 1f).AsyncWaitForCompletion();
         }
     }
 }
