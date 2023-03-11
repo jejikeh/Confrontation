@@ -123,163 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &79302134
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 79302136}
-  - component: {fileID: 79302135}
-  m_Layer: 0
-  m_Name: StaticMonoWorldFinder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &79302135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 79302134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 583f6fe66fd745a68fae51626a36e7dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &79302136
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 79302134}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.554631, y: 2.971387, z: -1.920087}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &433922396
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 433922398}
-  - component: {fileID: 433922397}
-  m_Layer: 0
-  m_Name: CellWorldCreator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &433922397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 433922396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b17d8e666b346309e8ab3430a4b2c8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &433922398
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 433922396}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.554631, y: 2.971387, z: -1.920087}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &662424252
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 662424254}
-  - component: {fileID: 662424253}
-  m_Layer: 0
-  m_Name: PlayerManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &662424253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 662424252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fe86aedd25240b88eca6e12d365c99b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _players:
-  - PlayerType: 0
-    InformationConfig:
-      Name: 
-      Description: 
-      VisualizeIcon: {fileID: 0}
-    VisualizeColor: {r: 0, g: 0, b: 0, a: 0}
-  - PlayerType: 2
-    InformationConfig:
-      Name: "\u0422\u044B"
-      Description: 
-      VisualizeIcon: {fileID: 8479393442799774504, guid: 206e14301365ed444bad2411d1ab17c7, type: 3}
-    VisualizeColor: {r: 1, g: 1, b: 1, a: 1}
-  - PlayerType: 1
-    InformationConfig:
-      Name: "\u0418\u0433\u043E\u0440\u044C"
-      Description: 
-      VisualizeIcon: {fileID: 0}
-    VisualizeColor: {r: 0.8396226, g: 0.36964515, b: 0.45021275, a: 1}
-  - PlayerType: 1
-    InformationConfig:
-      Name: "\u0412\u0430\u0441\u044F"
-      Description: 
-      VisualizeIcon: {fileID: 0}
-    VisualizeColor: {r: 0.8392157, g: 0.833639, b: 0.36862743, a: 1}
---- !u!4 &662424254
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 662424252}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.0007157, y: -11.426913, z: -30.785074}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,9 +264,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1112517611
+--- !u!1 &829195540
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -431,712 +274,77 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1112517616}
-  - component: {fileID: 1112517612}
-  - component: {fileID: 1112517617}
-  - component: {fileID: 1112517618}
-  - component: {fileID: 1112517619}
+  - component: {fileID: 829195542}
+  - component: {fileID: 829195541}
   m_Layer: 0
-  m_Name: CameraPointOfView
+  m_Name: World
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1112517612
+--- !u!114 &829195541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1112517611}
+  m_GameObject: {fileID: 829195540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eda262f55811444697788d6b2198ed3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 0808f6478a0df0a4296c5e7670e3bd8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _smoothLookAtTargetConfig:
-    Step: 3
-    MaxOffset: 6
-    MinOffset: 4.6
-    Speed: 3
-    SmoothTime: 3
---- !u!4 &1112517616
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1112517611}
-  m_LocalRotation: {x: -0.00064651744, y: 0.0010813917, z: -0.0011285584, w: 0.99999857}
-  m_LocalPosition: {x: 0, y: 6, z: -6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2025135527}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.074, y: 0.124, z: -0.129}
---- !u!20 &1112517617
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1112517611}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!81 &1112517618
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1112517611}
-  m_Enabled: 1
---- !u!114 &1112517619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1112517611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 1112517616}
-  volumeLayer:
-    serializedVersion: 2
-    m_Bits: 1
-  stopNaNPropagation: 1
-  finalBlitToCameraTarget: 0
-  antialiasingMode: 0
-  temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
-    motionBlending: 0.85
-  subpixelMorphologicalAntialiasing:
-    quality: 2
-  fastApproximateAntialiasing:
-    fastMode: 0
-    keepAlpha: 0
-  fog:
-    enabled: 1
-    excludeSkybox: 1
-  debugLayer:
-    lightMeter:
-      width: 512
-      height: 256
-      showCurves: 1
-    histogram:
-      width: 512
-      height: 256
-      channel: 3
-    waveform:
-      exposure: 0.12
-      height: 256
-    vectorscope:
-      size: 256
-      exposure: 0.12
-    overlaySettings:
-      linearDepth: 0
-      motionColorIntensity: 4
-      motionGridSize: 64
-      colorBlindnessType: 0
-      colorBlindnessStrength: 1
-  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
-  breakBeforeColorGrading: 0
-  m_BeforeTransparentBundles: []
-  m_BeforeStackBundles: []
-  m_AfterStackBundles: []
---- !u!1 &1252706722
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1252706724}
-  - component: {fileID: 1252706723}
-  m_Layer: 0
-  m_Name: CellManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1252706723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1252706722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 359d26795acd4ec8b5cadada21cc0ce9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _configs:
-  - Mesh: {fileID: 7597928317361272188, guid: 88f325bf372b9774c93a4d117af52e31, type: 3}
-    InformationConfig:
-      Name: "\u041A\u0443\u0441\u043E\u0447\u0435\u043A \u0417\u0435\u043C\u043B\u0438"
-      Description: "\u042D\u0442\u043E\u0442 \u043A\u0443\u0441\u043E\u0447\u0435\u043A
-        \u0437\u0435\u043C\u043B\u0438 \u043F\u043E\u043A\u0440\u044B\u0442 \u0441\u043B\u043E\u0435\u043C
-        \u043C\u0445\u0430 \u0438 \u043D\u0435\u0431\u043E\u043B\u044C\u0448\u0438\u043C\u0438
-        \u043A\u0430\u043C\u043D\u044F\u043C\u0438. \u041E\u043D \u043D\u0438\u043A\u0430\u043A
-        \u043D\u0435 \u043F\u0440\u0438\u043C\u0435\u0447\u0430\u0442\u0435\u043B\u0435\u043D
-        \u0438 \u043D\u0435 \u043E\u0431\u043B\u0430\u0434\u0430\u0435\u0442 \u043D\u0438\u043A\u0430\u043A\u0438\u043C\u0438
-        \u043E\u0441\u043E\u0431\u044B\u043C\u0438 \u0441\u0432\u043E\u0439\u0441\u0442\u0432\u0430\u043C\u0438,
-        \u0437\u0430 \u0438\u0441\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u0435\u043C
-        \u0442\u043E\u0433\u043E, \u0447\u0442\u043E \u043D\u0438\u043A\u0442\u043E
-        \u0438\u0437 \u0433\u043D\u043E\u043C\u043E\u0432 \u043D\u0435 \u0437\u0430\u0445\u043E\u0447\u0435\u0442
-        \u0435\u0433\u043E \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u044C
-        \u0434\u043B\u044F \u0441\u0432\u043E\u0438\u0445 \u0446\u0435\u043B\u0435\u0439."
-      VisualizeIcon: {fileID: 0}
-    CellType: 0
-    MetricMinerHandlerConfig:
-      MetricBonusConfigs: []
-    AudioPlayerConfig:
-      StringAudioClipDictionary:
-      - Name: click
-        Clip: {fileID: 8300000, guid: bf41ceba158a333468436b492a352b7c, type: 3}
-    RandomableConfig:
-      Chance: 54
-    PlainCell: 1
-  - Mesh: {fileID: 2614807959507322926, guid: 05f0acbf765e7dd4ca96e83bcbf66e99, type: 3}
-    InformationConfig:
-      Name: "\u041A\u0443\u0441\u043E\u0447\u0435\u043A \u0417\u0435\u043C\u043B\u0438
-        \u0441 \u043B\u0435\u0441\u043E\u043C"
-      Description: "\u041D\u0435\u0431\u043E\u043B\u044C\u0448\u043E\u0439 \u043A\u0443\u0441\u043E\u0447\u0435\u043A
-        \u0437\u0435\u043C\u043B\u0438, \u0437\u0430\u0440\u043E\u0441\u0448\u0438\u0439
-        \u043D\u0435\u0437\u0430\u043C\u0435\u0442\u043D\u044B\u043C \u043B\u0435\u0441\u043E\u043C,
-        \u0443\u043A\u0440\u044B\u0442 \u043E\u0442 \u043B\u044E\u0431\u043E\u043F\u044B\u0442\u043D\u044B\u0445
-        \u0433\u043B\u0430\u0437. \u0414\u043B\u044F \u0433\u043D\u043E\u043C\u043E\u0432
-        \u044D\u0442\u043E\u0442 \u0443\u0447\u0430\u0441\u0442\u043E\u043A \u043D\u0438\u0447\u0435\u0433\u043E
-        \u043D\u0435 \u0437\u043D\u0430\u0447\u0438\u0442, \u0442\u0430\u043A \u043A\u0430\u043A
-        \u043D\u0430 \u043D\u0435\u043C \u043D\u0435\u0442 \u043D\u0438\u043A\u0430\u043A\u0438\u0445
-        \u0434\u0440\u0430\u0433\u043E\u0446\u0435\u043D\u043D\u043E\u0441\u0442\u0435\u0439
-        \u0438 \u0440\u0435\u0441\u0443\u0440\u0441\u043E\u0432."
-      VisualizeIcon: {fileID: 0}
-    CellType: 1
-    MetricMinerHandlerConfig:
-      MetricBonusConfigs: []
-    AudioPlayerConfig:
-      StringAudioClipDictionary:
-      - Name: click
-        Clip: {fileID: 8300000, guid: bf41ceba158a333468436b492a352b7c, type: 3}
-    RandomableConfig:
-      Chance: 51
-    PlainCell: 1
-  - Mesh: {fileID: 1484065157042618153, guid: 81867d5c951d12844a971d61d89ff4e0, type: 3}
-    InformationConfig:
-      Name: "\u041A\u0443\u0441\u043E\u0447\u0435\u043A \u0417\u0435\u043C\u043B\u0438
-        \u0441 \u0413\u043E\u0440\u043E\u0439"
-      Description: "\u041D\u0430 \u044D\u0442\u043E\u043C \u043A\u0443\u0441\u043E\u0447\u043A\u0435
-        \u0437\u0435\u043C\u043B\u0438, \u0437\u0430\u0442\u0435\u0440\u044F\u043D\u043D\u043E\u043C
-        \u0432 \u0431\u0435\u0441\u043A\u043E\u043D\u0435\u0447\u043D\u043E\u0439
-        \u043F\u0443\u0441\u0442\u044B\u043D\u0435 \u043B\u0435\u0441\u0430, \u0432\u044B\u0441\u0438\u0442\u0441\u044F
-        \u0433\u043E\u0440\u0430, \u0438\u0437\u0440\u044B\u0442\u0430\u044F \u043A\u0440\u043E\u0445\u043E\u0442\u043D\u044B\u043C\u0438
-        \u0431\u0435\u0441\u043F\u043E\u043B\u0435\u0437\u043D\u044B\u043C\u0438
-        \u0442\u0443\u043D\u043D\u0435\u043B\u044F\u043C\u0438, \u043A\u043E\u0442\u043E\u0440\u044B\u0435
-        \u043A\u043E\u0433\u0434\u0430-\u0442\u043E \u043A\u043E\u043F\u0430\u043B\u0438
-        \u0437\u0434\u0435\u0441\u044C \u0433\u043D\u043E\u043C\u044B. \u041B\u0435\u0441,
-        \u043E\u043A\u0440\u0443\u0436\u0430\u044E\u0449\u0438\u0439 \u044D\u0442\u0443
-        \u0433\u043E\u0440\u0443, \u043F\u043E\u043B\u043E\u043D \u043E\u0431\u044B\u0447\u043D\u044B\u0445
-        \u0434\u043B\u044F \u044D\u0442\u0438\u0445 \u043C\u0435\u0441\u0442 \u0431\u0435\u0437\u0434\u0435\u043B\u0443\u0448\u0435\u043A,
-        \u043D\u043E \u0434\u043B\u044F \u0433\u043D\u043E\u043C\u043E\u0432 \u044D\u0442\u043E
-        \u043C\u0435\u0441\u0442\u043E \u043B\u0438\u0448\u0435\u043D\u043E \u0432\u0441\u044F\u043A\u043E\u0439
-        \u0446\u0435\u043D\u043D\u043E\u0441\u0442\u0438."
-      VisualizeIcon: {fileID: 0}
-    CellType: 2
-    MetricMinerHandlerConfig:
-      MetricBonusConfigs: []
-    AudioPlayerConfig:
-      StringAudioClipDictionary:
-      - Name: click
-        Clip: {fileID: 8300000, guid: bf41ceba158a333468436b492a352b7c, type: 3}
-    RandomableConfig:
-      Chance: 45
-    PlainCell: 1
-  - Mesh: {fileID: 798750379454064128, guid: df02475cc32da4f4f9b039164ea880ed, type: 3}
-    InformationConfig:
-      Name: "\u041A\u043E\u043D\u044E\u0448\u043D\u044F"
-      Description: "\u042D\u0442\u043E \u043D\u0435 \u043F\u0440\u043E\u0441\u0442\u043E
-        \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442 \u043B\u043E\u0448\u0430\u0434\u0435\u0439.
-        \u042D\u0442\u043E \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u043B\u0435\u0447\u0430\u0442 \u0441\u0432\u043E\u044E \u0434\u0443\u0448\u0435\u0432\u043D\u0443\u044E
-        \u0442\u0440\u0430\u0432\u043C\u0443, \u0438\u0431\u043E \u0433\u043B\u044F\u0434\u044F
-        \u043D\u0430 \u0431\u044B\u0441\u0442\u0440\u043E \u0434\u0432\u0438\u0436\u0443\u0449\u0438\u0445\u0441\u044F
-        \u043B\u043E\u0448\u0430\u0434\u0435\u0439 \u043E\u043D\u0438 \u043D\u0430\u0447\u0438\u043D\u0430\u044E\u0442
-        \u0432\u0435\u0440\u0438\u0442\u044C \u0432 \u0442\u043E, \u0447\u0442\u043E
-        \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 - \u044D\u0442\u043E \u0436\u0438\u0437\u043D\u044C.
-        \u041F\u043E\u044D\u0442\u043E\u043C\u0443 \u043A\u043E\u043D\u044E\u0448\u043D\u044F
-        \u0443\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C
-        \u044E\u043D\u0438\u0442\u043E\u0432 \u0438 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442
-        \u0433\u043D\u043E\u043C\u0430\u043C \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0442\u044C
-        \u0441\u0432\u043E\u044E \u0434\u0435\u043F\u0440\u0435\u0441\u0441\u0438\u044E."
-      VisualizeIcon: {fileID: 0}
-    CellType: 3
-    MetricMinerHandlerConfig:
-      MetricBonusConfigs: []
-    AudioPlayerConfig:
-      StringAudioClipDictionary:
-      - Name: click
-        Clip: {fileID: 8300000, guid: bf41ceba158a333468436b492a352b7c, type: 3}
-    RandomableConfig:
-      Chance: 17
-    PlainCell: 1
-  - Mesh: {fileID: 5884552772847644152, guid: 51fe1d25e19e138429f32a7db14f48b7, type: 3}
-    InformationConfig:
-      Name: "\u041A\u043E\u043D\u044E\u0448\u043D\u044F"
-      Description: "\u042D\u0442\u043E \u043D\u0435 \u043F\u0440\u043E\u0441\u0442\u043E
-        \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442 \u043B\u043E\u0448\u0430\u0434\u0435\u0439.
-        \u042D\u0442\u043E \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u043B\u0435\u0447\u0430\u0442 \u0441\u0432\u043E\u044E \u0434\u0443\u0448\u0435\u0432\u043D\u0443\u044E
-        \u0442\u0440\u0430\u0432\u043C\u0443, \u0438\u0431\u043E \u0433\u043B\u044F\u0434\u044F
-        \u043D\u0430 \u0431\u044B\u0441\u0442\u0440\u043E \u0434\u0432\u0438\u0436\u0443\u0449\u0438\u0445\u0441\u044F
-        \u043B\u043E\u0448\u0430\u0434\u0435\u0439 \u043E\u043D\u0438 \u043D\u0430\u0447\u0438\u043D\u0430\u044E\u0442
-        \u0432\u0435\u0440\u0438\u0442\u044C \u0432 \u0442\u043E, \u0447\u0442\u043E
-        \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 - \u044D\u0442\u043E \u0436\u0438\u0437\u043D\u044C.
-        \u041F\u043E\u044D\u0442\u043E\u043C\u0443 \u043A\u043E\u043D\u044E\u0448\u043D\u044F
-        \u0443\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C
-        \u044E\u043D\u0438\u0442\u043E\u0432 \u0438 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442
-        \u0433\u043D\u043E\u043C\u0430\u043C \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0442\u044C
-        \u0441\u0432\u043E\u044E \u0434\u0435\u043F\u0440\u0435\u0441\u0441\u0438\u044E."
-      VisualizeIcon: {fileID: 0}
-    CellType: 4
-    MetricMinerHandlerConfig:
-      MetricBonusConfigs: []
-    AudioPlayerConfig:
-      StringAudioClipDictionary:
-      - Name: click
-        Clip: {fileID: 8300000, guid: bf41ceba158a333468436b492a352b7c, type: 3}
-    RandomableConfig:
-      Chance: 9
-    PlainCell: 1
-  - Mesh: {fileID: 7162704231688623319, guid: 226363f7c9e039044b7435d428290b96, type: 3}
-    InformationConfig:
-      Name: "\u041A\u043E\u043D\u044E\u0448\u043D\u044F"
-      Description: "\u042D\u0442\u043E \u043D\u0435 \u043F\u0440\u043E\u0441\u0442\u043E
-        \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442 \u043B\u043E\u0448\u0430\u0434\u0435\u0439.
-        \u042D\u0442\u043E \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u043B\u0435\u0447\u0430\u0442 \u0441\u0432\u043E\u044E \u0434\u0443\u0448\u0435\u0432\u043D\u0443\u044E
-        \u0442\u0440\u0430\u0432\u043C\u0443, \u0438\u0431\u043E \u0433\u043B\u044F\u0434\u044F
-        \u043D\u0430 \u0431\u044B\u0441\u0442\u0440\u043E \u0434\u0432\u0438\u0436\u0443\u0449\u0438\u0445\u0441\u044F
-        \u043B\u043E\u0448\u0430\u0434\u0435\u0439 \u043E\u043D\u0438 \u043D\u0430\u0447\u0438\u043D\u0430\u044E\u0442
-        \u0432\u0435\u0440\u0438\u0442\u044C \u0432 \u0442\u043E, \u0447\u0442\u043E
-        \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 - \u044D\u0442\u043E \u0436\u0438\u0437\u043D\u044C.
-        \u041F\u043E\u044D\u0442\u043E\u043C\u0443 \u043A\u043E\u043D\u044E\u0448\u043D\u044F
-        \u0443\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C
-        \u044E\u043D\u0438\u0442\u043E\u0432 \u0438 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442
-        \u0433\u043D\u043E\u043C\u0430\u043C \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0442\u044C
-        \u0441\u0432\u043E\u044E \u0434\u0435\u043F\u0440\u0435\u0441\u0441\u0438\u044E."
-      VisualizeIcon: {fileID: 0}
-    CellType: 5
-    MetricMinerHandlerConfig:
-      MetricBonusConfigs: []
-    AudioPlayerConfig:
-      StringAudioClipDictionary:
-      - Name: click
-        Clip: {fileID: 8300000, guid: bf41ceba158a333468436b492a352b7c, type: 3}
-    RandomableConfig:
-      Chance: 19
-    PlainCell: 1
-  - Mesh: {fileID: 5042077662064147523, guid: a40bebb3f0613e44694f106ebd0ad6d9, type: 3}
-    InformationConfig:
-      Name: "\u041A\u043E\u043D\u044E\u0448\u043D\u044F"
-      Description: "\u042D\u0442\u043E \u043D\u0435 \u043F\u0440\u043E\u0441\u0442\u043E
-        \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442 \u043B\u043E\u0448\u0430\u0434\u0435\u0439.
-        \u042D\u0442\u043E \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u043B\u0435\u0447\u0430\u0442 \u0441\u0432\u043E\u044E \u0434\u0443\u0448\u0435\u0432\u043D\u0443\u044E
-        \u0442\u0440\u0430\u0432\u043C\u0443, \u0438\u0431\u043E \u0433\u043B\u044F\u0434\u044F
-        \u043D\u0430 \u0431\u044B\u0441\u0442\u0440\u043E \u0434\u0432\u0438\u0436\u0443\u0449\u0438\u0445\u0441\u044F
-        \u043B\u043E\u0448\u0430\u0434\u0435\u0439 \u043E\u043D\u0438 \u043D\u0430\u0447\u0438\u043D\u0430\u044E\u0442
-        \u0432\u0435\u0440\u0438\u0442\u044C \u0432 \u0442\u043E, \u0447\u0442\u043E
-        \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 - \u044D\u0442\u043E \u0436\u0438\u0437\u043D\u044C.
-        \u041F\u043E\u044D\u0442\u043E\u043C\u0443 \u043A\u043E\u043D\u044E\u0448\u043D\u044F
-        \u0443\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C
-        \u044E\u043D\u0438\u0442\u043E\u0432 \u0438 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442
-        \u0433\u043D\u043E\u043C\u0430\u043C \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0442\u044C
-        \u0441\u0432\u043E\u044E \u0434\u0435\u043F\u0440\u0435\u0441\u0441\u0438\u044E."
-      VisualizeIcon: {fileID: 0}
-    CellType: 6
-    MetricMinerHandlerConfig:
-      MetricBonusConfigs: []
-    AudioPlayerConfig:
-      StringAudioClipDictionary:
-      - Name: click
-        Clip: {fileID: 8300000, guid: bf41ceba158a333468436b492a352b7c, type: 3}
-    RandomableConfig:
-      Chance: 10
-    PlainCell: 1
-  - Mesh: {fileID: 7998350389181690401, guid: f97c8f48dcd896740a002ce0a1aeb95e, type: 3}
-    InformationConfig:
-      Name: "\u041A\u043E\u043D\u044E\u0448\u043D\u044F"
-      Description: "\u042D\u0442\u043E \u043D\u0435 \u043F\u0440\u043E\u0441\u0442\u043E
-        \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442 \u043B\u043E\u0448\u0430\u0434\u0435\u0439.
-        \u042D\u0442\u043E \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u043B\u0435\u0447\u0430\u0442 \u0441\u0432\u043E\u044E \u0434\u0443\u0448\u0435\u0432\u043D\u0443\u044E
-        \u0442\u0440\u0430\u0432\u043C\u0443, \u0438\u0431\u043E \u0433\u043B\u044F\u0434\u044F
-        \u043D\u0430 \u0431\u044B\u0441\u0442\u0440\u043E \u0434\u0432\u0438\u0436\u0443\u0449\u0438\u0445\u0441\u044F
-        \u043B\u043E\u0448\u0430\u0434\u0435\u0439 \u043E\u043D\u0438 \u043D\u0430\u0447\u0438\u043D\u0430\u044E\u0442
-        \u0432\u0435\u0440\u0438\u0442\u044C \u0432 \u0442\u043E, \u0447\u0442\u043E
-        \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 - \u044D\u0442\u043E \u0436\u0438\u0437\u043D\u044C.
-        \u041F\u043E\u044D\u0442\u043E\u043C\u0443 \u043A\u043E\u043D\u044E\u0448\u043D\u044F
-        \u0443\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C
-        \u044E\u043D\u0438\u0442\u043E\u0432 \u0438 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442
-        \u0433\u043D\u043E\u043C\u0430\u043C \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0442\u044C
-        \u0441\u0432\u043E\u044E \u0434\u0435\u043F\u0440\u0435\u0441\u0441\u0438\u044E."
-      VisualizeIcon: {fileID: 0}
-    CellType: 7
-    MetricMinerHandlerConfig:
-      MetricBonusConfigs: []
-    AudioPlayerConfig:
-      StringAudioClipDictionary:
-      - Name: click
-        Clip: {fileID: 8300000, guid: bf41ceba158a333468436b492a352b7c, type: 3}
-    RandomableConfig:
-      Chance: 9
-    PlainCell: 1
-  - Mesh: {fileID: 5201732087182410993, guid: cbb5adcc135465d4ca1fb34c9eca6708, type: 3}
-    InformationConfig:
-      Name: "\u041A\u043E\u043D\u044E\u0448\u043D\u044F"
-      Description: "\u042D\u0442\u043E \u043D\u0435 \u043F\u0440\u043E\u0441\u0442\u043E
-        \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442 \u043B\u043E\u0448\u0430\u0434\u0435\u0439.
-        \u042D\u0442\u043E \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u043B\u0435\u0447\u0430\u0442 \u0441\u0432\u043E\u044E \u0434\u0443\u0448\u0435\u0432\u043D\u0443\u044E
-        \u0442\u0440\u0430\u0432\u043C\u0443, \u0438\u0431\u043E \u0433\u043B\u044F\u0434\u044F
-        \u043D\u0430 \u0431\u044B\u0441\u0442\u0440\u043E \u0434\u0432\u0438\u0436\u0443\u0449\u0438\u0445\u0441\u044F
-        \u043B\u043E\u0448\u0430\u0434\u0435\u0439 \u043E\u043D\u0438 \u043D\u0430\u0447\u0438\u043D\u0430\u044E\u0442
-        \u0432\u0435\u0440\u0438\u0442\u044C \u0432 \u0442\u043E, \u0447\u0442\u043E
-        \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 - \u044D\u0442\u043E \u0436\u0438\u0437\u043D\u044C.
-        \u041F\u043E\u044D\u0442\u043E\u043C\u0443 \u043A\u043E\u043D\u044E\u0448\u043D\u044F
-        \u0443\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C
-        \u044E\u043D\u0438\u0442\u043E\u0432 \u0438 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442
-        \u0433\u043D\u043E\u043C\u0430\u043C \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0442\u044C
-        \u0441\u0432\u043E\u044E \u0434\u0435\u043F\u0440\u0435\u0441\u0441\u0438\u044E."
-      VisualizeIcon: {fileID: 0}
-    CellType: 8
-    MetricMinerHandlerConfig:
-      MetricBonusConfigs: []
-    AudioPlayerConfig:
-      StringAudioClipDictionary:
-      - Name: click
-        Clip: {fileID: 8300000, guid: bf41ceba158a333468436b492a352b7c, type: 3}
-    RandomableConfig:
-      Chance: 12
-    PlainCell: 1
-  - Mesh: {fileID: 8953815192636328392, guid: 1eb278e5520093d4d8241ee84a2096fc, type: 3}
-    InformationConfig:
-      Name: "\u041A\u043E\u043D\u044E\u0448\u043D\u044F"
-      Description: "\u042D\u0442\u043E \u043D\u0435 \u043F\u0440\u043E\u0441\u0442\u043E
-        \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442 \u043B\u043E\u0448\u0430\u0434\u0435\u0439.
-        \u042D\u0442\u043E \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u043B\u0435\u0447\u0430\u0442 \u0441\u0432\u043E\u044E \u0434\u0443\u0448\u0435\u0432\u043D\u0443\u044E
-        \u0442\u0440\u0430\u0432\u043C\u0443, \u0438\u0431\u043E \u0433\u043B\u044F\u0434\u044F
-        \u043D\u0430 \u0431\u044B\u0441\u0442\u0440\u043E \u0434\u0432\u0438\u0436\u0443\u0449\u0438\u0445\u0441\u044F
-        \u043B\u043E\u0448\u0430\u0434\u0435\u0439 \u043E\u043D\u0438 \u043D\u0430\u0447\u0438\u043D\u0430\u044E\u0442
-        \u0432\u0435\u0440\u0438\u0442\u044C \u0432 \u0442\u043E, \u0447\u0442\u043E
-        \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 - \u044D\u0442\u043E \u0436\u0438\u0437\u043D\u044C.
-        \u041F\u043E\u044D\u0442\u043E\u043C\u0443 \u043A\u043E\u043D\u044E\u0448\u043D\u044F
-        \u0443\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C
-        \u044E\u043D\u0438\u0442\u043E\u0432 \u0438 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442
-        \u0433\u043D\u043E\u043C\u0430\u043C \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0442\u044C
-        \u0441\u0432\u043E\u044E \u0434\u0435\u043F\u0440\u0435\u0441\u0441\u0438\u044E."
-      VisualizeIcon: {fileID: 0}
-    CellType: 9
-    MetricMinerHandlerConfig:
-      MetricBonusConfigs: []
-    AudioPlayerConfig:
-      StringAudioClipDictionary:
-      - Name: click
-        Clip: {fileID: 8300000, guid: bf41ceba158a333468436b492a352b7c, type: 3}
-    RandomableConfig:
-      Chance: 9
-    PlainCell: 1
-  - Mesh: {fileID: 6365631191920470249, guid: 20fc3f8f2f5681a47b29306aa2ca4482, type: 3}
-    InformationConfig:
-      Name: "\u041A\u043E\u043D\u044E\u0448\u043D\u044F"
-      Description: "\u042D\u0442\u043E \u043D\u0435 \u043F\u0440\u043E\u0441\u0442\u043E
-        \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442 \u043B\u043E\u0448\u0430\u0434\u0435\u0439.
-        \u042D\u0442\u043E \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u043B\u0435\u0447\u0430\u0442 \u0441\u0432\u043E\u044E \u0434\u0443\u0448\u0435\u0432\u043D\u0443\u044E
-        \u0442\u0440\u0430\u0432\u043C\u0443, \u0438\u0431\u043E \u0433\u043B\u044F\u0434\u044F
-        \u043D\u0430 \u0431\u044B\u0441\u0442\u0440\u043E \u0434\u0432\u0438\u0436\u0443\u0449\u0438\u0445\u0441\u044F
-        \u043B\u043E\u0448\u0430\u0434\u0435\u0439 \u043E\u043D\u0438 \u043D\u0430\u0447\u0438\u043D\u0430\u044E\u0442
-        \u0432\u0435\u0440\u0438\u0442\u044C \u0432 \u0442\u043E, \u0447\u0442\u043E
-        \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 - \u044D\u0442\u043E \u0436\u0438\u0437\u043D\u044C.
-        \u041F\u043E\u044D\u0442\u043E\u043C\u0443 \u043A\u043E\u043D\u044E\u0448\u043D\u044F
-        \u0443\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C
-        \u044E\u043D\u0438\u0442\u043E\u0432 \u0438 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442
-        \u0433\u043D\u043E\u043C\u0430\u043C \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0442\u044C
-        \u0441\u0432\u043E\u044E \u0434\u0435\u043F\u0440\u0435\u0441\u0441\u0438\u044E."
-      VisualizeIcon: {fileID: 0}
-    CellType: 10
-    MetricMinerHandlerConfig:
-      MetricBonusConfigs: []
-    AudioPlayerConfig:
-      StringAudioClipDictionary:
-      - Name: click
-        Clip: {fileID: 8300000, guid: bf41ceba158a333468436b492a352b7c, type: 3}
-    RandomableConfig:
-      Chance: 4
-    PlainCell: 1
-  - Mesh: {fileID: 3855942545336929573, guid: 68f10ad7e13c51a4781ca648df156093, type: 3}
-    InformationConfig:
-      Name: "\u041A\u043E\u043D\u044E\u0448\u043D\u044F"
-      Description: "\u042D\u0442\u043E \u043D\u0435 \u043F\u0440\u043E\u0441\u0442\u043E
-        \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442 \u043B\u043E\u0448\u0430\u0434\u0435\u0439.
-        \u042D\u0442\u043E \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u043B\u0435\u0447\u0430\u0442 \u0441\u0432\u043E\u044E \u0434\u0443\u0448\u0435\u0432\u043D\u0443\u044E
-        \u0442\u0440\u0430\u0432\u043C\u0443, \u0438\u0431\u043E \u0433\u043B\u044F\u0434\u044F
-        \u043D\u0430 \u0431\u044B\u0441\u0442\u0440\u043E \u0434\u0432\u0438\u0436\u0443\u0449\u0438\u0445\u0441\u044F
-        \u043B\u043E\u0448\u0430\u0434\u0435\u0439 \u043E\u043D\u0438 \u043D\u0430\u0447\u0438\u043D\u0430\u044E\u0442
-        \u0432\u0435\u0440\u0438\u0442\u044C \u0432 \u0442\u043E, \u0447\u0442\u043E
-        \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 - \u044D\u0442\u043E \u0436\u0438\u0437\u043D\u044C.
-        \u041F\u043E\u044D\u0442\u043E\u043C\u0443 \u043A\u043E\u043D\u044E\u0448\u043D\u044F
-        \u0443\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C
-        \u044E\u043D\u0438\u0442\u043E\u0432 \u0438 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442
-        \u0433\u043D\u043E\u043C\u0430\u043C \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0442\u044C
-        \u0441\u0432\u043E\u044E \u0434\u0435\u043F\u0440\u0435\u0441\u0441\u0438\u044E."
-      VisualizeIcon: {fileID: 0}
-    CellType: 11
-    MetricMinerHandlerConfig:
-      MetricBonusConfigs: []
-    AudioPlayerConfig:
-      StringAudioClipDictionary:
-      - Name: click
-        Clip: {fileID: 8300000, guid: bf41ceba158a333468436b492a352b7c, type: 3}
-    RandomableConfig:
-      Chance: 2
-    PlainCell: 1
-  - Mesh: {fileID: 3549099173273332998, guid: a4a85a87aed808b4e8fa3546a2d6fa5e, type: 3}
-    InformationConfig:
-      Name: "\u041A\u043E\u043D\u044E\u0448\u043D\u044F"
-      Description: "\u042D\u0442\u043E \u043D\u0435 \u043F\u0440\u043E\u0441\u0442\u043E
-        \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442 \u043B\u043E\u0448\u0430\u0434\u0435\u0439.
-        \u042D\u0442\u043E \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u043B\u0435\u0447\u0430\u0442 \u0441\u0432\u043E\u044E \u0434\u0443\u0448\u0435\u0432\u043D\u0443\u044E
-        \u0442\u0440\u0430\u0432\u043C\u0443, \u0438\u0431\u043E \u0433\u043B\u044F\u0434\u044F
-        \u043D\u0430 \u0431\u044B\u0441\u0442\u0440\u043E \u0434\u0432\u0438\u0436\u0443\u0449\u0438\u0445\u0441\u044F
-        \u043B\u043E\u0448\u0430\u0434\u0435\u0439 \u043E\u043D\u0438 \u043D\u0430\u0447\u0438\u043D\u0430\u044E\u0442
-        \u0432\u0435\u0440\u0438\u0442\u044C \u0432 \u0442\u043E, \u0447\u0442\u043E
-        \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 - \u044D\u0442\u043E \u0436\u0438\u0437\u043D\u044C.
-        \u041F\u043E\u044D\u0442\u043E\u043C\u0443 \u043A\u043E\u043D\u044E\u0448\u043D\u044F
-        \u0443\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C
-        \u044E\u043D\u0438\u0442\u043E\u0432 \u0438 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442
-        \u0433\u043D\u043E\u043C\u0430\u043C \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0442\u044C
-        \u0441\u0432\u043E\u044E \u0434\u0435\u043F\u0440\u0435\u0441\u0441\u0438\u044E."
-      VisualizeIcon: {fileID: 8479393442799774504, guid: 046b28222c45e3147827884fafac35bf, type: 3}
-    CellType: 12
-    MetricMinerHandlerConfig:
-      MetricBonusConfigs:
-      - BonusAmount: 1
-        MetricType: 0
-        MineEverySecond: 1
-      - BonusAmount: 1
-        MetricType: 1
-        MineEverySecond: 1
-      - BonusAmount: 1
-        MetricType: 2
-        MineEverySecond: 0
-    AudioPlayerConfig:
-      StringAudioClipDictionary:
-      - Name: click
-        Clip: {fileID: 8300000, guid: bf41ceba158a333468436b492a352b7c, type: 3}
-    RandomableConfig:
-      Chance: 0
-    PlainCell: 0
-  - Mesh: {fileID: 3639585668367532261, guid: 78b0d83d55a9741469911a208c5063de, type: 3}
-    InformationConfig:
-      Name: "\u0414\u0435\u0440\u0435\u0432\u043D\u044F"
-      Description: "\u042D\u0442\u043E \u043D\u0435 \u043F\u0440\u043E\u0441\u0442\u043E
-        \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442 \u043B\u043E\u0448\u0430\u0434\u0435\u0439.
-        \u042D\u0442\u043E \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u043B\u0435\u0447\u0430\u0442 \u0441\u0432\u043E\u044E \u0434\u0443\u0448\u0435\u0432\u043D\u0443\u044E
-        \u0442\u0440\u0430\u0432\u043C\u0443, \u0438\u0431\u043E \u0433\u043B\u044F\u0434\u044F
-        \u043D\u0430 \u0431\u044B\u0441\u0442\u0440\u043E \u0434\u0432\u0438\u0436\u0443\u0449\u0438\u0445\u0441\u044F
-        \u043B\u043E\u0448\u0430\u0434\u0435\u0439 \u043E\u043D\u0438 \u043D\u0430\u0447\u0438\u043D\u0430\u044E\u0442
-        \u0432\u0435\u0440\u0438\u0442\u044C \u0432 \u0442\u043E, \u0447\u0442\u043E
-        \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 - \u044D\u0442\u043E \u0436\u0438\u0437\u043D\u044C.
-        \u041F\u043E\u044D\u0442\u043E\u043C\u0443 \u043A\u043E\u043D\u044E\u0448\u043D\u044F
-        \u0443\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C
-        \u044E\u043D\u0438\u0442\u043E\u0432 \u0438 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442
-        \u0433\u043D\u043E\u043C\u0430\u043C \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0442\u044C
-        \u0441\u0432\u043E\u044E \u0434\u0435\u043F\u0440\u0435\u0441\u0441\u0438\u044E."
-      VisualizeIcon: {fileID: 8479393442799774504, guid: 9b1fcd2de5551584ab2d6cf12f8341ad, type: 3}
-    CellType: 13
-    MetricMinerHandlerConfig:
-      MetricBonusConfigs:
-      - BonusAmount: 1
-        MetricType: 0
-        MineEverySecond: 1
-    AudioPlayerConfig:
-      StringAudioClipDictionary:
-      - Name: click
-        Clip: {fileID: 8300000, guid: bf41ceba158a333468436b492a352b7c, type: 3}
-    RandomableConfig:
-      Chance: 0
-    PlainCell: 0
-  - Mesh: {fileID: 14588194416819017, guid: 88c72cd95ba09204c8635a3c001f4ccc, type: 3}
-    InformationConfig:
-      Name: "\u0411\u0430\u0448\u043D\u044F \u043C\u0430\u0433\u0438\u0447\u0435\u0441\u043A\u0438\u0445
-        \u0433\u043D\u043E\u043C\u043E\u0432"
-      Description: "\u042D\u0442\u043E \u043D\u0435 \u043F\u0440\u043E\u0441\u0442\u043E
-        \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442 \u043B\u043E\u0448\u0430\u0434\u0435\u0439.
-        \u042D\u0442\u043E \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u043B\u0435\u0447\u0430\u0442 \u0441\u0432\u043E\u044E \u0434\u0443\u0448\u0435\u0432\u043D\u0443\u044E
-        \u0442\u0440\u0430\u0432\u043C\u0443, \u0438\u0431\u043E \u0433\u043B\u044F\u0434\u044F
-        \u043D\u0430 \u0431\u044B\u0441\u0442\u0440\u043E \u0434\u0432\u0438\u0436\u0443\u0449\u0438\u0445\u0441\u044F
-        \u043B\u043E\u0448\u0430\u0434\u0435\u0439 \u043E\u043D\u0438 \u043D\u0430\u0447\u0438\u043D\u0430\u044E\u0442
-        \u0432\u0435\u0440\u0438\u0442\u044C \u0432 \u0442\u043E, \u0447\u0442\u043E
-        \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 - \u044D\u0442\u043E \u0436\u0438\u0437\u043D\u044C.
-        \u041F\u043E\u044D\u0442\u043E\u043C\u0443 \u043A\u043E\u043D\u044E\u0448\u043D\u044F
-        \u0443\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C
-        \u044E\u043D\u0438\u0442\u043E\u0432 \u0438 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442
-        \u0433\u043D\u043E\u043C\u0430\u043C \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0442\u044C
-        \u0441\u0432\u043E\u044E \u0434\u0435\u043F\u0440\u0435\u0441\u0441\u0438\u044E."
-      VisualizeIcon: {fileID: 8479393442799774504, guid: 99679aee07983494c9ebc56e0c5fe1b7, type: 3}
-    CellType: 14
-    MetricMinerHandlerConfig:
-      MetricBonusConfigs:
-      - BonusAmount: 1
-        MetricType: 0
-        MineEverySecond: 1
-    AudioPlayerConfig:
-      StringAudioClipDictionary:
-      - Name: click
-        Clip: {fileID: 8300000, guid: bf41ceba158a333468436b492a352b7c, type: 3}
-    RandomableConfig:
-      Chance: 0
-    PlainCell: 0
-  - Mesh: {fileID: 1288064003906350059, guid: c32c02007471630429f0303aece04373, type: 3}
-    InformationConfig:
-      Name: "\u0411\u0430\u0448\u043D\u044F \u043C\u0430\u0433\u0438\u0447\u0435\u0441\u043A\u0438\u0445
-        \u0433\u043D\u043E\u043C\u043E\u0432"
-      Description: "\u042D\u0442\u043E \u043D\u0435 \u043F\u0440\u043E\u0441\u0442\u043E
-        \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442 \u043B\u043E\u0448\u0430\u0434\u0435\u0439.
-        \u042D\u0442\u043E \u043C\u0435\u0441\u0442\u043E, \u0433\u0434\u0435 \u0433\u043D\u043E\u043C\u044B
-        \u043B\u0435\u0447\u0430\u0442 \u0441\u0432\u043E\u044E \u0434\u0443\u0448\u0435\u0432\u043D\u0443\u044E
-        \u0442\u0440\u0430\u0432\u043C\u0443, \u0438\u0431\u043E \u0433\u043B\u044F\u0434\u044F
-        \u043D\u0430 \u0431\u044B\u0441\u0442\u0440\u043E \u0434\u0432\u0438\u0436\u0443\u0449\u0438\u0445\u0441\u044F
-        \u043B\u043E\u0448\u0430\u0434\u0435\u0439 \u043E\u043D\u0438 \u043D\u0430\u0447\u0438\u043D\u0430\u044E\u0442
-        \u0432\u0435\u0440\u0438\u0442\u044C \u0432 \u0442\u043E, \u0447\u0442\u043E
-        \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 - \u044D\u0442\u043E \u0436\u0438\u0437\u043D\u044C.
-        \u041F\u043E\u044D\u0442\u043E\u043C\u0443 \u043A\u043E\u043D\u044E\u0448\u043D\u044F
-        \u0443\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C
-        \u044E\u043D\u0438\u0442\u043E\u0432 \u0438 \u043F\u043E\u043C\u043E\u0433\u0430\u0435\u0442
-        \u0433\u043D\u043E\u043C\u0430\u043C \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0442\u044C
-        \u0441\u0432\u043E\u044E \u0434\u0435\u043F\u0440\u0435\u0441\u0441\u0438\u044E."
-      VisualizeIcon: {fileID: 8479393442799774504, guid: 886c79aff69101e44861a8ccbf05a5e1, type: 3}
-    CellType: 15
-    MetricMinerHandlerConfig:
-      MetricBonusConfigs:
-      - BonusAmount: 1
-        MetricType: 0
-        MineEverySecond: 0
-    AudioPlayerConfig:
-      StringAudioClipDictionary:
-      - Name: click
-        Clip: {fileID: 8300000, guid: bf41ceba158a333468436b492a352b7c, type: 3}
-    RandomableConfig:
-      Chance: 0
-    PlainCell: 0
-  - Mesh: {fileID: 8807529451667030063, guid: 1a66a2a5693515c4daa09fd2c535c0d1, type: 3}
-    InformationConfig:
-      Name: "\u0428\u0430\u0445\u0442\u0430"
-      Description: "\u0428\u0430\u0448\u0430"
-      VisualizeIcon: {fileID: 8479393442799774504, guid: b7e543a3ffbf8fc45bbdf8ddb9cb2ffd, type: 3}
-    CellType: 16
-    MetricMinerHandlerConfig:
-      MetricBonusConfigs:
-      - BonusAmount: 1
-        MetricType: 0
-        MineEverySecond: 0
-    AudioPlayerConfig:
-      StringAudioClipDictionary:
-      - Name: click
-        Clip: {fileID: 8300000, guid: bf41ceba158a333468436b492a352b7c, type: 3}
-    RandomableConfig:
-      Chance: 0
-    PlainCell: 0
-  _worldCellsConfig:
-    GridSize: {x: 4, y: 4}
-    CellSize: 0.576
+  _cameraHandlerComponentsGroup:
+    UnityGameObjectComponent:
+      UnityPrefab: {fileID: 7930532153434773375, guid: 484b920b20bbfbb45aef2cf6f824b16f, type: 3}
+      UnitySceneObject: {fileID: 0}
+      StartPosition: {x: 0, y: 0, z: 0}
+      StartRotation: {x: 0, y: 0, z: 0, w: 0}
+    SmoothRotateComponent:
+      RotationSpeed: 45
+      RotationTime: 2
+      NewRotation: {x: 0, y: 0, z: 0, w: 0}
+    SmoothTranslateComponent:
+      SmoothMovementTime: 4
+      SpeedMovement: 4
+  _cellGenerator:
+    GridSize: {x: 5, y: 5}
+    CellSize: 0.556
     CellHeightMaxOffset: 1.5
-    CellHeightMinOffset: -1
+    CellHeightMinOffset: -0.5
     GenerateHeightOffset:
-      Chance: 72
-  _cellPresentationPrefab: {fileID: 3675469248116852843, guid: 5f6d1c36521c8204ba37a7ec51e20d19, type: 3}
---- !u!4 &1252706724
+      Chance: 48
+  _windowContextObjectComponent:
+    UnityPrefab: {fileID: 5471826680081765166, guid: e8408d2c6187f17429b6e23b0d89ee89, type: 3}
+    UnitySceneObject: {fileID: 0}
+    StartPosition: {x: 0, y: 0, z: 0}
+    StartRotation: {x: 0, y: 0, z: 0, w: 0}
+  _playersComponents:
+  - PlayerComponent:
+      PlayerType: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+      MaxBuildDistance: 0
+  - PlayerComponent:
+      PlayerType: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      MaxBuildDistance: 2
+--- !u!4 &829195542
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1252706722}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 829195540}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.81503713, y: 21.157032, z: -48.332188}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1371958288
+--- !u!1 &1224710762
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1144,119 +352,215 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1371958293}
-  - component: {fileID: 1371958292}
-  - component: {fileID: 1371958291}
-  - component: {fileID: 1371958290}
-  - component: {fileID: 1371958289}
-  m_Layer: 5
-  m_Name: ScreenManager
+  - component: {fileID: 1224710764}
+  - component: {fileID: 1224710763}
+  m_Layer: 0
+  m_Name: CellPrefabsHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1371958289
+--- !u!114 &1224710763
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1371958288}
+  m_GameObject: {fileID: 1224710762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54dd6596678a4908b9ee6c36ed625ec8, type: 3}
+  m_Script: {fileID: 11500000, guid: 1953f597add74cdbac9dbd37e13fa280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _screenConfig:
-    WindowConfigs:
-    - {fileID: 6469043542399113489, guid: bee12dd224f4af14abe6f245e25f97f5, type: 3}
-    - {fileID: 18118641133973491, guid: e27bdee50d92eb743bc0be749e95708f, type: 3}
-    - {fileID: 18118641133973491, guid: cb934a863deb0f34cb4f614e291ca699, type: 3}
-    - {fileID: 18118641133973491, guid: 32c687dce686b5042a34d947147e46d5, type: 3}
-    ScreenState: 0
---- !u!114 &1371958290
-MonoBehaviour:
+  _cellComponents:
+  - UnityGameObjectComponent:
+      UnityPrefab: {fileID: 7597928317361272188, guid: 88f325bf372b9774c93a4d117af52e31, type: 3}
+      UnitySceneObject: {fileID: 0}
+      StartPosition: {x: 0, y: 0, z: 0}
+      StartRotation: {x: 0, y: 0, z: 0, w: 0}
+    CellComponent:
+      Plain: 1
+      CellType: 1
+    InformationComponent:
+      Title: " \u0422\u0440\u0430\u0432\u043A\u0430"
+      Description: "\u0425\u0410\u0425\u0410"
+      VisualizationIcon: {fileID: 0}
+    RandomableComponent:
+      Chance: 23
+    HealthComponent:
+      MaxHealth: 3
+    MetricsMinerComponent:
+      Mines: 
+      BonusAmount: 0
+  - UnityGameObjectComponent:
+      UnityPrefab: {fileID: 2614807959507322926, guid: 05f0acbf765e7dd4ca96e83bcbf66e99, type: 3}
+      UnitySceneObject: {fileID: 0}
+      StartPosition: {x: 0, y: 0, z: 0}
+      StartRotation: {x: 0, y: 0, z: 0, w: 0}
+    CellComponent:
+      Plain: 1
+      CellType: 2
+    InformationComponent:
+      Title: KTC
+      Description: "\u0425\u0410\u0425\u0410"
+      VisualizationIcon: {fileID: 0}
+    RandomableComponent:
+      Chance: 23
+    HealthComponent:
+      MaxHealth: 2
+    MetricsMinerComponent:
+      Mines: 
+      BonusAmount: 0
+  - UnityGameObjectComponent:
+      UnityPrefab: {fileID: 1484065157042618153, guid: 81867d5c951d12844a971d61d89ff4e0, type: 3}
+      UnitySceneObject: {fileID: 0}
+      StartPosition: {x: 0, y: 0, z: 0}
+      StartRotation: {x: 0, y: 0, z: 0, w: 0}
+    CellComponent:
+      Plain: 1
+      CellType: 3
+    InformationComponent:
+      Title: "\u0433\u0440\u0430\u0441 \u0445\u0438\u043B"
+      Description: "\u0425\u0410\u0425\u0410"
+      VisualizationIcon: {fileID: 0}
+    RandomableComponent:
+      Chance: 34
+    HealthComponent:
+      MaxHealth: 5
+    MetricsMinerComponent:
+      Mines: 
+      BonusAmount: 0
+  - UnityGameObjectComponent:
+      UnityPrefab: {fileID: 798750379454064128, guid: df02475cc32da4f4f9b039164ea880ed, type: 3}
+      UnitySceneObject: {fileID: 0}
+      StartPosition: {x: 0, y: 0, z: 0}
+      StartRotation: {x: 0, y: 0, z: 0, w: 0}
+    CellComponent:
+      Plain: 1
+      CellType: 4
+    InformationComponent:
+      Title: "\u0433\u0440\u0430\u0441 \u0445\u0438\u043B"
+      Description: "\u0425\u0410\u0425\u0410"
+      VisualizationIcon: {fileID: 0}
+    RandomableComponent:
+      Chance: 5
+    HealthComponent:
+      MaxHealth: 12
+    MetricsMinerComponent:
+      Mines: 
+      BonusAmount: 0
+  - UnityGameObjectComponent:
+      UnityPrefab: {fileID: 5884552772847644152, guid: 51fe1d25e19e138429f32a7db14f48b7, type: 3}
+      UnitySceneObject: {fileID: 0}
+      StartPosition: {x: 0, y: 0, z: 0}
+      StartRotation: {x: 0, y: 0, z: 0, w: 0}
+    CellComponent:
+      Plain: 1
+      CellType: 5
+    InformationComponent:
+      Title: "\u043F\u0435\u0441\u043E\u043A"
+      Description: "\u043F\u0435\u0441\u043E\u043A"
+      VisualizationIcon: {fileID: 0}
+    RandomableComponent:
+      Chance: 5
+    HealthComponent:
+      MaxHealth: 11
+    MetricsMinerComponent:
+      Mines: 
+      BonusAmount: 0
+  - UnityGameObjectComponent:
+      UnityPrefab: {fileID: 3639585668367532261, guid: 78b0d83d55a9741469911a208c5063de, type: 3}
+      UnitySceneObject: {fileID: 0}
+      StartPosition: {x: 0, y: 0, z: 0}
+      StartRotation: {x: 0, y: 0, z: 0, w: 0}
+    CellComponent:
+      Plain: 0
+      CellType: 14
+    InformationComponent:
+      Title: "\u0414\u0435\u0440\u0435\u0432\u043D\u044F"
+      Description: "\u043F\u0435\u0441\u043E\u043A"
+      VisualizationIcon: {fileID: 8479393442799774504, guid: 9b1fcd2de5551584ab2d6cf12f8341ad, type: 3}
+    RandomableComponent:
+      Chance: 5
+    HealthComponent:
+      MaxHealth: 1
+    MetricsMinerComponent:
+      Mines: 01000000
+      BonusAmount: 1
+  - UnityGameObjectComponent:
+      UnityPrefab: {fileID: 14588194416819017, guid: 88c72cd95ba09204c8635a3c001f4ccc, type: 3}
+      UnitySceneObject: {fileID: 0}
+      StartPosition: {x: 0, y: 0, z: 0}
+      StartRotation: {x: 0, y: 0, z: 0, w: 0}
+    CellComponent:
+      Plain: 0
+      CellType: 15
+    InformationComponent:
+      Title: "\u0411\u0430\u0448\u043D\u044F"
+      Description: "\u043F\u0435\u0441\u043E\u043A"
+      VisualizationIcon: {fileID: 8479393442799774504, guid: 99679aee07983494c9ebc56e0c5fe1b7, type: 3}
+    RandomableComponent:
+      Chance: 5
+    HealthComponent:
+      MaxHealth: 1
+    MetricsMinerComponent:
+      Mines: 0000000001000000
+      BonusAmount: 1
+  - UnityGameObjectComponent:
+      UnityPrefab: {fileID: 1288064003906350059, guid: c32c02007471630429f0303aece04373, type: 3}
+      UnitySceneObject: {fileID: 0}
+      StartPosition: {x: 0, y: 0, z: 0}
+      StartRotation: {x: 0, y: 0, z: 0, w: 0}
+    CellComponent:
+      Plain: 0
+      CellType: 16
+    InformationComponent:
+      Title: "\u0411\u0430\u0448\u043D\u044F"
+      Description: "\u043F\u0435\u0441\u043E\u043A"
+      VisualizationIcon: {fileID: 8479393442799774504, guid: 886c79aff69101e44861a8ccbf05a5e1, type: 3}
+    RandomableComponent:
+      Chance: 5
+    HealthComponent:
+      MaxHealth: 1
+    MetricsMinerComponent:
+      Mines: 01000000
+      BonusAmount: 1
+  - UnityGameObjectComponent:
+      UnityPrefab: {fileID: 8807529451667030063, guid: 1a66a2a5693515c4daa09fd2c535c0d1, type: 3}
+      UnitySceneObject: {fileID: 0}
+      StartPosition: {x: 0, y: 0, z: 0}
+      StartRotation: {x: 0, y: 0, z: 0, w: 0}
+    CellComponent:
+      Plain: 0
+      CellType: 17
+    InformationComponent:
+      Title: "\u0428\u0430\u0445\u0442\u0430"
+      Description: "\u043F\u0435\u0441\u043E\u043A"
+      VisualizationIcon: {fileID: 8479393442799774504, guid: b7e543a3ffbf8fc45bbdf8ddb9cb2ffd, type: 3}
+    RandomableComponent:
+      Chance: 5
+    HealthComponent:
+      MaxHealth: 1
+    MetricsMinerComponent:
+      Mines: 00000000
+      BonusAmount: 2
+--- !u!4 &1224710764
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1371958288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &1371958291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1371958288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 640, y: 480}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
---- !u!223 &1371958292
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1371958288}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
---- !u!224 &1371958293
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1371958288}
+  m_GameObject: {fileID: 1224710762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 18.034582, y: -1.629698, z: -0.78268147}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
---- !u!1 &1971316833
+--- !u!1 &1471418508
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1264,9 +568,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1971316836}
-  - component: {fileID: 1971316835}
-  - component: {fileID: 1971316834}
+  - component: {fileID: 1471418511}
+  - component: {fileID: 1471418510}
+  - component: {fileID: 1471418509}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1274,13 +578,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1971316834
+--- !u!114 &1471418509
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1971316833}
+  m_GameObject: {fileID: 1471418508}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
@@ -1294,13 +598,13 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
---- !u!114 &1971316835
+--- !u!114 &1471418510
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1971316833}
+  m_GameObject: {fileID: 1471418508}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
@@ -1309,22 +613,22 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!4 &1971316836
+--- !u!4 &1471418511
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1971316833}
+  m_GameObject: {fileID: 1471418508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2025135522
+--- !u!1 &2105414856
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1332,55 +636,63 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2025135527}
-  - component: {fileID: 2025135526}
-  - component: {fileID: 2025135528}
+  - component: {fileID: 2105414858}
+  - component: {fileID: 2105414857}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: UiPrefabsHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!33 &2025135526
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2025135522}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &2025135527
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2025135522}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1112517616}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2025135528
+--- !u!114 &2105414857
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2025135522}
+  m_GameObject: {fileID: 2105414856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ec46bebbd804a7395b38af90702bf17, type: 3}
+  m_Script: {fileID: 11500000, guid: a9dbeea7bd334e5c8ca6b03d462b6664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _smoothRotateConfig:
-    RotationSpeed: 20
-    RotationTime: 3
-  _smoothTranslateConfig:
-    SmoothMovementTime: 4
-    SpeedMovement: 4
+  _informationTagComponentData:
+    UnityGameObjectComponent:
+      UnityPrefab: {fileID: 7427281337888590789, guid: bee12dd224f4af14abe6f245e25f97f5, type: 3}
+      UnitySceneObject: {fileID: 0}
+      StartPosition: {x: 0, y: 0, z: 0}
+      StartRotation: {x: 0, y: 0, z: 0, w: 0}
+  _toolBoxTagComponentData:
+    UnityGameObjectComponent:
+      UnityPrefab: {fileID: 18118641133973485, guid: cb934a863deb0f34cb4f614e291ca699, type: 3}
+      UnitySceneObject: {fileID: 0}
+      StartPosition: {x: 0, y: 0, z: 0}
+      StartRotation: {x: 0, y: 0, z: 0, w: 0}
+  _chooseCellTagComponentData:
+    UnityGameObjectComponent:
+      UnityPrefab: {fileID: 18118641133973485, guid: 32c687dce686b5042a34d947147e46d5, type: 3}
+      UnitySceneObject: {fileID: 0}
+      StartPosition: {x: 0, y: 0, z: 0}
+      StartRotation: {x: 0, y: 0, z: 0, w: 0}
+  _metricShowerTagComponentData:
+    UnityGameObjectComponent:
+      UnityPrefab: {fileID: 18118641133973485, guid: e27bdee50d92eb743bc0be749e95708f, type: 3}
+      UnitySceneObject: {fileID: 0}
+      StartPosition: {x: 0, y: 0, z: 0}
+      StartRotation: {x: 0, y: 0, z: 0, w: 0}
+--- !u!4 &2105414858
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105414856}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
