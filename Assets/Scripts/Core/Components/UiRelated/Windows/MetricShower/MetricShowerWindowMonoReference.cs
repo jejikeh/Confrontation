@@ -8,6 +8,8 @@ namespace Core.Components.UiRelated.Windows.MetricShower
     public class MetricShowerWindowMonoReference : MonoBehaviour
     {
         [SerializeField] 
+        private TMP_Text _move;
+        [SerializeField] 
         private TMP_Text _gold;
         [SerializeField] 
         private TMP_Text _speedCreationUnits;
@@ -15,7 +17,7 @@ namespace Core.Components.UiRelated.Windows.MetricShower
         private void Start()
         {
             transform.GetComponent<RectTransform>().anchoredPosition = Vector2.down;
-            GetComponent<MonoEntity>().HandledEntity.ContextGet<MetricShowerWindowComponent>().SetTexts(_gold, _speedCreationUnits);
+            GetComponent<MonoEntity>().HandledEntity.ContextGet<MetricShowerWindowComponent>().SetTexts(_move,_gold, _speedCreationUnits);
         }
     }
 }
