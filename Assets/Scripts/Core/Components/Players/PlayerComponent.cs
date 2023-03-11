@@ -13,5 +13,7 @@ namespace Core.Components.Players
         public Color Color;
         [SerializeField] 
         public float MaxBuildDistance;
+        [HideInInspector] 
+        public bool Turn;
     }
 }
