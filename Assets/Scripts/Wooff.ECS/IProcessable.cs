@@ -2,11 +2,13 @@ namespace Wooff.ECS
 {
     public interface IProcessable 
     {
-        public void Process(float timeScale);
+        public void Start();
+        public void Update(float timeScale);
     }
 
-    public interface IProcessable<T> 
+    public interface IProcessable<in T> 
     {
-        public void Process(float timeScale, T data);
+        public void Start(T data);
+        public void Update(float timeScale, T data);
     }
 }
