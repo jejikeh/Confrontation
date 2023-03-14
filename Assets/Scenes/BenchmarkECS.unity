@@ -314,7 +314,7 @@ MonoBehaviour:
     CellHeightMaxOffset: 1.5
     CellHeightMinOffset: -0.5
     GenerateHeightOffset:
-      Chance: 8
+      Chance: 20
   _windowContextObjectComponent:
     UnityPrefab: {fileID: 5471826680081765166, guid: e8408d2c6187f17429b6e23b0d89ee89, type: 3}
     UnitySceneObject: {fileID: 0}
