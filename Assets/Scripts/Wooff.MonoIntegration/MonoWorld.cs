@@ -39,7 +39,6 @@ namespace Wooff.MonoIntegration
             SystemContext.ContextAdd(new SmoothRotateAround());
             SystemContext.ContextAdd(new UpdateSmoothTranslate());
             SystemContext.ContextAdd(new PlayerTagVisualisation());
-            SystemContext.ContextAdd(new PlayersTurns());
             SystemContext.ContextAdd(new MetricUserBalanceShower());
             
             SystemContext.ContextAdd(new CameraMouseClick());
@@ -49,6 +48,7 @@ namespace Wooff.MonoIntegration
             SystemContext.ContextAdd(new EndProcessClickStateCell());
             
             SystemContext.ContextAdd(new HealthTracker());
+            SystemContext.ContextAdd(new PlayersTurns());
             SystemContext.ContextAdd(new MetricBalanceMining());
             SystemContext.ContextAdd(new WindowTracker());
         }
