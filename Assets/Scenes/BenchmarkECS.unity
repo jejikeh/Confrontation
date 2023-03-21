@@ -331,6 +331,11 @@ MonoBehaviour:
       Color: {r: 0.8396226, g: 0.13069598, b: 0.13069598, a: 1}
       MaxBuildDistance: 2
       Turn: 0
+  - PlayerComponent:
+      PlayerType: 0
+      Color: {r: 1, g: 0.97859186, b: 0.044025064, a: 1}
+      MaxBuildDistance: 2
+      Turn: 0
 --- !u!4 &829195542
 Transform:
   m_ObjectHideFlags: 0
