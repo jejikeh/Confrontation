@@ -3,7 +3,7 @@ using Wooff.ECS.Components;
 
 namespace Core.Components.Metrics
 {
-    public class MetricHandlerBalance : IComponent
+    public class MetricHandlerBalanceComponent : IComponent
     {
         public Dictionary<MetricType, float> Balance = new Dictionary<MetricType, float>()
         {
