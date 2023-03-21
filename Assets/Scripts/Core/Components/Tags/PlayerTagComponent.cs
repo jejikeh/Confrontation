@@ -9,19 +9,19 @@ namespace Core.Components.Tags
 {
     public class PlayerTagComponent : IComponent
     {
-        public MetricHandlerBalance MetricMinerComponent;
+        public MetricHandlerBalanceComponent MetricHandlerBalanceComponent;
         public PlayerComponent PlayerComponent;
 
         public PlayerTagComponent(PlayerTagComponentData data)
         {
-            MetricMinerComponent = new MetricHandlerBalance();
+            MetricHandlerBalanceComponent = new MetricHandlerBalanceComponent();
             PlayerComponent = data.PlayerComponent;
         }
         
         public IEntity CreatePlayerTagEntityContainer()
         {
             return new Entity(
-                MetricMinerComponent,
+                MetricHandlerBalanceComponent,
                 PlayerComponent,
                 this);
         }
