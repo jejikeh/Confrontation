@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Core.Components;
 using Core.Components.CellRelated;
@@ -10,12 +11,14 @@ using Core.Components.UnityRelated;
 using UnityEngine;
 using Wooff.ECS.Contexts;
 using Wooff.ECS.Entities;
+using Random = UnityEngine.Random;
 
 namespace Core.Systems
 {
     public class PlayersTurns : Wooff.ECS.Systems.System
     {
-        private Queue<IEntity> _cachedEntities = new Queue<IEntity>();
+        private Queue<IEntity> _cachedPlayers = new Queue<IEntity>();
+        private List<IEntity> _cachedCells = new List<IEntity>();
         private bool _isSetToTurn;
 
         public override void StartFromEntityContextQuery(EntityContext context)
@@ -24,29 +27,41 @@ namespace Core.Systems
                 .ContextGetAllFromMap(typeof(PlayerComponent));
 
             foreach (var player in players)
-                _cachedEntities.Enqueue(player);
+                _cachedPlayers.Enqueue(player);
         }
         
         public override void UpdateFromEntityContextQuery(float timeScale, EntityContext context)
         {
-            var player = _cachedEntities.Peek().ContextGet<PlayerComponent>();
+            if (_cachedCells.Count != context.Count<CellTagComponent>())
+            {
+                var newEntities = context
+                    .ContextWhereQuery(x => x.ContextContains<CellTagComponent>())
+                    .Where(x => !_cachedCells.Contains(x))
+                    .ToArray();
+                
+                if(!newEntities.Any())
+                    return;
+                
+                _cachedCells.AddRange(newEntities);
+            }
+            
+            var player = _cachedPlayers.Peek().ContextGet<PlayerComponent>();
             if (GameStateManager.GetTurnState == TurnState.StartTurn && !_isSetToTurn)
             {
                 player.Turn = true;
                 _isSetToTurn = true;
-                _cachedEntities.Peek().ContextGet<MetricHandlerBalance>().AddToMetric(MetricType.Move, 2);
-                MetricBalanceMining.CurrentTurnEntity = _cachedEntities.Peek();
+                _cachedPlayers.Peek().ContextGet<MetricHandlerBalanceComponent>().AddToMetric(MetricType.Move, 2);
+                MetricBalanceMining.CurrentTurnEntity = _cachedPlayers.Peek();
             }
-
-            if (GameStateManager.GetTurnState == TurnState.EndTurn && _isSetToTurn)
+            else if (GameStateManager.GetTurnState == TurnState.EndTurn && _isSetToTurn)
             {
                 player.Turn = false;
                 _isSetToTurn = false;
-                _cachedEntities.Enqueue(_cachedEntities.Dequeue());
+                _cachedPlayers.Enqueue(_cachedPlayers.Dequeue());
                 GameStateManager.SetTurnState(TurnState.StartTurn);
             }
 
-            if (player.PlayerType == PlayerType.User && ChooseCellWindowMonoReference.GetState != CellType.None)
+            if (ChooseCellWindowMonoReference.GetState != CellType.None)
             {
                 var chooseCellWindowComponent = context
                     .ContextWhereQuery(x => x.ContextContains<ChooseCellWindowComponent>())
@@ -54,7 +69,7 @@ namespace Core.Systems
                     .ContextGet<ChooseCellWindowComponent>();
                 
                 ReplaceCell(
-                    _cachedEntities.Peek(),
+                    _cachedPlayers.Peek(),
                     chooseCellWindowComponent.ClickedEntity,
                     ChooseCellWindowMonoReference.GetState, 
                     context);
@@ -69,7 +84,7 @@ namespace Core.Systems
             if (clickedEntity is null || !clickedEntity.ContextGet<CellComponent>().Plain)
                 return;
 
-            var playerBalance = player.ContextGet<MetricHandlerBalance>();
+            var playerBalance = player.ContextGet<MetricHandlerBalanceComponent>();
             if (playerBalance.Balance[MetricType.Gold] <= 0)
                 return;
 
@@ -83,7 +98,7 @@ namespace Core.Systems
             {
                 var allPropertyCells = entityContext.ContextWhereQuery(x =>
                         x.ContextContains<PropertyComponent>())
-                    .Where(p => p.ContextGet<PropertyComponent>().Owner.ContextGet<PlayerComponent>().PlayerType == PlayerType.User)
+                    .Where(p => p.ContextGet<PropertyComponent>().Owner == player)
                     .Select(x => x.ContextGet<UnityGameObjectComponent>());
 
                 if (allPropertyCells.Any())
@@ -99,8 +114,8 @@ namespace Core.Systems
                 }
             }
             
-            player.ContextGet<MetricHandlerBalance>().RemoveFromMetric(MetricType.Gold, 1);
-            player.ContextGet<MetricHandlerBalance>().RemoveFromMetric(MetricType.Move, 1);
+            player.ContextGet<MetricHandlerBalanceComponent>().RemoveFromMetric(MetricType.Gold, 1);
+            player.ContextGet<MetricHandlerBalanceComponent>().RemoveFromMetric(MetricType.Move, 1);
 
             var unityObject = clickedEntity
                 .ContextGet<UnityGameObjectComponent>();

@@ -44,10 +44,10 @@ namespace Core.Systems
                 if(property.Owner != CurrentTurnEntity)
                     continue;
                 
-                if(!property.Owner.ContextContains<MetricHandlerBalance>())
+                if(!property.Owner.ContextContains<MetricHandlerBalanceComponent>())
                     continue;
                 
-                var ownerBalance = property.Owner.ContextGet<MetricHandlerBalance>();
+                var ownerBalance = property.Owner.ContextGet<MetricHandlerBalanceComponent>();
 
                 foreach (var mine in metricsMiner.Metrics)
                     ownerBalance.AddToMetric(mine, metricsMiner.BonusAmount);

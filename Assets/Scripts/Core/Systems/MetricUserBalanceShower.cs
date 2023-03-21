@@ -14,7 +14,7 @@ namespace Core.Systems
     public class MetricUserBalanceShower : Wooff.ECS.Systems.System
     {
         private MetricShowerWindowComponent _metricShowerWindowComponent;
-        private PlayerTagComponent _playerTagComponent;
+        private List<PlayerTagComponent> _playerTagComponents = new List<PlayerTagComponent>();
 
         public override void StartFromEntityContextQuery(EntityContext context)
         {
@@ -22,16 +22,15 @@ namespace Core.Systems
                 .ContextGetAllFromMap(typeof(MetricShowerWindowComponent))
                 .FirstOrDefault()
                 .ContextGet<MetricShowerWindowComponent>();
-            
-            _playerTagComponent = context
-                .ContextGetAllFromMap(typeof(PlayerTagComponent))
-                .FirstOrDefault(x => x.ContextGet<PlayerComponent>().PlayerType == PlayerType.User)
-                .ContextGet<PlayerTagComponent>();
+
+            _playerTagComponents = context
+                .ContextGetAllFromMap(typeof(PlayerComponent)).Select(x => x.ContextGet<PlayerTagComponent>()).ToList();
         }
 
         public override void UpdateFromEntityContextQuery(float timeScale, EntityContext context)
         {
-            _metricShowerWindowComponent.UpdateMetrics(_playerTagComponent.MetricMinerComponent);
+            foreach (var playerTagComponent in _playerTagComponents.Where(playerTagComponent => playerTagComponent.PlayerComponent.Turn))
+                _metricShowerWindowComponent.UpdatePlayerInformation(playerTagComponent.MetricHandlerBalanceComponent, playerTagComponent.PlayerComponent.Color);
         }
     }
 }
