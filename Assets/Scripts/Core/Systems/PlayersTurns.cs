@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Core.Components;
 using Core.Components.CellRelated;
@@ -11,7 +10,6 @@ using Core.Components.UnityRelated;
 using UnityEngine;
 using Wooff.ECS.Contexts;
 using Wooff.ECS.Entities;
-using Random = UnityEngine.Random;
 
 namespace Core.Systems
 {
@@ -51,7 +49,6 @@ namespace Core.Systems
                 player.Turn = true;
                 _isSetToTurn = true;
                 _cachedPlayers.Peek().ContextGet<MetricHandlerBalanceComponent>().AddToMetric(MetricType.Move, 2);
-                MetricBalanceMining.CurrentTurnEntity = _cachedPlayers.Peek();
             }
             else if (GameStateManager.GetTurnState == TurnState.EndTurn && _isSetToTurn)
             {
