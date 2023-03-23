@@ -12,24 +12,18 @@ namespace Core.Systems
     public class MetricBalanceMining : Wooff.ECS.Systems.System
     {
         private List<IEntity> _cachedProperties = new List<IEntity>();
-        private int _cachedPropertiesCount;
         
         private IEntity _turnPlayer;
 
         public override void UpdateFromEntityContextQuery(float timeScale, EntityContext context)
         {
-            if(GameStateManager.GetTurnState == TurnState.StartTurn)
+            if(GameStateManager.GetTurnState == TurnState.ProcessTurn)
                 return;
             
-            if (_cachedPropertiesCount != context.Count<PropertyComponent>())
-            {
+            if (_cachedProperties.Count != context.Count<PropertyComponent>())
                 _cachedProperties = context
                     .ContextWhereQuery(x => x.ContextContains<PropertyComponent>())
-                    .Where(x => !_cachedProperties.Contains(x))
                     .ToList();
-                
-                _cachedPropertiesCount = context.Count<PropertyComponent>();
-            }
 
             _turnPlayer = context
                 .ContextWhereQuery(x => x.ContextContains<PlayerComponent>())
