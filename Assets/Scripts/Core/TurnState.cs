@@ -3,6 +3,7 @@
     public enum TurnState
     {
         StartTurn,
+        ProcessTurn,
         EndTurn
     }
 }
