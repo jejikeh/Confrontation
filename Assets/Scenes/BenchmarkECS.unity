@@ -513,7 +513,7 @@ MonoBehaviour:
       MaxHealth: 1
     MetricsMinerComponent:
       Metrics: 0000000001000000
-      BonusAmount: 1
+      BonusAmount: 10
   - UnityGameObjectComponent:
       UnityPrefab: {fileID: 1288064003906350059, guid: c32c02007471630429f0303aece04373, type: 3}
       UnitySceneObject: {fileID: 0}
