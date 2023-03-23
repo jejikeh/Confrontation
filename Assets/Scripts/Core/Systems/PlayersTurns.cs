@@ -17,7 +17,6 @@ namespace Core.Systems
     {
         private Queue<IEntity> _cachedPlayers = new Queue<IEntity>();
         private List<IEntity> _cachedCells = new List<IEntity>();
-        private bool _isSetToTurn;
 
         public override void StartFromEntityContextQuery(EntityContext context)
         {
@@ -28,7 +27,7 @@ namespace Core.Systems
                 _cachedPlayers.Enqueue(player);
         }
         
-        public override void UpdateFromEntityContextQuery(float timeScale, EntityContext context)
+        public override async void UpdateFromEntityContextQuery(float timeScale, EntityContext context)
         {
             if (_cachedCells.Count != context.Count<CellTagComponent>())
             {
@@ -44,21 +43,21 @@ namespace Core.Systems
             }
             
             var player = _cachedPlayers.Peek().ContextGet<PlayerComponent>();
-            if (GameStateManager.GetTurnState == TurnState.StartTurn && !_isSetToTurn)
+            if (GameStateManager.GetTurnState == TurnState.StartTurn)
             {
                 player.Turn = true;
-                _isSetToTurn = true;
+                // todo: move this to metrics miner
                 _cachedPlayers.Peek().ContextGet<MetricHandlerBalanceComponent>().AddToMetric(MetricType.Move, 2);
+                GameStateManager.SetTurnState(TurnState.ProcessTurn);
             }
-            else if (GameStateManager.GetTurnState == TurnState.EndTurn && _isSetToTurn)
+            else if (GameStateManager.GetTurnState == TurnState.EndTurn)
             {
                 player.Turn = false;
-                _isSetToTurn = false;
                 _cachedPlayers.Enqueue(_cachedPlayers.Dequeue());
                 GameStateManager.SetTurnState(TurnState.StartTurn);
             }
 
-            if (ChooseCellWindowMonoReference.GetState != CellType.None)
+            if (ChooseCellWindowMonoReference.GetState != CellType.None && player.PlayerType == PlayerType.User)
             {
                 var chooseCellWindowComponent = context
                     .ContextWhereQuery(x => x.ContextContains<ChooseCellWindowComponent>())
@@ -75,7 +74,7 @@ namespace Core.Systems
                 ChooseCellWindowMonoReference.StateHandled();
             }
         }
-        
+
         private void ReplaceCell(IEntity player, IEntity clickedEntity, CellType cellType, EntityContext entityContext)
         {
             if (clickedEntity is null || !clickedEntity.ContextGet<CellComponent>().Plain)
