@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7506613410554744429}
   - component: {fileID: 6882347633244078536}
   - component: {fileID: 8676173672623600898}
+  - component: {fileID: 6086742374930806794}
   m_Layer: 0
   m_Name: dirt
   m_TagString: Untagged
@@ -84,6 +85,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6086742374930806794
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7162704231688623319}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6202518890732439607, guid: 08ea8fecab511344b990bb540d7a9b0d, type: 3}
 --- !u!1 &7197230107084414460
 GameObject:
   m_ObjectHideFlags: 0

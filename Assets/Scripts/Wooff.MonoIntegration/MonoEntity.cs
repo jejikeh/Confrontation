@@ -1,60 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Core.Components.Tags;
+using DG.Tweening;
 using UnityEngine;
-using Wooff.ECS;
-using Wooff.ECS.Components;
-
-
-// TODO: Add field _context and replace all methods by _context.method()
+using Wooff.ECS.Entities;
 
 namespace Wooff.MonoIntegration
 {
-    public class MonoEntity : MonoBehaviour, IMonoEntity
+    public class MonoEntity : MonoBehaviour
     {
-        public HashSet<IComponent<IConfig, IMonoEntity>> Items { get; } = new HashSet<IComponent<IConfig, IMonoEntity>>();
-        public IComponent<IConfig, IMonoEntity> ContextAdd(IComponent<IConfig, IMonoEntity> item)
+        public IEntity HandledEntity { get; set; }
+        private float _yPosition;
+
+        private void Start()
         {
-            Items.Add(item);
-            return item;
+            _yPosition = transform.position.y;
         }
 
-        public T2 ContextGet<T2>() where T2 : class, IComponent<IConfig, IMonoEntity>
+        private async void OnMouseEnter()
         {
-            var item = Items.FirstOrDefault(x => x.GetType() == typeof(T2));
-            return item as T2;
-        }
-
-        public bool ContextRemove(IComponent<IConfig, IMonoEntity> item)
-        {
-            item.OnRemove();
-            return Items.Remove(item);
-        }
-
-        public bool ContextContains<T2>() where T2 : class, IComponent<IConfig, IMonoEntity>
-        {
-            return Items.FirstOrDefault(x => x.GetType() == typeof(T2)) is not null;
+            if (!HandledEntity.ContextContains<HoverableTag>())
+                return;
+            
+            transform.DOComplete();
+            await transform.DOMoveY(_yPosition + 0.15f, 0.25f).AsyncWaitForCompletion();
         }
         
-        public T2 ContextGetAs<T2>() where T2 : class, IComponent<IConfig, IMonoEntity>
+        public async void OnMouseExit()
         {
-            foreach (var component in Items)
-                if (component is T2 templateComponent)
-                    return templateComponent;
-
-            return default;
-        }
-
-        public GameObject MonoObject { get; set; }
-
-        protected virtual void Awake()
-        {
-            MonoObject = gameObject;
-        }
-
-        private void OnDestroy()
-        {
-            Items.Clear();
+            if (!HandledEntity.ContextContains<HoverableTag>())
+                return;
+            
+            transform.DOComplete();
+            await transform.DOMoveY(_yPosition, 0.25f).AsyncWaitForCompletion();
         }
     }
 }

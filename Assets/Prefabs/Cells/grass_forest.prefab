@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 3387403257008362132}
   - component: {fileID: 1778256398681054513}
   - component: {fileID: 4560270157622274555}
+  - component: {fileID: 8413568852725596692}
   m_Layer: 0
   m_Name: grass_forest
   m_TagString: Untagged
@@ -196,7 +197,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 780218236153622981}
   - {fileID: 8887948477980668884}
@@ -261,6 +262,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8413568852725596692
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2614807959507322926}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5720556590480990760, guid: 0389b9362b54ba642b97f0b3b0369ebb, type: 3}
 --- !u!1 &2945154013312764228
 GameObject:
   m_ObjectHideFlags: 0

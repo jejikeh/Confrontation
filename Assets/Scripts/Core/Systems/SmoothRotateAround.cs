@@ -1,20 +1,37 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Core.Components.SmoothRotateComponent;
+﻿using System.Linq;
+using Core.Components.TransformRelated;
+using Core.Components.UnityRelated;
+using UnityEngine;
 using Wooff.ECS.Contexts;
-using Wooff.MonoIntegration;
+using Wooff.ECS.Entities;
 
 namespace Core.Systems
 {
-    public class SmoothRotateAround : IMonoSystem
+    public class SmoothRotateAround : Wooff.ECS.Systems.System
     {
-        public void Process(float timeScale, IContext<IMonoEntity, List<IMonoEntity>> data)
+        private IEntity[] _cachedEntities;
+        private int _cachedCount;
+        
+        public override void UpdateFromEntityContextQuery(float timeScale, EntityContext context)
         {
-            foreach (var smoothRotate in data.Items
-                         .Where(x => x.ContextContains<SmoothRotate>())
-                         .Select(x => x.ContextGet<SmoothRotate>()))
+            if (_cachedCount != context.Count<SmoothTranslateComponent>())
             {
-                smoothRotate.Update(timeScale);
+                _cachedEntities = context.ContextWhereQuery(x =>
+                    x.ContextContains<UnityGameObjectComponent>() &&
+                    x.ContextContains<SmoothTranslateComponent>()).ToArray();
+
+                _cachedCount = context.Count<SmoothTranslateComponent>();
+            }
+                
+            foreach (var entity in _cachedEntities)
+            {
+                var transform = entity.ContextGet<UnityGameObjectComponent>().UnitySceneObject.transform;
+                var smoothRotate = entity.ContextGet<SmoothRotateComponent>();
+
+                transform.rotation = Quaternion.Lerp(
+                    transform.rotation,
+                    smoothRotate.NewRotation,
+                    Time.deltaTime * timeScale * smoothRotate.RotationTime);
             }
         }
     }

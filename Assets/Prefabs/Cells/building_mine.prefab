@@ -349,7 +349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3848187638308631309
 Transform:
   m_ObjectHideFlags: 0
@@ -772,6 +772,7 @@ GameObject:
   - component: {fileID: 8174440089860430485}
   - component: {fileID: 5106706386437854512}
   - component: {fileID: 7006014627004293626}
+  - component: {fileID: 4769244571357012871}
   m_Layer: 0
   m_Name: building_mine
   m_TagString: Untagged
@@ -854,3 +855,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4769244571357012871
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8807529451667030063}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7209984534606197617, guid: e58e9306326adfb4197fd6ed0262cf96, type: 3}
