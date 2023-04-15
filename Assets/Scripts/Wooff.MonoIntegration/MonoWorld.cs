@@ -6,6 +6,7 @@ using Core.Components.Tags.UiTags.Windows;
 using Core.Components.UnityRelated;
 using Core.Systems;
 using Core.Systems.ClickSystems;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Wooff.ECS.Contexts;
@@ -87,11 +88,6 @@ namespace Wooff.MonoIntegration
                 SceneManager.LoadScene("BenchmarkECS");
         }
         
-        /// <summary>
-        /// Spawn Prefab in world and set his name to prefab name
-        /// </summary>
-        /// <param name="prefab">prefab of object</param>
-        /// <returns>spawned object</returns>
         public static GameObject SpawnEntity(GameObject prefab)
         {
             var gameObject = Instantiate(prefab);
