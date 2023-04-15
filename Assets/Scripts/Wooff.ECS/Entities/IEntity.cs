@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Wooff.ECS.Components;
 using Wooff.ECS.Contexts;
 
@@ -8,5 +9,6 @@ namespace Wooff.ECS.Entities
         IContextQueryable<IComponent>
     {
         public T? ContextGetFromInterface<T>() where T : class, IComponent;
+        public List<IComponent> Components();
     }
 }

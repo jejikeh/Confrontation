@@ -35,6 +35,15 @@ namespace Wooff.ECS.Entities
             return _components[key] as T;
         }
 
+        public List<IComponent> Components()
+        {
+            var components = new List<IComponent>();
+            foreach (var component in _components)
+                components.Add(component.Value);
+
+            return components;
+        }
+
         public IQueryable<IComponent> GetAllComponents()
         {
             return _components.Select(x => x.Value).AsQueryable();

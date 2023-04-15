@@ -13,6 +13,7 @@ namespace Wooff.ECS.Contexts
     {
         private readonly List<IEntity> _entities;
         private readonly Dictionary<Type, List<IEntity>> _componentToEntitiesDictionary;
+        public List<IEntity> Entities => _entities;
 
         public EntityContext(params IEntity[] entities)
         {
