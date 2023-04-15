@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Core.Components.Metrics;
 using Core.Components.Players;
 using UnityEngine;
@@ -14,7 +15,15 @@ namespace Core.Components.Tags
 
         public PlayerTagComponent(PlayerTagComponentData data)
         {
-            MetricHandlerBalanceComponent = new MetricHandlerBalanceComponent();
+            MetricHandlerBalanceComponent = new MetricHandlerBalanceComponent()
+            {
+                Balance = new Dictionary<MetricType, float>()
+                {
+                    { MetricType.Move, 2 },
+                    { MetricType.Gold, 2 },
+                    { MetricType.Units, 10}
+                }
+            };
             PlayerComponent = data.PlayerComponent;
         }
         

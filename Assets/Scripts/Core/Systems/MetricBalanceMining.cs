@@ -33,10 +33,9 @@ namespace Core.Systems
             {
                 if(!entity.ContextContains<MetricsMinerComponent>())
                     continue;
+                
                 var metricsMiner = entity.ContextGet<MetricsMinerComponent>();
-                
                 var property = entity.ContextGet<PropertyComponent>();
-                
                 if(property.Owner != _turnPlayer)
                     continue;
                 
@@ -44,9 +43,14 @@ namespace Core.Systems
                     continue;
                 
                 var ownerBalance = property.Owner.ContextGet<MetricHandlerBalanceComponent>();
-
+                ownerBalance.SetMetric(MetricType.Units, 0);
                 foreach (var mine in metricsMiner.Metrics)
-                    ownerBalance.AddToMetric(mine, metricsMiner.BonusAmount);
+                {
+                    if (mine == MetricType.Units)
+                        entity.ContextGet<MetricHandlerBalanceComponent>().AddToMetric(mine, metricsMiner.BonusAmount);
+                    
+                    ownerBalance.AddToMetric(mine, entity.ContextGet<MetricHandlerBalanceComponent>().Balance[MetricType.Units]);
+                }
             }
         }
     }

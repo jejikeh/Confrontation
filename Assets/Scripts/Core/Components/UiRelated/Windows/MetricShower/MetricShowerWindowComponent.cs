@@ -26,7 +26,7 @@ namespace Core.Components.UiRelated.Windows.MetricShower
         {
             _move.text = metricHandler.Balance[MetricType.Move].ToString(CultureInfo.InvariantCulture);
             _gold.text = metricHandler.Balance[MetricType.Gold].ToString(CultureInfo.InvariantCulture);
-            _speedCreationUnits.text = metricHandler.Balance[MetricType.SpeedCreationUnits].ToString(CultureInfo.InvariantCulture);
+            _speedCreationUnits.text = metricHandler.Balance[MetricType.Units].ToString(CultureInfo.InvariantCulture);
             _moveColorVisualisation.DOColor(color, 1f);
         }
     }

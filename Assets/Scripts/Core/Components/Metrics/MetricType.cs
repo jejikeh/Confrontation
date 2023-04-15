@@ -4,6 +4,6 @@
     {
         Move,
         Gold,
-        SpeedCreationUnits
+        Units
     }
 }

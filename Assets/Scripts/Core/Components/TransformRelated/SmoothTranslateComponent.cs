@@ -83,6 +83,6 @@ namespace Core.Components.TransformRelated
             }
 
             _direction = Vector3.zero;
-        }   
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Core.Components.CellRelated;
 using Core.Components.Metrics;
 using Core.Components.UnityRelated;
@@ -19,6 +20,7 @@ namespace Core.Components.Tags
         public HoverableTag HoverableTag;
         public HealthComponent HealthComponent;
         public MetricsMinerComponent MetricsMinerComponent;
+        public MetricHandlerBalanceComponent MetricHandlerBalanceComponent;
 
         public CellTagComponent(CellTagComponentData cellTagComponentData, Vector3 position, Quaternion rotation)
         {
@@ -36,6 +38,13 @@ namespace Core.Components.Tags
             HoverableTag = new HoverableTag();
             HealthComponent = new HealthComponent(cellTagComponentData.HealthComponent);
             MetricsMinerComponent = cellTagComponentData.MetricsMinerComponent;
+            MetricHandlerBalanceComponent = new MetricHandlerBalanceComponent()
+            {
+                Balance = new Dictionary<MetricType, float>()
+                {
+                    { MetricType.Units, 0 }
+                }
+            };
         }
         
         public IEntity CreateCellEntityContainer()
@@ -50,6 +59,7 @@ namespace Core.Components.Tags
                 HoverableTag,
                 HealthComponent,
                 MetricsMinerComponent,
+                MetricHandlerBalanceComponent,
                 this);
         }
 
@@ -65,6 +75,7 @@ namespace Core.Components.Tags
                 HoverableTag,
                 HealthComponent,
                 MetricsMinerComponent,
+                MetricHandlerBalanceComponent,
                 new PropertyComponent(handler),
                 this);
         }

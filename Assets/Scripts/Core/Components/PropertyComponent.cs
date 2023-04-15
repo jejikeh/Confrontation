@@ -16,6 +16,5 @@ namespace Core.Components
         {
             Owner = newOwner;
         }
-
     }
 }

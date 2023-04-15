@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Core.Components;
+using Core.Components.Metrics;
 using Core.Components.Players;
 using Core.Components.UnityRelated;
 using UnityEngine;
@@ -37,7 +38,7 @@ namespace Core.Systems
                     
                     var owner = entity.ContextGet<PropertyComponent>().Owner;
                     if (owner.ContextContains<PlayerComponent>())
-                        gameObject.GetComponent<TagIconVisualisation>().SetColor(owner.ContextGet<PlayerComponent>().Color);
+                        gameObject.GetComponent<TagIconVisualisation>().SetProperties(owner.ContextGet<PlayerComponent>().Color, entity.ContextGet<MetricHandlerBalanceComponent>());
                     
                     gameObject.transform.localPosition += Vector3.up;
                 }
