@@ -8,7 +8,7 @@ using Wooff.ECS.Entities;
 
 namespace Core.Systems
 {
-    public class PlayersTurns : Wooff.ECS.Systems.System
+    public class PlayerQueue : Wooff.ECS.Systems.System
     {
         private Queue<IEntity> _cachedPlayers = new Queue<IEntity>();
         private List<IEntity> _cachedCells = new List<IEntity>();

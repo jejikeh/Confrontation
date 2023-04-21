@@ -12,7 +12,6 @@ namespace Core.Systems
     public class MetricBalanceMining : Wooff.ECS.Systems.System
     {
         private List<IEntity> _cachedProperties = new List<IEntity>();
-        
         private IEntity _turnPlayer;
 
         public override void UpdateFromEntityContextQuery(float timeScale, EntityContext context)
@@ -43,13 +42,12 @@ namespace Core.Systems
                     continue;
                 
                 var ownerBalance = property.Owner.ContextGet<MetricHandlerBalanceComponent>();
-                ownerBalance.SetMetric(MetricType.Units, 0);
                 foreach (var mine in metricsMiner.Metrics)
                 {
                     if (mine == MetricType.Units)
-                        entity.ContextGet<MetricHandlerBalanceComponent>().AddToMetric(mine, metricsMiner.BonusAmount);
-                    
-                    ownerBalance.AddToMetric(mine, entity.ContextGet<MetricHandlerBalanceComponent>().Balance[MetricType.Units]);
+                        entity.ContextGet<MetricHandlerBalanceComponent>()?.AddToMetric(mine, metricsMiner.BonusAmount);
+
+                    ownerBalance?.AddToMetric(mine, metricsMiner.BonusAmount);
                 }
             }
         }
