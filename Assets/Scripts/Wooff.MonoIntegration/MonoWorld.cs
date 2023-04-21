@@ -50,7 +50,9 @@ namespace Wooff.MonoIntegration
             
             SystemContext.ContextAdd(new HealthTracker());
             SystemContext.ContextAdd(new MetricBalanceMining());
-            SystemContext.ContextAdd(new PlayersTurns());
+            SystemContext.ContextAdd(new PlayerQueue());
+            SystemContext.ContextAdd(new PlayerTurn());
+            SystemContext.ContextAdd(new ComputerTurn());
             SystemContext.ContextAdd(new WindowTracker());
         }
 
