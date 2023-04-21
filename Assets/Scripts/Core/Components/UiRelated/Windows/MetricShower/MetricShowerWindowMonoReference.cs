@@ -1,7 +1,5 @@
-﻿using Core.Components.Metrics;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Wooff.MonoIntegration;
 
@@ -11,17 +9,15 @@ namespace Core.Components.UiRelated.Windows.MetricShower
     {
         [SerializeField] 
         private TMP_Text _move;
-        [SerializeField] 
+        [SerializeField]
         private TMP_Text _gold;
-        [SerializeField] 
-        private TMP_Text _speedCreationUnits;
         [SerializeField] 
         private Image _colorVisualisation;
 
         private void Start()
         {
             transform.GetComponent<RectTransform>().anchoredPosition = Vector2.down;
-            GetComponent<MonoEntity>().HandledEntity.ContextGet<MetricShowerWindowComponent>().SetUnityDependencies(_move,_gold, _speedCreationUnits, _colorVisualisation);
+            GetComponent<MonoEntity>().HandledEntity.ContextGet<MetricShowerWindowComponent>()?.SetUnityDependencies(_move,_gold, _colorVisualisation);
         }
     }
 }

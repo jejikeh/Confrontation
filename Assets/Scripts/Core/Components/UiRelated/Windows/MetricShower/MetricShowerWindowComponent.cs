@@ -11,14 +11,12 @@ namespace Core.Components.UiRelated.Windows.MetricShower
     {
         private TMP_Text _move;
         private TMP_Text _gold;
-        private TMP_Text _speedCreationUnits;
         private Image _moveColorVisualisation;
 
-        public void SetUnityDependencies(TMP_Text move, TMP_Text gold, TMP_Text speedCreationUnits, Image moveColorVisualisation)
+        public void SetUnityDependencies(TMP_Text move, TMP_Text gold, Image moveColorVisualisation)
         {
             _move = move;
             _gold = gold;
-            _speedCreationUnits = speedCreationUnits;
             _moveColorVisualisation = moveColorVisualisation;
         }
         
@@ -26,7 +24,6 @@ namespace Core.Components.UiRelated.Windows.MetricShower
         {
             _move.text = metricHandler.Balance[MetricType.Move].ToString(CultureInfo.InvariantCulture);
             _gold.text = metricHandler.Balance[MetricType.Gold].ToString(CultureInfo.InvariantCulture);
-            _speedCreationUnits.text = metricHandler.Balance[MetricType.Units].ToString(CultureInfo.InvariantCulture);
             _moveColorVisualisation.DOColor(color, 1f);
         }
     }
