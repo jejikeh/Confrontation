@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.010012759, g: 0.0043729995, b: 0.016188098, a: 1}
+  m_IndirectSpecularColor: {r: 0.010035952, g: 0.004395906, b: 0.01621065, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -550,7 +550,7 @@ MonoBehaviour:
     HealthComponent:
       MaxHealth: 1
     MetricsMinerComponent:
-      Metrics: 02000000
+      Metrics: 0200000001000000
       BonusAmount: 2
 --- !u!4 &1224710764
 Transform:
