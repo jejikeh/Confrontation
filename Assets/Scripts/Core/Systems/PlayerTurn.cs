@@ -15,16 +15,13 @@ namespace Core.Systems
 {
     public class PlayerTurn : Wooff.ECS.Systems.System
     {
-        private Queue<IEntity> _cachedPlayers = new Queue<IEntity>();
-        private List<IEntity> _cachedCells = new List<IEntity>();
+        private List<IEntity> _cachedPlayers = new List<IEntity>();
+        private readonly List<IEntity> _cachedCells = new List<IEntity>();
 
         public override void StartFromEntityContextQuery(EntityContext context)
         {
-            var players = context
-                .ContextGetAllFromMap(typeof(PlayerComponent));
-
-            foreach (var player in players)
-                _cachedPlayers.Enqueue(player);
+            _cachedPlayers = context
+                .ContextGetAllFromMap(typeof(PlayerComponent)).ToList();
         }
 
         public override void UpdateFromEntityContextQuery(float timeScale, EntityContext context)
@@ -42,8 +39,8 @@ namespace Core.Systems
                 _cachedCells.AddRange(newEntities);
             }
 
-            var player = _cachedPlayers.Peek().ContextGet<PlayerComponent>();
-            if (ChooseCellWindowMonoReference.GetState != CellType.None && player.PlayerType == PlayerType.User)
+            var playerUser = _cachedPlayers.FirstOrDefault(x => x.ContextGet<PlayerComponent>().Turn && x.ContextGet<PlayerComponent>().PlayerType == PlayerType.User);
+            if (ChooseCellWindowMonoReference.GetState != CellType.None)
             {
                 var chooseCellWindowComponent = context
                     .ContextWhereQuery(x => x.ContextContains<ChooseCellWindowComponent>())
@@ -51,7 +48,7 @@ namespace Core.Systems
                     .ContextGet<ChooseCellWindowComponent>();
 
                 ReplaceCell(
-                    _cachedPlayers.Peek(),
+                    playerUser,
                     chooseCellWindowComponent.ClickedEntity,
                     ChooseCellWindowMonoReference.GetState,
                     context);

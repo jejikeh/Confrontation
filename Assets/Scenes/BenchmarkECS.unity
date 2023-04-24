@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.010035952, g: 0.004395906, b: 0.01621065, a: 1}
+  m_IndirectSpecularColor: {r: 0.055667993, g: 0.0053490777, b: 0.026836641, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -332,7 +332,7 @@ MonoBehaviour:
       MaxBuildDistance: 2
       Turn: 0
   - PlayerComponent:
-      PlayerType: 0
+      PlayerType: 1
       Color: {r: 1, g: 0.97859186, b: 0.044025064, a: 1}
       MaxBuildDistance: 2
       Turn: 0

@@ -30,11 +30,9 @@ namespace Core.Systems
                     .ContextWhereQuery(x => x.ContextContains<CellTagComponent>())
                     .Where(x => !_cachedCells.Contains(x))
                     .ToArray();
-                
-                if(!newEntities.Any())
-                    return;
-                
-                _cachedCells.AddRange(newEntities);
+
+                if (newEntities.Any())
+                    _cachedCells.AddRange(newEntities);
             }   
             
             var player = _cachedPlayers.Peek().ContextGet<PlayerComponent>();

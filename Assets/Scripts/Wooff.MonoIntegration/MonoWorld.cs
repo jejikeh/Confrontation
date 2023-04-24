@@ -48,9 +48,9 @@ namespace Wooff.MonoIntegration
             SystemContext.ContextAdd(new OpenChooseCellWindowOnCellClick());
             SystemContext.ContextAdd(new EndProcessClickStateCell());
             
+            SystemContext.ContextAdd(new PlayerQueue());
             SystemContext.ContextAdd(new HealthTracker());
             SystemContext.ContextAdd(new MetricBalanceMining());
-            SystemContext.ContextAdd(new PlayerQueue());
             SystemContext.ContextAdd(new PlayerTurn());
             SystemContext.ContextAdd(new ComputerTurn());
             SystemContext.ContextAdd(new WindowTracker());
