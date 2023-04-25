@@ -12,21 +12,27 @@ namespace Core.Systems
     public class MetricBalanceMining : Wooff.ECS.Systems.System
     {
         private List<IEntity> _cachedProperties = new List<IEntity>();
-        private IEntity _turnPlayer;
+        private List<IEntity> _cachedPlayers = new List<IEntity>();
+        private IEntity _cachedTurnPlayer;
+
+        public override void StartFromEntityContextQuery(EntityContext context)
+        {
+            _cachedPlayers = context.ContextGetAllFromMap(typeof(PlayerComponent)).ToList();
+        }
 
         public override void UpdateFromEntityContextQuery(float timeScale, EntityContext context)
         {
-            if(GameStateManager.GetTurnState == TurnState.ProcessTurn)
+            var turnPlayer = _cachedPlayers.FirstOrDefault(x => x.ContextGet<PlayerComponent>().Turn);
+            
+            if (_cachedTurnPlayer == turnPlayer)
                 return;
+
+            _cachedTurnPlayer = turnPlayer;
             
             if (_cachedProperties.Count != context.Count<PropertyComponent>())
                 _cachedProperties = context
                     .ContextWhereQuery(x => x.ContextContains<PropertyComponent>())
                     .ToList();
-
-            _turnPlayer = context
-                .ContextWhereQuery(x => x.ContextContains<PlayerComponent>())
-                .FirstOrDefault(x => x.ContextGet<PlayerComponent>().Turn);
             
             foreach (var entity in _cachedProperties)
             {
@@ -35,10 +41,10 @@ namespace Core.Systems
                 
                 var metricsMiner = entity.ContextGet<MetricsMinerComponent>();
                 var property = entity.ContextGet<PropertyComponent>();
-                if(property.Owner != _turnPlayer)
+                if (property.Owner != _cachedTurnPlayer)
                     continue;
                 
-                if(!property.Owner.ContextContains<MetricHandlerBalanceComponent>())
+                if (!property.Owner.ContextContains<MetricHandlerBalanceComponent>())
                     continue;
                 
                 var ownerBalance = property.Owner.ContextGet<MetricHandlerBalanceComponent>();

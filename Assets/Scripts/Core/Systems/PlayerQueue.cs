@@ -44,7 +44,7 @@ namespace Core.Systems
             }
             else if (GameStateManager.GetTurnState == TurnState.EndTurn)
             {
-                player.Turn = false;
+                player.Turn = false;    
                 _cachedPlayers.Enqueue(_cachedPlayers.Dequeue());
                 GameStateManager.SetTurnState(TurnState.StartTurn);
             }

@@ -40,22 +40,26 @@ namespace Core.Systems
             }
 
             var playerUser = _cachedPlayers.FirstOrDefault(x => x.ContextGet<PlayerComponent>().Turn && x.ContextGet<PlayerComponent>().PlayerType == PlayerType.User);
-            if (ChooseCellWindowMonoReference.GetState != CellType.None)
-            {
-                var chooseCellWindowComponent = context
-                    .ContextWhereQuery(x => x.ContextContains<ChooseCellWindowComponent>())
-                    .FirstOrDefault()
-                    .ContextGet<ChooseCellWindowComponent>();
+            
+            if (ChooseCellWindowMonoReference.GetState == CellType.None)
+                return;
+            
+            var chooseCellWindowComponent = context
+                .ContextWhereQuery(x => x.ContextContains<ChooseCellWindowComponent>())
+                .FirstOrDefault()
+                .ContextGet<ChooseCellWindowComponent>();
+            
+            if (chooseCellWindowComponent == null) 
+                return;
+            
+            ReplaceCell(
+                playerUser,
+                chooseCellWindowComponent.ClickedEntity,
+                ChooseCellWindowMonoReference.GetState,
+                context);
 
-                ReplaceCell(
-                    playerUser,
-                    chooseCellWindowComponent.ClickedEntity,
-                    ChooseCellWindowMonoReference.GetState,
-                    context);
-
-                chooseCellWindowComponent.UpdateClickedCell(null);
-                ChooseCellWindowMonoReference.StateHandled();
-            }
+            chooseCellWindowComponent.UpdateClickedCell(null);
+            ChooseCellWindowMonoReference.StateHandled();
         }
 
         private void ReplaceCell(IEntity player, IEntity clickedEntity, CellType cellType, EntityContext entityContext)
