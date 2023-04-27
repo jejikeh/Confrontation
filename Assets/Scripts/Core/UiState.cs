@@ -4,6 +4,7 @@
     {
         None,
         Information,
-        Build
+        Build,
+        SendUnits
     }
 }

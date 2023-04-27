@@ -14,6 +14,8 @@ namespace Core.Components.UiRelated.Windows.ToolBox
         private Button _buildToolButton;
         [SerializeField]
         private Button _endTurnToolButton;
+        [SerializeField]
+        private Button _sendUnitsButton;
 
         private void Start()
         {
@@ -22,6 +24,7 @@ namespace Core.Components.UiRelated.Windows.ToolBox
             _informationToolButton.onClick.AddListener(OnInformationButtonClick);
             _buildToolButton.onClick.AddListener(OnBuildToolButtonClick);
             _endTurnToolButton.onClick.AddListener(OnEndTurnToolButtonClick);
+            _sendUnitsButton.onClick.AddListener(OnSendTurnsButtonClick);
         }
 
         private void OnNoneToolButtonClick()
@@ -39,6 +42,11 @@ namespace Core.Components.UiRelated.Windows.ToolBox
             GameStateManager.SetUiState(UiState.Build);
         }
         
+        private void OnSendTurnsButtonClick()
+        {
+            GameStateManager.SetUiState(UiState.SendUnits);
+        }
+        
         private void OnEndTurnToolButtonClick()
         {
             GameStateManager.SetTurnState(TurnState.EndTurn);
@@ -50,6 +58,7 @@ namespace Core.Components.UiRelated.Windows.ToolBox
             _informationToolButton.onClick.RemoveAllListeners();
             _buildToolButton.onClick.RemoveAllListeners();
             _endTurnToolButton.onClick.RemoveAllListeners();
+            _sendUnitsButton.onClick.RemoveAllListeners();
         }
     }
 }
