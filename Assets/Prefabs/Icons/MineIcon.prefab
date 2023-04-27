@@ -739,5 +739,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteRenderers:
   - {fileID: 7130853375326311424}
+  - {fileID: 5568941634846768097}
   - {fileID: 1666478544142088914}
   _unitsCount: {fileID: 8493042526028535581}
