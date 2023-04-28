@@ -46,6 +46,7 @@ namespace Wooff.MonoIntegration
             SystemContext.ContextAdd(new MoveCameraOnCellClick());
             SystemContext.ContextAdd(new OpenInformationWindowOnCellClick());
             SystemContext.ContextAdd(new OpenChooseCellWindowOnCellClick());
+            SystemContext.ContextAdd(new SendHalfOfUnitsOnCellClick());
             SystemContext.ContextAdd(new EndProcessClickStateCell());
             
             SystemContext.ContextAdd(new PlayerQueue());
