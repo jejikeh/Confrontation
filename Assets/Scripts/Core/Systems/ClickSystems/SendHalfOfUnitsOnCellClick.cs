@@ -9,42 +9,49 @@ namespace Core.Systems.ClickSystems
 {
     public class SendHalfOfUnitsOnCellClick : HandleClickedState<CellTagComponent>
     {
-        [CanBeNull] private IEntity _lastPressedEntity;
+        [CanBeNull] private IEntity _firstClickedEntity;
+        private PlayerQueue _playerQueue;
+        
+        public SendHalfOfUnitsOnCellClick(PlayerQueue playerQueue)
+        {
+            _playerQueue = playerQueue;
+        }
         
         protected override void ProcessClickedEntity(EntityContext context, IEntity clickedEntity)
         {
             if (GameStateManager.GetUiState != UiState.SendUnits)
             {
-                _lastPressedEntity = null;
+                _firstClickedEntity = null;
                 return;
             }
 
-            if (_lastPressedEntity == null)
+            if (_firstClickedEntity == null)
             {
-                _lastPressedEntity = clickedEntity;
+                _firstClickedEntity = clickedEntity;
                 return;
             }
-            
-            if (!SendUnitsToOtherProperty(_lastPressedEntity, clickedEntity)) 
-                return;
 
-            _lastPressedEntity = null;
+            SendUnitsToOtherProperty(_firstClickedEntity, clickedEntity, _playerQueue);
+            _firstClickedEntity = null;
         }
 
-        public static bool SendUnitsToOtherProperty(IEntity lastPressedEntity, IEntity clickedEntity)
+        public static bool SendUnitsToOtherProperty(IEntity firstClickedEntity, IEntity secondClickedEntity, PlayerQueue playerQueue)
         {
-            if (!lastPressedEntity.ContextContains<PropertyComponent>() ||
-                !clickedEntity.ContextContains<PropertyComponent>())
+            if (!firstClickedEntity.ContextContains<PropertyComponent>() ||
+                !secondClickedEntity.ContextContains<PropertyComponent>())
                 return false;
 
-            if (!lastPressedEntity.ContextContains<MetricHandlerBalanceComponent>() ||
-                !clickedEntity.ContextContains<MetricHandlerBalanceComponent>())
+            if (!firstClickedEntity.ContextContains<MetricHandlerBalanceComponent>() ||
+                !secondClickedEntity.ContextContains<MetricHandlerBalanceComponent>())
                 return false;
 
-            if (lastPressedEntity.ContextGet<PropertyComponent>()?.Owner ==
-                clickedEntity.ContextGet<PropertyComponent>()?.Owner)
+            if (firstClickedEntity.ContextGet<PropertyComponent>().Owner != playerQueue.CurrentTurnPlayer())
+                return false;
+            
+            if (firstClickedEntity.ContextGet<PropertyComponent>()?.Owner ==
+                secondClickedEntity.ContextGet<PropertyComponent>()?.Owner)
             {
-                var lastPressedBalanceHandler = lastPressedEntity.ContextGet<MetricHandlerBalanceComponent>();
+                var lastPressedBalanceHandler = firstClickedEntity.ContextGet<MetricHandlerBalanceComponent>();
 
                 int unitCount;
                 if (lastPressedBalanceHandler.Balance[MetricType.Units] == 2)
@@ -55,7 +62,7 @@ namespace Core.Systems.ClickSystems
                     unitCount = (int)lastPressedBalanceHandler.Balance[MetricType.Units] / 2;
 
                 lastPressedBalanceHandler.RemoveFromMetric(MetricType.Units, unitCount);
-                clickedEntity.ContextGet<MetricHandlerBalanceComponent>()?.AddToMetric(MetricType.Units, unitCount);
+                secondClickedEntity.ContextGet<MetricHandlerBalanceComponent>()?.AddToMetric(MetricType.Units, unitCount);
             }
 
             return true;

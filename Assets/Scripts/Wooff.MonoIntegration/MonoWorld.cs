@@ -41,15 +41,17 @@ namespace Wooff.MonoIntegration
             SystemContext.ContextAdd(new UpdateSmoothTranslate());
             SystemContext.ContextAdd(new PlayerTagVisualisation());
             SystemContext.ContextAdd(new MetricUserBalanceShower());
+
+            var playerQueue = new PlayerQueue();
+            SystemContext.ContextAdd(playerQueue);
             
             SystemContext.ContextAdd(new CameraMouseClick());
             SystemContext.ContextAdd(new MoveCameraOnCellClick());
             SystemContext.ContextAdd(new OpenInformationWindowOnCellClick());
             SystemContext.ContextAdd(new OpenChooseCellWindowOnCellClick());
-            SystemContext.ContextAdd(new SendHalfOfUnitsOnCellClick());
+            SystemContext.ContextAdd(new SendHalfOfUnitsOnCellClick(playerQueue));
             SystemContext.ContextAdd(new EndProcessClickStateCell());
             
-            SystemContext.ContextAdd(new PlayerQueue());
             SystemContext.ContextAdd(new HealthTracker());
             SystemContext.ContextAdd(new MetricBalanceMining());
             SystemContext.ContextAdd(new PlayerTurn());

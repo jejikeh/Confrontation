@@ -13,6 +13,11 @@ namespace Core.Systems
         private Queue<IEntity> _cachedPlayers = new Queue<IEntity>();
         private List<IEntity> _cachedCells = new List<IEntity>();
 
+        public IEntity CurrentTurnPlayer()
+        {
+            return _cachedPlayers.Peek();
+        }
+
         public override void StartFromEntityContextQuery(EntityContext context)
         {
             var players = context
