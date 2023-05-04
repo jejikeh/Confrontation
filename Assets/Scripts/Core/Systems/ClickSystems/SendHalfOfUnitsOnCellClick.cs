@@ -35,34 +35,37 @@ namespace Core.Systems.ClickSystems
             _firstClickedEntity = null;
         }
 
-        public static bool SendUnitsToOtherProperty(IEntity firstClickedEntity, IEntity secondClickedEntity, PlayerQueue playerQueue)
+        public static bool SendUnitsToOtherProperty(IEntity fromEntityCell, IEntity toEntityCell, PlayerQueue playerQueue)
         {
-            if (!firstClickedEntity.ContextContains<PropertyComponent>() ||
-                !secondClickedEntity.ContextContains<PropertyComponent>())
+            if (!fromEntityCell.ContextContains<PropertyComponent>() ||
+                !toEntityCell.ContextContains<PropertyComponent>())
                 return false;
 
-            if (!firstClickedEntity.ContextContains<MetricHandlerBalanceComponent>() ||
-                !secondClickedEntity.ContextContains<MetricHandlerBalanceComponent>())
+            if (!fromEntityCell.ContextContains<MetricHandlerBalanceComponent>() ||
+                !toEntityCell.ContextContains<MetricHandlerBalanceComponent>())
                 return false;
 
-            if (firstClickedEntity.ContextGet<PropertyComponent>().Owner != playerQueue.CurrentTurnPlayer())
+            if (fromEntityCell.ContextGet<PropertyComponent>().Owner != playerQueue.CurrentTurnPlayer())
                 return false;
             
-            if (firstClickedEntity.ContextGet<PropertyComponent>()?.Owner ==
-                secondClickedEntity.ContextGet<PropertyComponent>()?.Owner)
+            if (fromEntityCell.ContextGet<PropertyComponent>()?.Owner ==
+                toEntityCell.ContextGet<PropertyComponent>()?.Owner)
             {
-                var lastPressedBalanceHandler = firstClickedEntity.ContextGet<MetricHandlerBalanceComponent>();
+                var fromEntityCellBalanceHandler = fromEntityCell.ContextGet<MetricHandlerBalanceComponent>();
 
-                int unitCount;
-                if (lastPressedBalanceHandler.Balance[MetricType.Units] == 2)
-                    unitCount = 2;
-                else if ((lastPressedBalanceHandler.Balance[MetricType.Units] / 2) % 2 != 0)
-                    unitCount = (int)((lastPressedBalanceHandler.Balance[MetricType.Units] + 1) / 2);
+                int unitSendCount;
+                if (fromEntityCellBalanceHandler.Balance[MetricType.Units] == 2)
+                    unitSendCount = 2;
+                else if ((fromEntityCellBalanceHandler.Balance[MetricType.Units] / 2) % 2 != 0)
+                    unitSendCount = (int)((fromEntityCellBalanceHandler.Balance[MetricType.Units] + 1) / 2);
                 else
-                    unitCount = (int)lastPressedBalanceHandler.Balance[MetricType.Units] / 2;
+                    unitSendCount = (int)fromEntityCellBalanceHandler.Balance[MetricType.Units] / 2;
 
-                lastPressedBalanceHandler.RemoveFromMetric(MetricType.Units, unitCount);
-                secondClickedEntity.ContextGet<MetricHandlerBalanceComponent>()?.AddToMetric(MetricType.Units, unitCount);
+                fromEntityCellBalanceHandler.RemoveFromMetric(MetricType.Units, unitSendCount);
+                toEntityCell.ContextGet<MetricHandlerBalanceComponent>()?.AddToMetric(MetricType.Units, unitSendCount);
+                toEntityCell.ContextGet<PropertyComponent>()?
+                    .Owner.ContextGet<MetricHandlerBalanceComponent>()?
+                    .RemoveFromMetric(MetricType.Move, MovePrice.SendUnitsPrice);
             }
 
             return true;
