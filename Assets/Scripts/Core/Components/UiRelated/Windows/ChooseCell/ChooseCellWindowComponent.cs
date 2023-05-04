@@ -25,7 +25,5 @@ namespace Core.Components.UiRelated.Windows.ChooseCell
         {
             ClickedEntity = clickedCell;
         }
-        
-        
     }
 }

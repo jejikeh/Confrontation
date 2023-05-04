@@ -42,7 +42,9 @@ namespace Core.Components.Tags
             {
                 Balance = new Dictionary<MetricType, float>()
                 {
-                    { MetricType.Units, 0 }
+                    { MetricType.Units, 0 },
+                    { MetricType.Protection, 0},
+                    { MetricType.Attack, 0}
                 }
             };
         }
