@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Core.Components.Metrics;
-using Core.Components.Players;
 using Core.Components.TransformRelated;
 using Core.Components.UnityRelated;
 using UnityEngine;
@@ -13,14 +12,15 @@ namespace Core.Components.Tags
     public class UnitTagComponent : IComponent
     {
         public UnityGameObjectComponent UnityGameObjectComponent;
-        public SmoothTranslateComponent SmoothTranslateComponent;
         public MetricHandlerBalanceComponent MetricHandlerBalanceComponent;
-        public PropertyComponent PropertyComponent;
         
-        public UnitTagComponent(UnitTagComponent unitTagComponent, IEntity handler)
+        public UnitTagComponent(UnitTagComponentData unitTagComponent, Vector3 position, Quaternion rotation)
         {
-            UnityGameObjectComponent = unitTagComponent.UnityGameObjectComponent;
-            SmoothTranslateComponent = unitTagComponent.SmoothTranslateComponent;
+            UnityGameObjectComponent = new UnityGameObjectComponent(unitTagComponent.UnityGameObjectComponent)
+            {
+                StartRotation = rotation,
+                StartPosition = position
+            };
             MetricHandlerBalanceComponent = new MetricHandlerBalanceComponent()
             {
                 Balance = new Dictionary<MetricType, float>()
@@ -29,7 +29,16 @@ namespace Core.Components.Tags
                     { MetricType.Attack, 1f }
                 }
             };
-            PropertyComponent = new PropertyComponent(handler);
+        }
+        
+        public IEntity CreateTagEntityContainerMovingFromAtoB(IEntity fromA, IEntity toB, Action<IEntity, IEntity, int> action)
+        {
+            return new Entity(
+                UnityGameObjectComponent,
+                MetricHandlerBalanceComponent,
+                new MoveFromAtoBAndCallActionComponent(fromA, toB, action),
+                new HealthComponent(10f),
+                this);
         }
     }
 
@@ -38,6 +47,5 @@ namespace Core.Components.Tags
     {
         [Header("Unit Component Group")]
         public UnityGameObjectComponent UnityGameObjectComponent;
-        public SmoothTranslateComponent SmoothTranslateComponent;
     }
 }
