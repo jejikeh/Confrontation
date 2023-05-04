@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 namespace Core
 {
-    public class UnitPrefabHandler : Singleton<UnitPrefabHandler>
+    public class UnitPrefabsHandler : Singleton<UnitPrefabsHandler>
     {
         [SerializeField] private List<UnitTagComponentData> _unitComponents;
 

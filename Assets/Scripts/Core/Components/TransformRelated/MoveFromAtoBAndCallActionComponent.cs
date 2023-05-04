@@ -4,13 +4,13 @@ using Wooff.ECS.Entities;
 
 namespace Core.Components.TransformRelated
 {
-    public class MoveFromAtoBComponent : IComponent
+    public class MoveFromAtoBAndCallActionComponent : IComponent
     {
         public IEntity APoint;
         public IEntity BPoint;
-        public Action<IEntity, IEntity> ActionAfterMovement;
+        public Action<IEntity, IEntity, int> ActionAfterMovement;
 
-        public MoveFromAtoBComponent(IEntity fromA, IEntity toB, Action<IEntity, IEntity> actionAfterMovement)
+        public MoveFromAtoBAndCallActionComponent(IEntity fromA, IEntity toB, Action<IEntity, IEntity, int> actionAfterMovement)
         {
             APoint = fromA;
             BPoint = toB;

@@ -46,16 +46,22 @@ namespace Core.Systems
                 player.Turn = true;
                 _cachedPlayers.Peek().ContextGet<MetricHandlerBalanceComponent>()?.AddToMetric(MetricType.Move, 2);
                 GameStateManager.SetTurnState(TurnState.ProcessTurn);
+                return;
             }
-            else if (GameStateManager.GetTurnState == TurnState.EndTurn)
+            
+            if (GameStateManager.GetTurnState == TurnState.EndTurn)
             {
                 player.Turn = false;    
                 _cachedPlayers.Enqueue(_cachedPlayers.Dequeue());
                 GameStateManager.SetTurnState(TurnState.StartTurn);
+                return;
             }
-            
-            if(_cachedPlayers.Peek().ContextGet<MetricHandlerBalanceComponent>().Balance[MetricType.Move] <= 0)
+
+            if (_cachedPlayers.Peek().ContextGet<MetricHandlerBalanceComponent>().Balance[MetricType.Move] <= 0)
+            {
+                _cachedPlayers.Peek().ContextGet<MetricHandlerBalanceComponent>().SetMetric(MetricType.Move, 0);
                 GameStateManager.SetTurnState(TurnState.EndTurn);
+            }
         }
     }
 }

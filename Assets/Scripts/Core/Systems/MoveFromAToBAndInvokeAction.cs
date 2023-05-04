@@ -13,12 +13,12 @@ using Wooff.MonoIntegration;
 
 namespace Core.Systems
 {
-    public class MoveFromAToBAndInvokeActioj : Wooff.ECS.Systems.System
+    public class MoveFromAToBAndInvokeAction : Wooff.ECS.Systems.System
     {
         private List<IEntity> _cachedEntities = new List<IEntity>();
         private int _cachedCount;
 
-        public override async void UpdateFromEntityContextQuery(float timeScale, EntityContext context)
+        public override void UpdateFromEntityContextQuery(float timeScale, EntityContext context)
         {
             if (_cachedCount != context.Count<PropertyComponent>())
             {
@@ -39,17 +39,19 @@ namespace Core.Systems
                     var entitySceneObject = entity.ContextGet<UnityGameObjectComponent>().UnitySceneObject;
                     
                     entitySceneObject.transform.position =
-                        moveFromAtoBComponent.APoint.ContextGet<UnityGameObjectComponent>().UnitySceneObject.transform.position;
+                        moveFromAtoBComponent.APoint.ContextGet<UnityGameObjectComponent>().UnitySceneObject.transform.position + Random.onUnitSphere * Random.Range(-0.5f,0.5f);
                     
-                    await entitySceneObject.transform
-                        .DOMove(
-                            moveFromAtoBComponent.BPoint.ContextGet<UnityGameObjectComponent>().UnitySceneObject.transform.position, 
-                            5f)
-                        .AsyncWaitForCompletion();
-                    
-                    entity.ContextGet<HealthComponent>().Kill();
+                    entitySceneObject.transform.DOMove(
+                            moveFromAtoBComponent.BPoint.ContextGet<UnityGameObjectComponent>().UnitySceneObject.transform.position + Random.onUnitSphere * Random.Range(-0.5f,0.5f), 
+                            2f).OnComplete(() => InvokeActionAndKillTheUnit(moveFromAtoBComponent, entity));
                 }
             }
+        }
+
+        private static void InvokeActionAndKillTheUnit(MoveFromAtoBAndCallActionComponent moveFromAtoBComponent, IEntity entity)
+        {
+            moveFromAtoBComponent.ActionAfterMovement.Invoke(moveFromAtoBComponent.APoint, moveFromAtoBComponent.BPoint, 1);
+            entity.ContextGet<HealthComponent>().Kill();
         }
     }
 }

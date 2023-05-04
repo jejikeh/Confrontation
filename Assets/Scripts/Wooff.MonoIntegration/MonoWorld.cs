@@ -41,6 +41,7 @@ namespace Wooff.MonoIntegration
             SystemContext.ContextAdd(new UpdateSmoothTranslate());
             SystemContext.ContextAdd(new PlayerTagVisualisation());
             SystemContext.ContextAdd(new MetricUserBalanceShower());
+            SystemContext.ContextAdd(new MoveFromAToBAndInvokeAction());
 
             var playerQueue = new PlayerQueue();
             SystemContext.ContextAdd(playerQueue);

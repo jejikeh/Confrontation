@@ -33,6 +33,9 @@ namespace Core.Systems
                 
                 foreach (var entity in newEntities)
                 {
+                    if (!entity.ContextContains<InformationComponent>())
+                        return;
+                    
                     var visualizationIcon = entity.ContextGet<InformationComponent>().VisualizationIcon;
                     var gameObject = MonoWorld.Instantiate(visualizationIcon, entity.ContextGet<UnityGameObjectComponent>().UnitySceneObject.transform);
                     

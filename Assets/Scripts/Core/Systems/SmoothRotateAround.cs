@@ -26,8 +26,10 @@ namespace Core.Systems
             foreach (var entity in _cachedEntities)
             {
                 var transform = entity.ContextGet<UnityGameObjectComponent>().UnitySceneObject.transform;
+                if (!entity.ContextContains<SmoothRotateComponent>())
+                    return;
+                
                 var smoothRotate = entity.ContextGet<SmoothRotateComponent>();
-
                 transform.rotation = Quaternion.Lerp(
                     transform.rotation,
                     smoothRotate.NewRotation,
