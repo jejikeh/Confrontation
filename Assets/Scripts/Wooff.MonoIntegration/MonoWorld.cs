@@ -65,6 +65,9 @@ namespace Wooff.MonoIntegration
             foreach (var cell in _cellGenerator.InitWorld())
                 EntityContext.ContextAdd(cell);
             
+            EntityContext.ContextAdd(new ToolBoxWindowTagComponent(UiComponentsDataPrefabsHandler.ToolBoxTagComponentData)
+                .CreateWindowEntityContainer());
+            
             // Spawn Camera Entity container
             EntityContext
                 .ContextAdd(new CameraHandlerTagComponent(_cameraHandlerComponentsGroup)
@@ -75,10 +78,11 @@ namespace Wooff.MonoIntegration
                 .ContextAdd(new WindowContextTagComponent(_windowContextObjectComponent)
                     .CreateWindowContextEntityContainer());
             
+            
             EntityContext
                 .ContextAdd(new MetricShowerWindowTagComponent(UiComponentsDataPrefabsHandler.MetricShowerTagComponentData)
                         .CreateWindowEntityContainer());
-
+            
             foreach (var component in _playersComponents)
                 EntityContext.ContextAdd(new PlayerTagComponent(component).CreatePlayerTagEntityContainer());
             

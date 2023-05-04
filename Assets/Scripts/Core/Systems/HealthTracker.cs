@@ -28,12 +28,6 @@ namespace Core.Systems
 
         public override async void UpdateFromEntityContextQuery(float timeScale, EntityContext context)
         {
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                context.ContextAdd(new ToolBoxWindowTagComponent(UiComponentsDataPrefabsHandler.ToolBoxTagComponentData)
-                    .CreateWindowEntityContainer());
-            }
-            
             if (_cachedCount != context.Count<HealthComponent>())
             {
                 _cachedEntities = context.ContextWhereQuery(x => x.ContextContains<HealthComponent>()).ToList();

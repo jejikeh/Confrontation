@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Core.Components;
 using Core.Components.Metrics;
 using Core.Components.Players;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using Wooff.ECS.Contexts;
 using Wooff.ECS.Entities;
 
@@ -48,12 +50,13 @@ namespace Core.Systems
                     continue;
                 
                 var ownerBalance = property.Owner.ContextGet<MetricHandlerBalanceComponent>();
-                foreach (var mine in metricsMiner.Metrics)
+                const MetricType cellMetrics = MetricType.Protection | MetricType.Attack | MetricType.Units;
+                foreach (var metric in metricsMiner.Metrics)
                 {
-                    if (mine == MetricType.Units)
-                        entity.ContextGet<MetricHandlerBalanceComponent>()?.AddToMetric(mine, metricsMiner.BonusAmount);
-
-                    ownerBalance?.AddToMetric(mine, metricsMiner.BonusAmount);
+                    if ((metric & cellMetrics) != MetricType.None)
+                        entity.ContextGet<MetricHandlerBalanceComponent>()?.AddToMetric(metric, metricsMiner.BonusAmount);
+                    
+                    ownerBalance?.AddToMetric(metric, metricsMiner.BonusAmount);
                 }
             }
         }

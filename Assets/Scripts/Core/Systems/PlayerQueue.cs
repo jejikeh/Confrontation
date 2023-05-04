@@ -53,6 +53,9 @@ namespace Core.Systems
                 _cachedPlayers.Enqueue(_cachedPlayers.Dequeue());
                 GameStateManager.SetTurnState(TurnState.StartTurn);
             }
+            
+            if(_cachedPlayers.Peek().ContextGet<MetricHandlerBalanceComponent>().Balance[MetricType.Move] <= 0)
+                GameStateManager.SetTurnState(TurnState.EndTurn);
         }
     }
 }
