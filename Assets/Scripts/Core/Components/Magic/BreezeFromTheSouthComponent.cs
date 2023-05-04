@@ -3,7 +3,7 @@ using Core.Components.Metrics;
 
 namespace Core.Components.Magic
 {
-    public class BreezeFromTheSouth : MagicComponent
+    public class BreezeFromTheSouthComponent : MagicComponent
     {
         public override Dictionary<MetricType, float> BonusesMultiplier { get; protected set; } =
             new Dictionary<MetricType, float>()
