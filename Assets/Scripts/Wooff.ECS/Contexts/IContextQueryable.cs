@@ -16,13 +16,13 @@ namespace Wooff.ECS.Contexts
         
         public IContextQueryable<T>? ContextWhereQueryable(Func<T, bool> query)
         {
-            var w = ContextWhereQuery(query);
-            var t = CreateEmptySelf();
-            var c = t as IContext<T>;
-            foreach (var contextQueryable in w)
-                c?.ContextAdd(contextQueryable);
+            var contextWhereQuery = ContextWhereQuery(query);
+            var emptySelf = CreateEmptySelf();
+            var context = emptySelf as IContext<T>;
+            foreach (var contextQueryable in contextWhereQuery)
+                context?.ContextAdd(contextQueryable);
             
-            return c as IContextQueryable<T>;
+            return context as IContextQueryable<T>;
         }
 
         public IContextQueryable<T> CreateEmptySelf();
