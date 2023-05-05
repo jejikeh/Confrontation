@@ -1,15 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Core.Components;
-using Core.Components.Metrics;
-using Core.Components.Players;
 using Core.Components.TransformRelated;
 using Core.Components.UnityRelated;
 using DG.Tweening;
 using UnityEngine;
 using Wooff.ECS.Contexts;
 using Wooff.ECS.Entities;
-using Wooff.MonoIntegration;
 
 namespace Core.Systems
 {
@@ -20,7 +17,7 @@ namespace Core.Systems
 
         public override void UpdateFromEntityContextQuery(float timeScale, EntityContext context)
         {
-            if (_cachedCount != context.Count<PropertyComponent>())
+            if (_cachedCount != context.Count<MoveFromAtoBAndCallActionComponent>())
             {
                 var newEntities = context
                     .ContextWhereQuery(x => x.ContextContains<MoveFromAtoBAndCallActionComponent>())

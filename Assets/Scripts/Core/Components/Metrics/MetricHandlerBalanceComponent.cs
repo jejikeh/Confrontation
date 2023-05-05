@@ -13,7 +13,8 @@ namespace Core.Components.Metrics
         {
             foreach (var value in Enum.GetValues(metricType.GetType()))
             {
-                if (metricType.HasFlag((MetricType)value) && (MetricType)value != MetricType.None && Balance.ContainsKey((MetricType)value))
+                if (metricType.HasFlag((MetricType)value) && (MetricType)value != MetricType.None &&
+                    Balance.ContainsKey((MetricType)value))
                     Balance[(MetricType)value] += amount;
             }
         }
@@ -25,7 +26,16 @@ namespace Core.Components.Metrics
         
         public void RemoveFromMetric(MetricType metricType, float amount)
         {
-            Balance[metricType] -= amount;
+            foreach (var value in Enum.GetValues(metricType.GetType()))
+            {
+                if (metricType.HasFlag((MetricType)value) && (MetricType)value != MetricType.None &&
+                    Balance.ContainsKey((MetricType)value))
+                {
+                    Balance[(MetricType)value] -= amount;
+                    if (Balance[(MetricType)value] <= 0)
+                        Balance[(MetricType)value] = 0;
+                }
+            }
         }
     }
 }

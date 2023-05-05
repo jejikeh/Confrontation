@@ -37,12 +37,12 @@ namespace Core.Systems.ClickSystems
             }
             
             var actionDetector = SendUnitsToOtherProperty(_firstClickedEntity, clickedEntity, _playerQueue);
+            
+            var unityObjectOfFirstClickedEntity = _firstClickedEntity.ContextGet<UnityGameObjectComponent>();
+            var positionOfClickedEntity = unityObjectOfFirstClickedEntity.StartPosition;
+            var rotationOfClickedEntity = unityObjectOfFirstClickedEntity.StartRotation;
             if (actionDetector.Item2 == SendUnitAction.SendToProperty)
             {
-                var unityObjectOfFirstClickedEntity = _firstClickedEntity.ContextGet<UnityGameObjectComponent>();
-                var positionOfClickedEntity = unityObjectOfFirstClickedEntity.StartPosition;
-                var rotationOfClickedEntity = unityObjectOfFirstClickedEntity.StartRotation;
-
                 foreach (var _ in Enumerable.Range(0, actionDetector.Item1))
                 {
                     context.ContextAdd(new UnitTagComponent(
@@ -51,6 +51,10 @@ namespace Core.Systems.ClickSystems
                         rotationOfClickedEntity)
                         .CreateTagEntityContainerMovingFromAtoB(_firstClickedEntity, clickedEntity, HandleMetricWhenSendUnitsToProperty));
                 }
+            } 
+            else if (actionDetector.Item2 == SendUnitAction.SendToEnemy)
+            {
+                
             }
 
             _firstClickedEntity = null;
@@ -92,9 +96,9 @@ namespace Core.Systems.ClickSystems
         private static void HandleMetricWhenSendUnitsToProperty(IEntity fromEntityCell, IEntity toEntityCell, int unitSendCount)
         {
             var fromEntityCellBalanceHandler = fromEntityCell.ContextGet<MetricHandlerBalanceComponent>();
-            fromEntityCellBalanceHandler.RemoveFromMetric(MetricType.Units, unitSendCount);
+            fromEntityCellBalanceHandler.RemoveFromMetric(MetricType.Units | MetricType.Protection, unitSendCount);
             
-            toEntityCell.ContextGet<MetricHandlerBalanceComponent>()?.AddToMetric(MetricType.Units, unitSendCount);
+            toEntityCell.ContextGet<MetricHandlerBalanceComponent>()?.AddToMetric(MetricType.Units | MetricType.Protection, unitSendCount);
             toEntityCell.ContextGet<PropertyComponent>()?.Owner.ContextGet<MetricHandlerBalanceComponent>()?.RemoveFromMetric(MetricType.Move, MovePrice.SendUnitsPrice);
         }
 
