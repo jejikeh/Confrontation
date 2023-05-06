@@ -46,11 +46,38 @@ namespace Core.Systems
             
             var chooseCellWindowComponent = context
                 .ContextWhereQuery(x => x.ContextContains<ChooseCellWindowComponent>())
-                .FirstOrDefault()
+                .FirstOrDefault()?
                 .ContextGet<ChooseCellWindowComponent>();
             
             if (chooseCellWindowComponent == null) 
                 return;
+
+            if (chooseCellWindowComponent.ClickedEntity is null ||
+                !chooseCellWindowComponent.ClickedEntity.ContextGet<CellComponent>().Plain)
+            {
+                chooseCellWindowComponent.UpdateClickedCell(null);
+                ChooseCellWindowMonoReference.StateHandled();
+                return;
+            }
+            
+            if (context.Count<PropertyComponent>() > 0)
+            {
+                var allPropertyCells = context.ContextWhereQuery(x =>
+                        x.ContextContains<PropertyComponent>())
+                    .Where(p => p.ContextGet<PropertyComponent>().Owner == playerUser)
+                    .Select(x => x.ContextGet<UnityGameObjectComponent>());
+
+                if (allPropertyCells.Any())
+                {
+                    var cellPosition = chooseCellWindowComponent.ClickedEntity.ContextGet<UnityGameObjectComponent>().UnitySceneObject.transform.position;
+                    if (!allPropertyCells.Any(x =>
+                            Vector3.Distance(
+                                cellPosition,
+                                x.UnitySceneObject.transform.position) <
+                            playerUser.ContextGet<PlayerComponent>().MaxBuildDistance))
+                        return;
+                }
+            }
             
             ReplaceCell(
                 playerUser,
@@ -62,10 +89,8 @@ namespace Core.Systems
             ChooseCellWindowMonoReference.StateHandled();
         }
 
-        private void ReplaceCell(IEntity player, IEntity clickedEntity, CellType cellType, EntityContext entityContext)
+        public static void ReplaceCell(IEntity player, IEntity clickedEntity, CellType cellType, EntityContext entityContext)
         {
-            if (clickedEntity is null || !clickedEntity.ContextGet<CellComponent>().Plain)
-                return;
 
             var playerBalance = player.ContextGet<MetricHandlerBalanceComponent>();
             if (playerBalance.Balance[MetricType.Gold] <= 0)
@@ -76,32 +101,11 @@ namespace Core.Systems
 
             if (!player.ContextGet<PlayerComponent>().Turn)
                 return;
-
-            if (entityContext.Count<PropertyComponent>() > 0)
-            {
-                var allPropertyCells = entityContext.ContextWhereQuery(x =>
-                        x.ContextContains<PropertyComponent>())
-                    .Where(p => p.ContextGet<PropertyComponent>().Owner == player)
-                    .Select(x => x.ContextGet<UnityGameObjectComponent>());
-
-                if (allPropertyCells.Any())
-                {
-                    var cellPosition = clickedEntity
-                        .ContextGet<UnityGameObjectComponent>().UnitySceneObject.transform.position;
-                    if (!allPropertyCells.Any(x =>
-                            Vector3.Distance(
-                                cellPosition,
-                                x.UnitySceneObject.transform.position) <
-                            player.ContextGet<PlayerComponent>().MaxBuildDistance))
-                        return;
-                }
-            }
-
+            
             player.ContextGet<MetricHandlerBalanceComponent>()?.RemoveFromMetric(MetricType.Gold, 1);
             player.ContextGet<MetricHandlerBalanceComponent>()?.RemoveFromMetric(MetricType.Move, 1);
 
-            var unityObject = clickedEntity
-                .ContextGet<UnityGameObjectComponent>();
+            var unityObject = clickedEntity.ContextGet<UnityGameObjectComponent>();
             var startPosition = unityObject.StartPosition;
             var startRotation = unityObject.StartRotation;
 

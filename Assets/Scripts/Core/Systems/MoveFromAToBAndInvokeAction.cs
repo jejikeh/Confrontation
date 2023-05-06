@@ -40,14 +40,14 @@ namespace Core.Systems
                     
                     entitySceneObject.transform.DOMove(
                             moveFromAtoBComponent.BPoint.ContextGet<UnityGameObjectComponent>().UnitySceneObject.transform.position + Random.onUnitSphere * Random.Range(-0.5f,0.5f), 
-                            2f).OnComplete(() => InvokeActionAndKillTheUnit(moveFromAtoBComponent, entity));
+                            2f).OnComplete(() => InvokeActionAndKillTheUnit(moveFromAtoBComponent, entity, context));
                 }
             }
         }
 
-        private static void InvokeActionAndKillTheUnit(MoveFromAtoBAndCallActionComponent moveFromAtoBComponent, IEntity entity)
+        private static void InvokeActionAndKillTheUnit(MoveFromAtoBAndCallActionComponent moveFromAtoBComponent, IEntity entity, EntityContext entityContext)
         {
-            moveFromAtoBComponent.ActionAfterMovement.Invoke(moveFromAtoBComponent.APoint, moveFromAtoBComponent.BPoint, 1);
+            moveFromAtoBComponent.ActionAfterMovement.Invoke(moveFromAtoBComponent.APoint, moveFromAtoBComponent.BPoint, 1, entityContext);
             entity.ContextGet<HealthComponent>().Kill();
         }
     }
