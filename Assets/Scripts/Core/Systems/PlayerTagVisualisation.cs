@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Core.Components;
+using Core.Components.CellRelated;
 using Core.Components.Metrics;
 using Core.Components.Players;
 using Core.Components.UnityRelated;
@@ -13,35 +14,36 @@ namespace Core.Systems
 {
     public class PlayerTagVisualisation : Wooff.ECS.Systems.System
     {
-        private List<IEntity> _cachedEntities = new List<IEntity>();
+        private List<IEntity> _cachedCells = new List<IEntity>();
         private int _cachedCount;
 
         public override void UpdateFromEntityContextQuery(float timeScale, EntityContext context)
         {
             if (_cachedCount != context.Count<PropertyComponent>())
             {
-                var newEntities = context
+                var newCellProperties = context
                     .ContextWhereQuery(x => x.ContextContains<PropertyComponent>())
-                    .Where(x => !_cachedEntities.Contains(x))
+                    .Where(x => !_cachedCells.Contains(x))
                     .ToArray();
                 
-                if(!newEntities.Any())
+                if(!newCellProperties.Any())
                     return;
                 
-                _cachedEntities.AddRange(newEntities);
+                _cachedCells.AddRange(newCellProperties);
                 _cachedCount = context.Count<PropertyComponent>();
                 
-                foreach (var entity in newEntities)
+                foreach (var cellEntity in newCellProperties)
                 {
-                    if (!entity.ContextContains<InformationComponent>())
+                    if (!cellEntity.ContextContains<InformationComponent>())
                         return;
                     
-                    var visualizationIcon = entity.ContextGet<InformationComponent>().VisualizationIcon;
-                    var gameObject = MonoWorld.Instantiate(visualizationIcon, entity.ContextGet<UnityGameObjectComponent>().UnitySceneObject.transform);
+                    var visualizationIcon = cellEntity.ContextGet<InformationComponent>().VisualizationIcon;
+                    var gameObject = MonoWorld.Instantiate(visualizationIcon, cellEntity.ContextGet<UnityGameObjectComponent>().UnitySceneObject.transform);
+                    cellEntity.ContextGet<CellMetricUiPanelParentComponent>().UiMetricPanel = gameObject;
                     
-                    var owner = entity.ContextGet<PropertyComponent>().Owner;
+                    var owner = cellEntity.ContextGet<PropertyComponent>().Owner;
                     if (owner.ContextContains<PlayerComponent>())
-                        gameObject.GetComponent<TagIconVisualisation>().SetProperties(owner.ContextGet<PlayerComponent>().Color, entity.ContextGet<MetricHandlerBalanceComponent>());
+                        gameObject.GetComponent<TagIconVisualisation>().SetProperties(owner.ContextGet<PlayerComponent>().Color, cellEntity.ContextGet<MetricHandlerBalanceComponent>());
                     
                     gameObject.transform.localPosition += Vector3.up;
                 }

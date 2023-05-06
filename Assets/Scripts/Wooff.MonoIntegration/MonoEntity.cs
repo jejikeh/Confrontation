@@ -1,4 +1,7 @@
-﻿using Core.Components.Tags;
+﻿using Core;
+using Core.Components;
+using Core.Components.CellRelated;
+using Core.Components.Tags;
 using DG.Tweening;
 using UnityEngine;
 using Wooff.ECS.Entities;
@@ -17,20 +20,29 @@ namespace Wooff.MonoIntegration
 
         private async void OnMouseEnter()
         {
-            if (!HandledEntity.ContextContains<HoverableTag>())
+            if (!HandledEntity.ContextContains<CellTagComponent>())
                 return;
             
             transform.DOComplete();
             await transform.DOMoveY(_yPosition + 0.15f, 0.25f).AsyncWaitForCompletion();
+            
+            var cellMetricUiPanelParentComponent = HandledEntity.ContextGet<CellMetricUiPanelParentComponent>();
+            if (cellMetricUiPanelParentComponent is not null || cellMetricUiPanelParentComponent.UiMetricPanel is not null)
+                cellMetricUiPanelParentComponent.UiMetricPanel?.GetComponent<TagIconVisualisation>().ToggleVisibility(true);
         }
         
         public async void OnMouseExit()
         {
-            if (!HandledEntity.ContextContains<HoverableTag>())
+            if (!HandledEntity.ContextContains<CellTagComponent>())
                 return;
             
             transform.DOComplete();
             await transform.DOMoveY(_yPosition, 0.25f).AsyncWaitForCompletion();
+
+            var cellMetricUiPanelParentComponent = HandledEntity.ContextGet<CellMetricUiPanelParentComponent>();
+            if (cellMetricUiPanelParentComponent is not null || cellMetricUiPanelParentComponent.UiMetricPanel is not null)
+                cellMetricUiPanelParentComponent.UiMetricPanel?.GetComponent<TagIconVisualisation>().ToggleVisibility(false);
+
         }
     }
 }
