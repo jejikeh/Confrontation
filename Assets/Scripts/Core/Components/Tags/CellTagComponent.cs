@@ -21,6 +21,7 @@ namespace Core.Components.Tags
         public HealthComponent HealthComponent;
         public MetricsMinerComponent MetricsMinerComponent;
         public MetricHandlerBalanceComponent MetricHandlerBalanceComponent;
+        public CellMetricUiPanelParentComponent CellMetricUiPanelParentComponent;
 
         public CellTagComponent(CellTagComponentData cellTagComponentData, Vector3 position, Quaternion rotation)
         {
@@ -38,13 +39,14 @@ namespace Core.Components.Tags
             HoverableTag = new HoverableTag();
             HealthComponent = new HealthComponent(cellTagComponentData.HealthComponent);
             MetricsMinerComponent = cellTagComponentData.MetricsMinerComponent;
+            CellMetricUiPanelParentComponent = new CellMetricUiPanelParentComponent();
             MetricHandlerBalanceComponent = new MetricHandlerBalanceComponent()
             {
                 Balance = new Dictionary<MetricType, float>()
                 {
-                    { MetricType.Units, 0 },
-                    { MetricType.Protection, 0},
-                    { MetricType.Attack, 0}
+                    { MetricType.Units, 2 },
+                    { MetricType.Protection, 2 },
+                    { MetricType.Attack, 2 }
                 }
             };
         }
@@ -62,6 +64,7 @@ namespace Core.Components.Tags
                 HealthComponent,
                 MetricsMinerComponent,
                 MetricHandlerBalanceComponent,
+                CellMetricUiPanelParentComponent,
                 this);
         }
 
@@ -78,6 +81,7 @@ namespace Core.Components.Tags
                 HealthComponent,
                 MetricsMinerComponent,
                 MetricHandlerBalanceComponent,
+                CellMetricUiPanelParentComponent,
                 new PropertyComponent(handler),
                 this);
         }

@@ -37,5 +37,15 @@ namespace Core.Components.Metrics
                 }
             }
         }
+
+        public MetricType GetMetricHandledFlags()
+        {
+            var metricHandledFlags = MetricType.None;
+            foreach (var metric in Balance)
+                if(metric.Value > 0 )
+                    metricHandledFlags |= metric.Key;
+
+            return metricHandledFlags;
+        }
     }
 }

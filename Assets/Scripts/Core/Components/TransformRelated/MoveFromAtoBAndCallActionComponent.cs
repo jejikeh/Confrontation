@@ -1,5 +1,6 @@
 using System;
 using Wooff.ECS.Components;
+using Wooff.ECS.Contexts;
 using Wooff.ECS.Entities;
 
 namespace Core.Components.TransformRelated
@@ -8,9 +9,9 @@ namespace Core.Components.TransformRelated
     {
         public IEntity APoint;
         public IEntity BPoint;
-        public Action<IEntity, IEntity, int> ActionAfterMovement;
+        public Action<IEntity, IEntity, int, EntityContext> ActionAfterMovement;
 
-        public MoveFromAtoBAndCallActionComponent(IEntity fromA, IEntity toB, Action<IEntity, IEntity, int> actionAfterMovement)
+        public MoveFromAtoBAndCallActionComponent(IEntity fromA, IEntity toB, Action<IEntity, IEntity, int, EntityContext> actionAfterMovement)
         {
             APoint = fromA;
             BPoint = toB;

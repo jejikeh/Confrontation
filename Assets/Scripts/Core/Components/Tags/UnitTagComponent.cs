@@ -5,6 +5,7 @@ using Core.Components.TransformRelated;
 using Core.Components.UnityRelated;
 using UnityEngine;
 using Wooff.ECS.Components;
+using Wooff.ECS.Contexts;
 using Wooff.ECS.Entities;
 
 namespace Core.Components.Tags
@@ -31,7 +32,7 @@ namespace Core.Components.Tags
             };
         }
         
-        public IEntity CreateTagEntityContainerMovingFromAtoB(IEntity fromA, IEntity toB, Action<IEntity, IEntity, int> action)
+        public IEntity CreateTagEntityContainerMovingFromAtoB(IEntity fromA, IEntity toB, Action<IEntity, IEntity, int, EntityContext> action)
         {
             return new Entity(
                 UnityGameObjectComponent,
