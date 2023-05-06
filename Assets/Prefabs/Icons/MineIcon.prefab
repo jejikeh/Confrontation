@@ -365,6 +365,7 @@ MonoBehaviour:
   _unitsCount: {fileID: 5010375569975843681}
   _protectionCount: {fileID: 1186299627625408796}
   _attackCount: {fileID: 3818148710643305877}
+  _metricHandlerObject: {fileID: 2438938310140251317}
 --- !u!1001 &5938796173352148987
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -425,6 +426,11 @@ PrefabInstance:
 --- !u!102 &1186299627625408796 stripped
 TextMesh:
   m_CorrespondingSourceObject: {fileID: 4763755753562502887, guid: 3cf6b52cc9fe7014584c59d8cc04c28d, type: 3}
+  m_PrefabInstance: {fileID: 5938796173352148987}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2438938310140251317 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8336742211275903822, guid: 3cf6b52cc9fe7014584c59d8cc04c28d, type: 3}
   m_PrefabInstance: {fileID: 5938796173352148987}
   m_PrefabAsset: {fileID: 0}
 --- !u!102 &3818148710643305877 stripped

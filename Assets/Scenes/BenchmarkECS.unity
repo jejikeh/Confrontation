@@ -493,7 +493,7 @@ MonoBehaviour:
     HealthComponent:
       MaxHealth: 1
     MetricsMinerComponent:
-      Metrics: 0d000000
+      Metrics: 05000000
       BonusAmount: 1
   - UnityGameObjectComponent:
       UnityPrefab: {fileID: 14588194416819017, guid: 88c72cd95ba09204c8635a3c001f4ccc, type: 3}
@@ -512,8 +512,8 @@ MonoBehaviour:
     HealthComponent:
       MaxHealth: 1
     MetricsMinerComponent:
-      Metrics: 04000000
-      BonusAmount: 10
+      Metrics: 0c000000
+      BonusAmount: 1
   - UnityGameObjectComponent:
       UnityPrefab: {fileID: 1288064003906350059, guid: c32c02007471630429f0303aece04373, type: 3}
       UnitySceneObject: {fileID: 0}
@@ -531,7 +531,7 @@ MonoBehaviour:
     HealthComponent:
       MaxHealth: 1
     MetricsMinerComponent:
-      Metrics: 02000000
+      Metrics: 14000000
       BonusAmount: 1
   - UnityGameObjectComponent:
       UnityPrefab: {fileID: 8807529451667030063, guid: 1a66a2a5693515c4daa09fd2c535c0d1, type: 3}
@@ -551,7 +551,7 @@ MonoBehaviour:
       MaxHealth: 1
     MetricsMinerComponent:
       Metrics: 02000000
-      BonusAmount: 2
+      BonusAmount: 1
 --- !u!4 &1224710764
 Transform:
   m_ObjectHideFlags: 0
