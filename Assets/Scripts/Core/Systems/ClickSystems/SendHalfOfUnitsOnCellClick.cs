@@ -68,13 +68,6 @@ namespace Core.Systems.ClickSystems
             _firstClickedEntity = null;
         }
 
-        /// <summary>
-        /// Sending units to other settlements
-        /// </summary>
-        /// <param name="fromEntityCell">Where units will be sent from</param>
-        /// <param name="toEntityCell">Where will they go</param>
-        /// <param name="playerQueue">Auxiliary link to the queue system</param>
-        /// <returns></returns>
         public static (int, SendUnitAction) SendUnitsToOtherProperty(IEntity fromEntityCell, IEntity toEntityCell, PlayerQueue playerQueue)
         {
             if (!fromEntityCell.ContextContains<PropertyComponent>() ||
